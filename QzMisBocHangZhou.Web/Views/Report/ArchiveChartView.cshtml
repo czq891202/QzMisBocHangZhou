@@ -1,0 +1,136 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>借阅超时图表</title>
+    <meta http-equiv="X-UA-Compatible" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="renderer" content="webkit">
+
+    <script type="text/javascript" src="~/Scripts/layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="~/Scripts/echarts.js"></script>
+    <link rel="stylesheet" media="all" href="~/Scripts/layuiadmin/layui/css/layui.css" />
+    <link rel="stylesheet" media="all" href="~/Scripts/layuiadmin/style/admin.css" />
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space10">
+            <div style="width: 100%;height:100%;">
+                <div class="layui-card">
+                    <div class="layui-card-header">档案统计图表</div>
+                    <div class="layui-card-body">
+                        <div id="charts-Archive" name="charts-Archive" style="width: 100%;height:400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript">
+        layui.config({
+            base: '../../Scripts/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'laydate'], function () {
+            var $ = layui.$
+                , layer = layui.layer;
+            
+            showDayCharts();
+            
+            function showDayCharts() {
+                $.ajax({
+                    url: '/Report/GetArchiveTotal',
+                    type: 'post',
+                    contentType: 'application/json',
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.msg == '') {
+                            console.log(result);
+                            var repData = formatData(result);
+                            initCharts(repData);
+                        }
+                        else {
+                            layer.msg('获取数据失败! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: false });
+                        }
+                    },
+                    error: function (result) {
+                        layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        function formatData(result) {
+            var legendData = [];
+            var seriesData = [];
+            for (var i = 0; i < result.data.length; i++) {
+                var item = result.data[i];
+                var name = item.StatusName;
+                legendData.push(name);
+                seriesData.push({
+                    name: name,
+                    value: item.Total
+                });
+            }
+
+            return {
+                legendData: legendData,
+                seriesData: seriesData,
+            };
+        }
+
+        function initCharts(data) {
+            option = {
+                title: {
+                    text: '档案统计',
+                    subtext: '',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    right: 10,
+                    top: 20,
+                    bottom: 20,
+                    data: data.legendData
+                },
+                series: [
+                    {
+                        name: '类型',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['40%', '50%'],
+                        data: data.seriesData,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            var test = echarts.init(document.getElementById('charts-Archive'));
+            test.setOption(option);
+        }
+    </script>
+
+</body>
+</html>
