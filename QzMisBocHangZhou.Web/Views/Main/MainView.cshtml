@@ -59,7 +59,6 @@
                         <dl class="layui-nav-child">
                             <dd><a id="changeMoblie" href="javascript:;">联系方式</a></dd>
                             <dd><a id="changePassword" href="javascript:;">修改密码</a></dd>
-                            <hr>
                             <dd style="text-align: center;"><a href="javascript:;" id="logout">退出</a></dd>
                         </dl>
                     </li>
@@ -126,7 +125,7 @@
             });
 
             $('#changePassword').click(function () {
-                openEdit('/UserInfo/UserPasswordEditView', ['450px', '300px'], '修改密码');
+                openEdit('/UserInfo/UserPasswordEditView', ['450px', '320px'], '修改密码');
             });
 
             $('#logout').click(function () {
@@ -143,7 +142,7 @@
                     id: 'edit',
                     content: url,    //iframe的url
                     end: function (layero, index) {
-                        tabIns.reload()
+                        //tabIns.reload()
                     }
                 });
             }
@@ -210,6 +209,11 @@
                 });
 
                 return content;
+            }
+
+            //初次登陆强制修改密码
+            if ("@Model.LastLandingTime" == "") {
+                $('#changePassword').click();
             }
         });
     </script>

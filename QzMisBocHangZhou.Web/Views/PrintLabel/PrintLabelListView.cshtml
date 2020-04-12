@@ -35,7 +35,6 @@
                             <input type="text" id="Year" name="Year" placeholder="请输入年份, 例如:1999" lay-verify="required" class="layui-input">
                         </div>
                     </div>
-
                     <div class="layui-form-item">
                         <label class="layui-form-label">数量</label>
                         <div class="layui-input-block">
@@ -176,7 +175,7 @@
                 var title = "中国银行浙江省分行授信档案【一级】";
 
                 for (i = 1; i <= num; i++) {
-                    var printContent = "D" + "|" + info.data.Year;
+                    var printContent = "D";
                     printContent += "|" + info.data.OrgCode;
                     printContent += "|" + PrefixInteger(parseInt(info.data.MaxNum) + parseInt(i), 6);
 
@@ -203,7 +202,7 @@
                         if (result.msg == '') {
                             var title = "中国银行浙江省分行授信档案【一级】";
                             var activeX = document.getElementById("printLabelActiveX");
-                            var printContent = "D" + "|" + result.data.Year;
+                            var printContent = "D";
                             printContent += "|" + result.data.OrgCode;
                             printContent += "|" + PrefixInteger(parseInt(result.data.MaxNum), 6);
 

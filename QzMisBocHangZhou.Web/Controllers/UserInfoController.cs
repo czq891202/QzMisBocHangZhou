@@ -85,7 +85,7 @@ namespace QzMisBocHangZhou.Web.Controllers
         public JsonResult ChangePassword(string id, string password)
         {
             var success = UserInfoBiz.ChangePassword(id, password);
-            if (AppSession.GetUser().LastLandingTime.GetType() == typeof(System.DBNull))
+            if (AppSession.GetUser().LastLandingTime == null || AppSession.GetUser().LastLandingTime.GetType() == typeof(System.DBNull))
             {
                 UserInfoBiz.SetLastLandingTime(AppSession.GetUser());
             }

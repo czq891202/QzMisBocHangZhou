@@ -1,4 +1,4 @@
-﻿
+﻿@model QzMisBocHangZhou.Model.UserInfo
 @{
     Layout = null;
 }
@@ -45,7 +45,6 @@
                 , layer = layui.layer
                 , treetable = layui.treeTable
                 , table = layui.table;
-
             var tab = null;
             // 渲染表格
             var renderTable = function () {
@@ -54,8 +53,8 @@
                     elem: '#OrgInfoList',
                     primary_key: 'Id',
                     parent_key: 'ParentId',
-                    top_value: '-1',
-                    url: '/OrgInfo/GetOrgInfoList',
+                    top_value: '@Model.ParentOrgId',
+                    url: '/OrgInfo/GetOrgInfoListByUser',
                     icon_key: 'Name',
                     hide_class: 'layui-hide',
                     is_click_icon: false,
@@ -210,8 +209,6 @@
             //}
 
         });
-
     </script>
-
 </body>
 </html>

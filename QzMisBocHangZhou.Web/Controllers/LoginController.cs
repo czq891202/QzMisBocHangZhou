@@ -20,7 +20,7 @@ namespace QzMisBocHangZhou.Web.Controllers
             if (result)
             {
                 CacheInfo(userName);
-                if(AppSession.GetUser().LastLandingTime.GetType() != typeof(System.DBNull))
+                if(AppSession.GetUser().LastLandingTime != null && AppSession.GetUser().LastLandingTime.GetType() != typeof(System.DBNull))
                 {
                     UserInfoBiz.SetLastLandingTime(AppSession.GetUser());
                 }

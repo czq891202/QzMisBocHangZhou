@@ -42,7 +42,7 @@ namespace QzMisBocHangZhou.DAL
 
         public static UserListViewModel GetDetailsByName(string name)
         {
-            var sql = @"select u.*, o.name as OrgName, r.rolename from UserInfo u 
+            var sql = @"select u.*, o.name as OrgName, r.rolename,o.parentid as ParentOrgId from UserInfo u 
                         left join OrgInfo o on u.orgid = o.id 
                         left join Role r on u.roleid = r.id 
                         where u.UserName = :UserName";

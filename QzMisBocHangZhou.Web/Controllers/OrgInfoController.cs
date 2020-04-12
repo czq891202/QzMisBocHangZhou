@@ -12,7 +12,7 @@ namespace QzMisBocHangZhou.Web.Controllers
         {
             if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
 
-            return View();
+            return View(AppSession.GetUser());
         }
 
         /// <summary>

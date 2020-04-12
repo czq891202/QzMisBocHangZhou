@@ -34,6 +34,12 @@ namespace QzMisBocHangZhou.Model
         public string OrgId { get; set; }
 
         /// <summary>
+        /// 所属组织机构Id
+        /// </summary>
+        [Description("所属上级组织机构Id")]
+        public string ParentOrgId { get; set; }
+
+        /// <summary>
         /// 角色Id
         /// </summary>
         [Description("角色Id")]
