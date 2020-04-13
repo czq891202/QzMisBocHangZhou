@@ -24,7 +24,6 @@
         <ul class="layui-tab-title">
             <li class="layui-this">可借阅</li>
             <li>待审核</li>
-            <li>待归还</li>
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
@@ -77,20 +76,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="layui-tab-item">
-                <div class="layui-tab-item layui-show">
-                    <div class="layui-fluid">
-                        <div class="layui-card">
-                            <div class="layui-card-body" style="padding: 15px;">
-                                <div class="layui-form-item">
-                                    <table class="layui-table layui-form" id="PreReturnList" lay-filter="PreReturnList" lay-size="sm"></table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <script type="text/html" id="optTpl">
@@ -195,36 +181,6 @@
                     orgId: '@Model.OrgId',
                 }
             });
-
-
-            var tabIns3 = table.render({
-                elem: '#PreReturnList'
-                , url: '/Borrow/GetPreReturn'
-                , cellMinWidth: 80 //全局定义常规单元格的最小宽度
-                , title: '押品档案'
-                , cols: [[
-                    { type: 'numbers' }
-                    , { field: 'OrgName', title: '机构名称' }
-                    , { field: 'OrgCode', title: '机构代码' }
-                    , { field: 'QuotaNo', title: '额度号' }
-                    , { field: 'LoanAccount', title: '贷款账号' }
-                    , { field: 'LoanBorrower', title: '借款人' }
-                    , { field: 'CustomerNo', title: '客户号' }
-                    , { field: 'Borrower', title: '借阅人' }
-                    , { field: 'BorrowDateString', title: '借阅时间' }
-                    , { field: 'PreReturnDateString', title: '预归还时间' }
-                ]]
-                , page: true
-                , limit: 15
-                , limits: [15, 30, 50, 100]
-                , method: 'post'
-                , even: true
-                , loading: true
-                , where: {
-                    orgId: '@Model.OrgId',
-                }
-            });
-
 
             //操作栏事件监听
             table.on('tool(BorrowList)', function (obj) {

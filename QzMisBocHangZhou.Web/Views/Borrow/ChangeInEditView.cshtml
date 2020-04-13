@@ -24,8 +24,6 @@
             <div class="layui-card-body" style="padding: 15px;">
                 <form class="layui-form" lay-filter="component-form-group" action="">
                     @Html.Hidden("Id", Model.Data.Id)
-                    @
-                    @
                     <div class="layui-form-item">
                         <label class="layui-form-label">标签代码</label>
                         <div class="layui-input-block">
@@ -199,7 +197,6 @@
                 }
             });
 
-
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
                 //console.log(JSON.stringify(data));
@@ -207,13 +204,12 @@
                 return false;
             });
 
-
             var submitAction = function (data) {
                 layer.confirm('即将提交变更入库！是否确定？', {
                     btn: ['确定', '取消'] //按钮
                 }, function (inds) {
                     $.ajax({
-                        url: '/Borrow/ChangeIn',
+                        url: '/GiveBack/ChangeIn',
                         type: 'post',
                         contentType: 'application/json',
                         dataType: "json",

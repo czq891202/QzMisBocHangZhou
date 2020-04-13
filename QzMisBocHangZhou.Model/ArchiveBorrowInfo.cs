@@ -42,10 +42,9 @@ namespace QzMisBocHangZhou.Model
         public string UsedBy { get; set; }
 
         /// <summary>
-        /// 状态(0:待审核, 1:审核通过, 2:已归还)
+        /// 状态(0:待审核, 1:审核通过, 2:已归还, 3:归还审核中)
         /// </summary>
         public int Status { get; set; }
-
 
         public string BorrowDateString
         {
@@ -55,15 +54,11 @@ namespace QzMisBocHangZhou.Model
             }
         }
 
-
         public string OrgName { get; set; }
-
 
         public string OrgCode { get; set; }
 
-
         public string OrgContact { get; set; }
-
 
         public string PreReturnDateString
         {
@@ -73,7 +68,6 @@ namespace QzMisBocHangZhou.Model
             }
         }
 
-
         public string RealReturnDateString
         {
             get
@@ -82,44 +76,32 @@ namespace QzMisBocHangZhou.Model
             }
         }
 
-
         public string QuotaNo { get; set; }
-
 
         public string LoanAccount { get; set; }
 
-
         public string CustomerNo { get; set; }
-
 
         public string LabelCode { get; set; }
 
         public string LoanBorrower { get; set; }
     }
 
-
     public class Removed_ArchiveBorrowDetails
     {
         public string Id { get; set; }
 
-
         public string PId { get; set; }
-
 
         public string ArchiveId { get; set; }
 
-
         public DateTime? PreReturnDate { get; set; }
-
 
         public DateTime? RealReturnDate { get; set; }
 
-
         public string ReturnPepole { get; set; }
 
-
         public string Remark { get; set; }
-
 
         /// <summary>
         /// 用途

@@ -17,11 +17,12 @@ namespace QzMisBocHangZhou.Biz
             data.CanTransfer = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../Transfer/ListView", StringComparison.OrdinalIgnoreCase));
             data.CanBorrow = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../Borrow/ListView", StringComparison.OrdinalIgnoreCase));
             data.CanSettle = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../Settle/ListView", StringComparison.OrdinalIgnoreCase));
+            data.CanGiveBack = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../GiveBack/ListView", StringComparison.OrdinalIgnoreCase));
 
             data.CanApprovalTransfer = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../Transfer/ApprovalListView", StringComparison.OrdinalIgnoreCase));
             data.CanApprovalBorrow = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../Borrow/ApprovalListView", StringComparison.OrdinalIgnoreCase));
             data.CanApprovalSettle = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../Settle/ApprovalListView", StringComparison.OrdinalIgnoreCase));
-
+            data.CanApprovalGiveBack = navList.Exists(p => !string.IsNullOrWhiteSpace(p.LinkUrl) && p.LinkUrl.Equals("../GiveBack/ApprovalListView", StringComparison.OrdinalIgnoreCase));
             return data;
         }
     }

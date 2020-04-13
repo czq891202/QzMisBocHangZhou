@@ -10,7 +10,6 @@ namespace QzMisBocHangZhou.Biz
     {
         public static byte[] ExportTransfer(string tmpFile, UserListViewModel user)
         {
-
             var infoList = ArchiveTransferInfoBiz.GetExcelData(user.OrgId);
             
             XSSFWorkbook excel;
@@ -71,7 +70,6 @@ namespace QzMisBocHangZhou.Biz
         public static byte[] ExportBorrow(string tmpFile, UserListViewModel user)
         {
             var infoList = ArchiveBorrowInfoBiz.GetExcelData(user.OrgId);
-            
 
             XSSFWorkbook excel;
             using (var file = new FileStream(tmpFile, FileMode.Open, FileAccess.Read))
@@ -120,7 +118,6 @@ namespace QzMisBocHangZhou.Biz
             {
                 excel.Write(ms);
                 ms.Position = 0;
-
                 return ms.ToArray();
             }
         }

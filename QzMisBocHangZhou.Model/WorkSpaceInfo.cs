@@ -25,6 +25,9 @@ namespace QzMisBocHangZhou.Model
         public bool CanSettle { get; set; }
         public int ApprovalSettleOutNo { get; set; }
 
+        public bool CanGiveBack { get; set; }
+        public bool CanApprovalGiveBack { get; set; }
+
         public bool CanApprovalSettle { get; set; }
         public int ApprovalSettleNo { get; set; }
         

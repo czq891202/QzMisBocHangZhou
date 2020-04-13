@@ -23,7 +23,6 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.GetPreBorrow(page, limit, orgId, keyWords);
         }
 
-
         public static PagingResult<ArchiveBorrowInfo> GetPreReview(int page, int limit, string orgId, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
@@ -31,22 +30,12 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.GetPreReview(page, limit, orgId, keyWords);
         }
 
-
-        public static PagingResult<ArchiveBorrowInfo> GetPreReturn(int page, int limit, string orgId, string keyWords)
-        {
-            if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
-
-            return ArchiveBorrowInfoDAL.GetPreReturn(page, limit, orgId, keyWords);
-        }
-        
-
         public static List<ArchiveBorrowInfo> GetExcelData(string orgId)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return ArchiveBorrowInfoDAL.GetExcelData(orgId);
         }
-
 
         public static bool SubmitReview(string tId, string usedBy, DateTime? borrowDate, UserInfo user)
         {
@@ -73,14 +62,12 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.SubmitReview(data) > 0;
         }
 
-
         public static bool RollBack(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
 
             return ArchiveBorrowInfoDAL.RollBack(id) > 0;
         }
-
 
         public static bool PassReview(string id, UserInfo user)
         {
@@ -93,20 +80,6 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.PassReview(data) > 0;
         }
 
-
-        public static bool Returned(string id)
-        {
-            if (string.IsNullOrWhiteSpace(id)) return false;
-
-            var data = ArchiveBorrowInfoDAL.Get(id);
-            if (data == null) return false;
-            if (string.IsNullOrWhiteSpace(data.Id)) return false;
-            if (string.IsNullOrWhiteSpace(data.ArchiveId)) return false;
-
-            return ArchiveBorrowInfoDAL.Returned(data) > 0;
-        }
-
-
         public static bool ChangeIn(ArchiveInfo data, string borrowId)
         {
             if (string.IsNullOrWhiteSpace(data.Id)) return false;
@@ -116,8 +89,6 @@ namespace QzMisBocHangZhou.Biz
 
             return ArchiveBorrowInfoDAL.ChangeIn(data, borrowData) > 0;
         }
-
-
 
         //public static ArchiveBorrowInfo Get(string id)
         //{

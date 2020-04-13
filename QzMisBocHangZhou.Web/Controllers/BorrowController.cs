@@ -27,7 +27,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             return View(new EditViewModel<string>() { Data = tId, User = AppSession.GetUser() });
         }
 
-
         /// <summary>
         /// 审批列表
         /// </summary>
@@ -36,25 +35,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         {
             if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
             return View(AppSession.GetUser());
-        }
-
-        /// <summary>
-        /// 借阅变更编辑
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult ChangeInEditView(string borrowId)
-        {
-            ViewData["BorrowId"] = borrowId;
-
-            var arcId = ArchiveBorrowInfoBiz.Get(borrowId).ArchiveId;
-            var result = ArchiveInfoBiz.Get(arcId);
-            return View(new EditViewModel<ArchiveInfo>() { Data = result, User = AppSession.GetUser() });
-        }
-
-
+        }        
         #endregion
-
 
         #region api接口
         [HttpPost]
@@ -71,22 +53,12 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
 
-
-        [HttpPost]
-        public JsonResult GetPreReturn(int page, int limit, string orgId, string keywords)
-        {
-            var data = ArchiveBorrowInfoBiz.GetPreReturn(page, limit, orgId, keywords);
-            return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
-        }
-
-
         [HttpPost]
         public JsonResult SubmitReview(string tId, string usedBy, DateTime? borrowDate)
         {
             var success = ArchiveBorrowInfoBiz.SubmitReview(tId, usedBy, borrowDate, AppSession.GetUser());
             return Json(new { code = 0, data = success, msg = "" });
         }
-
 
         [HttpPost]
         public JsonResult RollBack(string id)
@@ -102,13 +74,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
 
-        [HttpPost]
-        public JsonResult Returned(string id)
-        {
-            var success = ArchiveBorrowInfoBiz.Returned(id);
-            return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        }
-
         public ActionResult ExportBorrowExcel()
         {
             var excel = ExportExcel.ExportBorrow(Server.MapPath("../ExcelTemplate/Borrow.xlsx"), AppSession.GetUser());
@@ -117,14 +82,6 @@ namespace QzMisBocHangZhou.Web.Controllers
 
             //return new FileStreamResult(dataStream, "application/ms-excel") { FileDownloadName = "exportInfo.xlsx" };
         }
-
-        [HttpPost]
-        public JsonResult ChangeIn(ArchiveInfo data, string borrowId)
-        {
-            var success = ArchiveBorrowInfoBiz.ChangeIn(data, borrowId);
-            return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        }
-
         #endregion
 
 

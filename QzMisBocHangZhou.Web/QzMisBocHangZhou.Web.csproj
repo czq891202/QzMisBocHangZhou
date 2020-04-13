@@ -320,6 +320,7 @@
     <Compile Include="Controllers\BaseDataController.cs" />
     <Compile Include="Controllers\BorrowController.cs" />
     <Compile Include="Controllers\FtpTestController.cs" />
+    <Compile Include="Controllers\GiveBackController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -396,6 +397,10 @@
     <Content Include="Views\Report\SettleTimeOutView.cshtml" />
     <Content Include="Views\WorkSpace\WorkSpaceView.cshtml" />
     <Content Include="Views\Inventory\InventoryListView.cshtml" />
+    <Content Include="Views\GiveBack\ListView.cshtml" />
+    <Content Include="Views\GiveBack\AppendArchiveView.cshtml" />
+    <Content Include="Views\GiveBack\ApprovalListView.cshtml" />
+    <Content Include="Views\GiveBack\ChangeInEditView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

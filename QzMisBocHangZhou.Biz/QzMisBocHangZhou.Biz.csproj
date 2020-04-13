@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveBorrowInfoBiz.cs" />
+    <Compile Include="ArchiveGiveBackInfoBiz.cs" />
     <Compile Include="ArchiveInfoBiz.cs" />
     <Compile Include="ArchiveSettleInfoBiz.cs" />
     <Compile Include="ArchiveTransferInfoBiz.cs" />
