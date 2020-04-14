@@ -41,6 +41,25 @@ namespace QzMisBocHangZhou.DAL
             return new PagingResult<ArchiveTransferInfo>() { Count = rCount, Result = data };
         }
 
+        /// <summary>
+        /// 读取移交待审核档案信息
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<InventoryDetail> GetInventoryArchiveList(string orgId)
+        {
+            var sql = $"select tpa.Id as ArchiveId, tpa.LabelCode from Archiveinfo tpa LEFT JOIN ArchiveTransferInfo ati on tpa.ID = ati.archiveid  where ati.status = 0 ";
+
+            var pars = new List<DbParameter>();
+            if (!orgId.Equals(OrgInfo.RootId, StringComparison.OrdinalIgnoreCase))
+            {
+                sql += @" and tpa.OrgId = :OrgId ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            sql += " order by tpa.CREATEDATE, tpa.ORGID desc ";
+            return DBCache.DataBase.ExecuteEntityList<InventoryDetail>(sql, pars.ToArray());
+        }
 
         public static PagingResult<ArchiveTransferInfo> GetPreReview(int page, int limit, string orgId, string keyWords)
         {

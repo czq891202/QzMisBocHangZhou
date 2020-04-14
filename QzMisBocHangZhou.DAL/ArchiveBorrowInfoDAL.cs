@@ -314,7 +314,6 @@ namespace QzMisBocHangZhou.DAL
 
             return new PagingResult<ArchiveBorrowInfo>() { Count = rCount, Result = data };
         }
-
         /// <summary>
         /// 归还待审批撤回/驳回
         /// </summary>
@@ -326,6 +325,25 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteNonQuery(
                 sql,
                 DBCache.DataBase.CreatDbParameter("Id", id));
+        }
+        /// <summary>
+        /// 读取归还待审核档案信息
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<InventoryDetail> GetInventoryArchiveList(string orgId)
+        {
+            var sql = $"select tpa.Id as ArchiveId, tpa.LabelCode from Archiveinfo tpa left join ArchiveBorrowInfo abi on tpa.Id = abi.archiveid  where tpa.STATUS = {ArchiveStatusType.借阅出库.GetHashCode()} and abi.status = 3 ";
+
+            var pars = new List<DbParameter>();
+            if (!orgId.Equals(OrgInfo.RootId, StringComparison.OrdinalIgnoreCase))
+            {
+                sql += @" and tpa.OrgId = :OrgId ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            sql += " order by tpa.CREATEDATE, tpa.ORGID desc ";
+            return DBCache.DataBase.ExecuteEntityList<InventoryDetail>(sql, pars.ToArray());
         }
         #endregion
 

@@ -66,7 +66,7 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new { code = 0, data = success, msg = "" });
         }
         /// <summary>
-        /// 获取待归还列表
+        /// 获取待归还审批列表
         /// </summary>
         /// <param name="page"></param>
         /// <param name="limit"></param>
@@ -74,9 +74,23 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// <param name="keywords">搜索内容</param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult GetGiveBackReview(int page, int limit, string orgId, string keywords)
+        public JsonResult GetGiveBackReview(int page, int limit, string orgId, string keyWords)
         {
-            var data = ArchiveGiveBackInfoBiz.GetGiveBackReview(page, limit, orgId, keywords);
+            var data = ArchiveGiveBackInfoBiz.GetGiveBackReview(page, limit, orgId, keyWords);
+            return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
+        }
+        /// <summary>
+        /// 获取待归还列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="limit"></param>
+        /// <param name="orgId"></param>
+        /// <param name="keyWords"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GetPreGiveBack(int page, int limit, string orgId, string keyWords)
+        {
+            var data = ArchiveGiveBackInfoBiz.GetPreGiveBack(page, limit, orgId, keyWords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
         /// <summary>
@@ -103,6 +117,13 @@ namespace QzMisBocHangZhou.Web.Controllers
         {
             var success = ArchiveGiveBackInfoBiz.Returned(id);
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
+        }
+        
+        public ActionResult ExportList(string orgId)
+        {
+            var txt = ArchiveGiveBackInfoBiz.Export(orgId, AppSession.GetUser());
+
+            return File(txt, "application/vnd.ms-txt", $"{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
         }
         #endregion
     }

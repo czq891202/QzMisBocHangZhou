@@ -29,12 +29,12 @@
                             <select name="OrgId" id="OrgId" lay-filter="OrgIdFilter" lay-verify="required" lay-search></select>
                         </div>
                     </div>
-                    <div class="layui-form-item">
+                    @*<div class="layui-form-item">
                         <label class="layui-form-label">年份</label>
                         <div class="layui-input-block" lay-filter="org-block-Filter">
                             <input type="text" id="Year" name="Year" placeholder="请输入年份, 例如:1999" lay-verify="required" class="layui-input">
                         </div>
-                    </div>
+                    </div>*@
                     <div class="layui-form-item">
                         <label class="layui-form-label">数量</label>
                         <div class="layui-input-block">
@@ -60,7 +60,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">标签号</label>
                     <div class="layui-input-block" lay-filter="org-block-Filter">
-                        <input type="text" name="txt_labelNo" id="txt_labelNo" placeholder="请输入标签号, 例如:200933012701200001" lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="text" name="txt_labelNo" id="txt_labelNo" placeholder="请输入标签号, 例如:33012701200001" lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -118,7 +118,6 @@
                 }
             });
 
-
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
                 $.ajax({
@@ -126,7 +125,8 @@
                     type: 'post',
                     contentType: 'application/json',
                     dataType: "json",
-                    data: JSON.stringify({ orgId: data.field.OrgId, year: data.field.Year }),
+                    //data: JSON.stringify({ orgId: data.field.OrgId, year: data.field.Year }),
+                    data: JSON.stringify({ orgId: data.field.OrgId }),
                     success: function (result) {
                         submitAction(result, data);
                     },
@@ -134,10 +134,8 @@
                         top.layer.alert('服务接口请求失败!');
                     }
                 });
-
                 return false;
             });
-
 
             var submitAction = function (info, data) {
                 //layer.alert(JSON.stringify(data.field));
@@ -165,7 +163,6 @@
                         });
                     }
                 });
-
                 return false;
             };
 
@@ -190,7 +187,6 @@
 
             $('#btn_printSig').click(function () {
                 var labelNo = $("#txt_labelNo").val();
-
                 $.ajax({
                     url: '/PrintLabel/GetPrintInfo',
                     type: 'post',
@@ -205,7 +201,6 @@
                             var printContent = "D";
                             printContent += "|" + result.data.OrgCode;
                             printContent += "|" + PrefixInteger(parseInt(result.data.MaxNum), 6);
-
                             //console.log(printContent);
                             activeX.PrintLab(title, printContent, result.data.OrgName, "SATO CL4NX 203dpi","1");
 

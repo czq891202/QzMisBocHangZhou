@@ -36,8 +36,9 @@
                                         <div class="layui-input-inline">
                                             <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" class="layui-input">
                                         </div>
-                                        <div class="layui-input-inline">
+                                        <div class="layui-btn-group">
                                             <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
+                                            <button class="layui-btn layui-btn" id="btn-Export">导出核对数据</button>
                                         </div>
                                     </div>
                                 </div>
@@ -145,6 +146,11 @@
                         orgId: '@Model.OrgId'
                     }
                 });
+                return false;
+            });
+
+            $('#btn-Export').click(function () {
+                window.open('../GiveBack/ExportList?orgId=' + $('#OrgId').val());
                 return false;
             });
 

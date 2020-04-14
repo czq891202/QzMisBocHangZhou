@@ -40,7 +40,6 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         #endregion
 
-
         #region 接口
         [HttpPost]
         public JsonResult GetPreTransfer(int page, int limit, string orgId, string keywords)
@@ -49,14 +48,12 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
 
-
         [HttpPost]
         public JsonResult GetPreReview(int page, int limit, string orgId, string keywords)
         {
             var data = ArchiveTransferInfoBiz.GetPreReview(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
-
 
         [HttpPost]
         public JsonResult SubmitReview(ArchiveInfo data)
@@ -65,14 +62,12 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
 
-
         [HttpPost]
         public JsonResult RollBack(string id)
         {
             var success = ArchiveTransferInfoBiz.RollBack(id);
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
-
 
         [HttpPost]
         public JsonResult PassReview(string id)
@@ -81,19 +76,24 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
 
-
-
         public ActionResult ExportTransferExcel()
         {
             var excel = ExportExcel.ExportTransfer(Server.MapPath("../ExcelTemplate/Transfer.xlsx"), AppSession.GetUser());
 
             return File(excel, "application/ms-excel", $"零贷档案交接单 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");
         }
+        /// <summary>
+        /// 移交待审核电子数据核对
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public ActionResult ExportList(string orgId)
+        {
+            var txt = ArchiveTransferInfoBiz.Export(orgId, AppSession.GetUser());
 
+            return File(txt, "application/vnd.ms-txt", $"{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
+        }
         #endregion
-
-
-
 
         #region 【作废】
 
