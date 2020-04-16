@@ -27,10 +27,12 @@
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <div class="layui-btn-group">
-                                    <button class="layui-btn layui-btn" id="btn-import">导入</button>
-                                    <button class="layui-btn layui-btn" id="btn-refresh">刷新</button>
-                                </div>
+                                <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-btn-group">
+                                <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
+                                <button class="layui-btn layui-btn" id="btn-import">导入</button>
+                                <a class='layui-btn layui-btn-small' href='/MaskData/DownloadTemplete?tmpname=Templete.txt'>下载</a>
                             </div>
                         </div>
                     </div>
@@ -41,7 +43,6 @@
             </div>
         </div>
     </div>
-
     <script type="text/html" id="optTpl">
         <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
     </script>
@@ -58,10 +59,7 @@
                 , laydate = layui.laydate
                 , table = layui.table;
 
-
             form.render(null, 'component-form-group');
-
-
 
             var tabIns = table.render({
                 elem: '#MaskDataList'
@@ -80,9 +78,10 @@
                 , method: 'post'
                 , even: true
                 , loading: true
+                , where: {
+                    keywords: $('#KeyWords').val(),
+                }
             });
-
-
 
             //操作栏事件监听
             table.on('tool(MaskDataList)', function (obj) {
@@ -94,14 +93,20 @@
                 }
             });
 
-
             //按钮组事件监听
             $('#btn-import').click(function () {
                 openImport();
                 return false;
             });
 
-
+            $('#btn-Search').click(function () {
+                table.reload('MaskDataList', {
+                    where: {
+                        keywords: $('#KeyWords').val()
+                    }
+                });
+                return false;
+            });
 
             var delAction = function (tId) {
                 layer.confirm('此操作将无法恢复！是否确定需要删除？', {
@@ -138,7 +143,6 @@
                 });
             };
 
-
             var openImport = function () {
                 layer.open({
                     type: 2,
@@ -149,6 +153,7 @@
                     id: 'edit',
                     content: '/MaskData/ImportView',    //iframe的url
                     end: function (layero, index) {
+                        tabIns.reload();
                     }
                 });
             };

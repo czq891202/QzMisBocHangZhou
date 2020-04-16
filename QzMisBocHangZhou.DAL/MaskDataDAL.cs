@@ -10,9 +10,9 @@ namespace QzMisBocHangZhou.DAL
 {
     public class MaskDataDAL
     {
-        public static PagingResult<MaskData> Get(int page, int limit)
+        public static PagingResult<MaskData> Get(int page, int limit, string keyWords)
         {
-            var sql = "select * from MaskData order by Type, data";
+            var sql = $"select * from MaskData where data like '%{keyWords}%' order by Type, data";
 
             var rCount = DBCache.DataBase.GetRecordCount(sql);
             var data = DBCache.DataBase.ExecuteEntityListByPageing<MaskData>(page, limit, sql);

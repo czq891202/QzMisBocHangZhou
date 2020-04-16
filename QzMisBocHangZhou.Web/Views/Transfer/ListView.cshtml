@@ -239,7 +239,7 @@
                         title: '档案编辑',
                         shadeClose: false,
                         shade: 0.8,
-                        area: ['800px', '80%'],
+                        area: ['800px', '100%'],
                         id: 'edit',
                         content: '/Transfer/TransferEditView?id=' + tId,    //iframe的url
                         end: function (layero, index) {
@@ -248,7 +248,6 @@
                         }
                     });
                 };
-
 
                 var rollBackAction = function (tId) {
                     layer.confirm('即将撤回审批！是否确定？', {

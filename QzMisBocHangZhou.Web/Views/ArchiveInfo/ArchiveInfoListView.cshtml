@@ -140,13 +140,11 @@
                 }
             });
 
-
             //按钮组事件监听
             $('#btn-add').click(function () {
                 openEdit('add', '');
                 return false;
-            });
-                        
+            });                        
 
             $('#btn-Search').click(function () {
                 table.reload('ArchiveInfo', {
@@ -159,14 +157,13 @@
                 return false;
             });
 
-
             var openEdit = function (mode, id) {
                 layer.open({
                     type: 2,
                     title: '档案编辑',
                     shadeClose: false,
                     shade: 0.8,
-                    area: ['800px', '800px'],
+                    area: ['800px', '100%'],
                     id: 'edit',
                     content: '/ArchiveInfo/ArchiveInfoEditView?mode=' + mode + '&id=' + id,    //iframe的url
                     end: function (layero, index) {

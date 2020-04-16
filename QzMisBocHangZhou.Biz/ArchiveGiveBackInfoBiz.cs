@@ -78,8 +78,6 @@ namespace QzMisBocHangZhou.Biz
                 sb.Append("|".PadRight(12, '|')).Append($"{item.LabelCode}".PadRight(18, '0')).Append("|").Append("1".PadLeft(18, '0')).Append("|".PadRight(5, '|')).AppendLine();
             }
 
-            InventoryInfoDAL.Add(info, details);
-
             return Encoding.UTF8.GetBytes(sb.ToString());
         }
 

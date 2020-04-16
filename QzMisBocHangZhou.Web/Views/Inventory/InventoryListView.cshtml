@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <title>档案移交</title>
+    <title>盘点</title>
     <meta http-equiv="X-UA-Compatible" content="text/html" charset="utf-8" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -113,7 +113,6 @@
                 }
             });
 
-
             var tabIns = table.render({
                 elem: '#ArchiveList'
                 , url: '/Inventory/GetInventoryArchiveList'
@@ -202,7 +201,7 @@
                     title: '盘点查看',
                     shadeClose: false,
                     shade: 0.8,
-                    area: ['800px', '800px'],
+                    area: ['800px', '100%'],
                     id: 'show',
                     content: '/Inventory/ShowView?tId=' + id,    //iframe的url
                     end: function (layero, index) {
@@ -222,6 +221,7 @@
                     content: '/Inventory/ImportView?tId=' + id,    //iframe的url
                     end: function (layero, index) {
                         console.log("end");
+                        tabIns2.reload();
                     }
                 });
             };

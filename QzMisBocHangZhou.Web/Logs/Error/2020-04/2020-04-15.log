@@ -1,0 +1,151 @@
+
+2020-04-15 22:05:19,977 [10] ERROR ErrorLog 
+调用: /PrintLabel/GetPrintInfo
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_SEC_FETCH_DEST","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE"]
+
+System.Exception: 机构代码错误!
+   在 QzMisBocHangZhou.Biz.PrintLabelInfoBiz.GetPrintInfo(String labelNo)
+   在 QzMisBocHangZhou.Web.Controllers.PrintLabelController.GetPrintInfo(String labelNo) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Controllers\PrintLabelController.cs:行号 46
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-04-15 22:05:31,821 [12] ERROR ErrorLog 
+调用: /PrintLabel/GetPrintInfo
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_SEC_FETCH_DEST","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE"]
+
+System.Exception: 机构代码错误!
+   在 QzMisBocHangZhou.Biz.PrintLabelInfoBiz.GetPrintInfo(String labelNo)
+   在 QzMisBocHangZhou.Web.Controllers.PrintLabelController.GetPrintInfo(String labelNo) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Controllers\PrintLabelController.cs:行号 46
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-04-15 22:08:53,044 [9] ERROR ErrorLog 
+调用: /PrintLabel/GetPrintInfo
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_SEC_FETCH_DEST","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE"]
+
+System.Exception: 机构代码错误!
+   在 QzMisBocHangZhou.Biz.PrintLabelInfoBiz.GetPrintInfo(String labelNo) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Biz\PrintLabelInfoBiz.cs:行号 62
+   在 QzMisBocHangZhou.Web.Controllers.PrintLabelController.GetPrintInfo(String labelNo) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Controllers\PrintLabelController.cs:行号 46
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-04-15 22:10:07,210 [10] ERROR ErrorLog 
+调用: /PrintLabel/GetInfo
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_SEC_FETCH_DEST","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE"]
+
+System.ArgumentException: 对于“QzMisBocHangZhou.Web.Controllers.PrintLabelController”中方法“System.Web.Mvc.ActionResult GetInfo(System.String, Int32)”的不可以为 null 的类型“System.Int32”的参数“year”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-04-15 23:45:28,967 [8] ERROR ErrorLog 
+调用: /MaskData/MaskDataListView
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_UPGRADE_INSECURE_REQUESTS","HTTP_SEC_FETCH_DEST","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE"]
+
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_MaskData_MaskDataListView_cshtml.Execute() 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Views\MaskData\MaskDataListView.cshtml:行号 105
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-04-15 23:45:50,751 [8] ERROR ErrorLog 
+调用: /MaskData/GetMaskDataList
+调用参数: ["page","limit","keywords","ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_SEC_FETCH_DEST","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE"]
+
+Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-00907: 缺失右括号
+   在 OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   在 OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteScalar()
+   在 QzMisBocHangZhou.DAL.DbContext`1.<>c__8`1.<ExecuteScalar>b__8_0(DbCommand command) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 100
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteDb[TResult](DbCommand command, String commandText, Func`2 execFunc, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 291
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteDb[TResult](String commandText, CommandType cmdType, Func`2 execFunc, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 276
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteScalar[TResult](String commandText, CommandType cmdType, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 97
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteScalar[TResult](String commandText, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 91
+   在 QzMisBocHangZhou.DAL.DbContext`1.GetRecordCount(String commandText, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 218
+   在 QzMisBocHangZhou.DAL.MaskDataDAL.Get(Int32 page, Int32 limit, String keyWords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\MaskDataDAL.cs:行号 22
+   在 QzMisBocHangZhou.Biz.MaskDataBiz.Get(Int32 page, Int32 limit, String keyWords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Biz\MaskDataBiz.cs:行号 15
+   在 QzMisBocHangZhou.Web.Controllers.MaskDataController.GetMaskDataList(Int32 page, Int32 limit, String keyWords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Controllers\MaskDataController.cs:行号 46
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)

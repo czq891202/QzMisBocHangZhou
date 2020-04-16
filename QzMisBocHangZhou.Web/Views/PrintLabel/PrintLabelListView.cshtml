@@ -60,7 +60,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">标签号</label>
                     <div class="layui-input-block" lay-filter="org-block-Filter">
-                        <input type="text" name="txt_labelNo" id="txt_labelNo" placeholder="请输入标签号, 例如:33012701200001" lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="text" name="txt_labelNo" id="txt_labelNo" placeholder="请输入标签号, 例如:2701200001" lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -149,7 +149,7 @@
                         //console.log(result);
                         if (result.msg == '') {
                             top.layer.msg('开始打印!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
-                                printAction(info, data.field.MaxNum)
+                                printAction(info, data.field.MaxNum);
                             });
                         }
                         else {

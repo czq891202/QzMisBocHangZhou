@@ -17,7 +17,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             return View();
         }
 
-
         public ActionResult ImportView()
         {
             return View();
@@ -25,7 +24,6 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         public ActionResult ImportData()
         {
-
             HttpFileCollectionBase files = Request.Files;
             HttpPostedFileBase file = files[0];
 
@@ -39,19 +37,22 @@ namespace QzMisBocHangZhou.Web.Controllers
                 System.IO.File.Delete(path);
             }
             catch { }
-
             return Json(new { code = 0, data = success, msg = "" });
-
         }
 
+        public ActionResult DownloadTemplete(string tmpname)
+        {
+            var filename = Path.Combine(Server.MapPath("../Views/MaskData"), tmpname);
+
+            return File(filename, "application/vnd.ms-txt", "Templete.txt");
+        }
 
         [HttpPost]
-        public JsonResult GetMaskDataList(int page, int limit)
+        public JsonResult GetMaskDataList(int page, int limit, string keyWords)
         {
-            var data = MaskDataBiz.Get(page, limit);
+            var data = MaskDataBiz.Get(page, limit, keyWords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
-
 
         [HttpPost]
         public JsonResult DelMaskData(string id)

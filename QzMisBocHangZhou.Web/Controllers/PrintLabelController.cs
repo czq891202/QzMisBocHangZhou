@@ -19,9 +19,16 @@ namespace QzMisBocHangZhou.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult GetInfo(string orgId, int year)
+        public ActionResult GetInfoByYear(string orgId, int year)
         {
             var result = PrintLabelInfoBiz.GetInfo(orgId, year);
+            return Json(new { code = 0, data = result, msg = "" });
+        }
+
+        [HttpPost]
+        public ActionResult GetInfo(string orgId)
+        {
+            var result = PrintLabelInfoBiz.GetInfo(orgId);
             return Json(new { code = 0, data = result, msg = "" });
         }
 

@@ -305,6 +305,7 @@
     <Content Include="Scripts\layuiadmin\tpl\system\more.html" />
     <Content Include="Scripts\layuiadmin\tpl\system\theme.html" />
     <Content Include="Views\ActiveX\PrintCab.CAB" />
+    <Content Include="Views\MaskData\Templete.txt" />
     <Content Include="Views\Settle\ListView.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

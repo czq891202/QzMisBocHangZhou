@@ -34,14 +34,29 @@ namespace QzMisBocHangZhou.Biz
             return result;
         }
 
+        public static PrintLabelInfo GetInfo(string orgId)
+        {
+            if (string.IsNullOrWhiteSpace(orgId)) throw new Exception("error");
+
+            var result = PrintLabelInfoDAL.GetInfo(orgId);
+
+            if (result == null || string.IsNullOrWhiteSpace(result.Id))
+            {
+                Edit(new PrintLabelInfo() { OrgId = orgId, MaxNum = 1 });
+
+                result = PrintLabelInfoDAL.GetInfo(orgId);
+            }
+
+            return result;
+        }
 
         public static PrintLabelInfo GetPrintInfo(string labelNo)
         {
-            var info = new PrintLabelInfo();
-
-            info.Year = int.Parse(labelNo.Substring(1, 4));
-            info.OrgCode = labelNo.Substring(5, 5);
-            info.MaxNum = int.Parse(labelNo.Substring(10, 5));
+            var info = new PrintLabelInfo
+            {
+                OrgCode = labelNo.Substring(0, 5),
+                MaxNum = int.Parse(labelNo.Substring(labelNo.Length - 6, 6))
+            };
 
             var orgInfo = OrgInfoBiz.GetByCode(info.OrgCode);
             if (orgInfo == null) throw new Exception("机构代码错误!");

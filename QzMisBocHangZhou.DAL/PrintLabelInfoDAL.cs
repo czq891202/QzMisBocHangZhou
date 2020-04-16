@@ -32,6 +32,15 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("Year", year));
         }
 
+        public static PrintLabelInfo GetInfo(string orgId)
+        {
+            var sql = @"select p.*, o.Name as OrgName, o.Code as OrgCode from PrintLabelInfo p left join OrgInfo o on p.OrgId = o.Id
+                        where p.OrgId = :OrgId";
+
+            return DBCache.DataBase.ExecuteEntity<PrintLabelInfo>(sql,
+                DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+        }
+
         private static bool IsExits(string orgId, int Year)
         {
             var sql = @"select count(1) from PrintLabelInfo where OrgId = :OrgId and Year = :Year";

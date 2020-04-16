@@ -15,9 +15,7 @@ namespace QzMisBocHangZhou.Biz
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return InventoryInfoDAL.GetInventoryArchiveList(page, limit, orgId);
-
         }
-
 
         public static InventoryInfo Get(string id)
         {
@@ -25,12 +23,10 @@ namespace QzMisBocHangZhou.Biz
             return InventoryInfoDAL.Get(id);
         }
 
-
         public static PagingResult<InventoryInfo> Get(int page, int limit)
         {
             return InventoryInfoDAL.Get(page, limit);
         }
-
 
         public static byte[] Export(string orgId, UserInfo user)
         {
@@ -48,12 +44,10 @@ namespace QzMisBocHangZhou.Biz
                 
                 sb.Append("|".PadRight(12, '|')).Append($"{item.LabelCode}".PadRight(18, '0')).Append("|").Append("1".PadLeft(18, '0')).Append("|".PadRight(5, '|')).AppendLine();
             }
-
             InventoryInfoDAL.Add(info, details);
 
             return Encoding.UTF8.GetBytes(sb.ToString());
         }
-
 
         private static InventoryInfo CreatNewInfo(UserInfo user)
         {
@@ -69,7 +63,6 @@ namespace QzMisBocHangZhou.Biz
             return info;
         }
 
-
         public static bool Import(string id, string fileName)
         {
             var data = File.ReadAllLines(fileName);
@@ -80,7 +73,7 @@ namespace QzMisBocHangZhou.Biz
             foreach (var item in data)
             {
                 if (string.IsNullOrWhiteSpace(item) || item.Length < 18) continue;
-                var detailInfo = fullDetails.Find(p => p.LabelCode == item.Substring(0, 18));
+                var detailInfo = fullDetails.Find(p => p.LabelCode.PadRight(18, '0') == item.Substring(0, 18));
                 if (detailInfo == null) continue;
                 Enum.TryParse(item.Substring(41, 1), out VerifyType type);
                 detailInfo.Status = type;
@@ -98,17 +91,13 @@ namespace QzMisBocHangZhou.Biz
             return InventoryInfoDAL.ImportInventoryData(info, details) > 0;
         }
 
-
         public static PagingResult<InventoryDetail> GetDetails(int page, int limit, string tId)
         {
             if (string.IsNullOrWhiteSpace(tId)) return new PagingResult<InventoryDetail>();
 
             return InventoryInfoDAL.GetDetails(page, limit, tId);
         }
-
-
-        
-
+        #region
         //public static PagingResult<InventoryInfo> Get(int page, int limit, string year)
         //{
         //    if (string.IsNullOrWhiteSpace(year))
@@ -121,17 +110,12 @@ namespace QzMisBocHangZhou.Biz
         //    }
         //}
 
-
-
-
-
         //public static bool Del(string id)
         //{
         //    if (string.IsNullOrWhiteSpace(id)) return false;
 
         //    return InventoryInfoDAL.Del(id) > 0;
         //}
-
 
         //public static InventoryInfo CreatDefault(string userId, string orgId)
         //{
@@ -151,13 +135,11 @@ namespace QzMisBocHangZhou.Biz
         //    return info;
         //}
 
-
         //public static PagingResult<SelectArchiveModel> GetArchiveList(int page, int limit, string inventoryId)
         //{
 
         //    return InventoryInfoDAL.GetArchiveList(page, limit, inventoryId.Trim());
         //}
-
 
         //public static bool AddDetail(string inventoryId, string archiveId)
         //{
@@ -174,14 +156,12 @@ namespace QzMisBocHangZhou.Biz
         //    return InventoryInfoDAL.Add(null, new List<InventoryDetail>() { data }) > 0;
         //}
 
-
         //public static bool DelDetail(string inventoryId, string archiveId)
         //{
         //    if (string.IsNullOrWhiteSpace(inventoryId) || string.IsNullOrWhiteSpace(archiveId)) return false;
 
         //    return InventoryInfoDAL.DelDetail(inventoryId, archiveId) > 0;
         //}
-
 
         //public static bool Update(InventoryInfo data)
         //{
@@ -190,6 +170,6 @@ namespace QzMisBocHangZhou.Biz
 
         //    return InventoryInfoDAL.Update(data) > 0;
         //}
-
+        #endregion
     }
 }

@@ -10,9 +10,9 @@ namespace QzMisBocHangZhou.Biz
 {
     public class MaskDataBiz
     {
-        public static PagingResult<MaskData> Get(int page, int limit)
+        public static PagingResult<MaskData> Get(int page, int limit, string keyWords)
         {
-            return MaskDataDAL.Get(page, limit);
+            return MaskDataDAL.Get(page, limit, keyWords);
         }
 
         public static bool Add(List<string> inputData)
@@ -39,7 +39,6 @@ namespace QzMisBocHangZhou.Biz
                     Type = 0
                 });
             }
-
             return data;
         }
 
