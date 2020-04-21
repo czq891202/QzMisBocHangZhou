@@ -34,82 +34,30 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         #endregion
 
-
         #region 【接口】
         [HttpPost]
-        public JsonResult GetBorrowTimeOut(string orgId)
+        public JsonResult GetBorrowTimeOut(string orgId, string guaranteeType, string status, string keyWords)
         {
-            var result = ReportBiz.GetBorrowTimeOut(orgId);
+            var result = ReportBiz.GetBorrowTimeOut(orgId, guaranteeType, keyWords);
             return Json(new { code = 0, data = result, msg = "" });
         }
 
 
         [HttpPost]
-        public JsonResult GetTransferTimeOut(string orgId)
+        public JsonResult GetTransferTimeOut(string orgId, string guaranteeType, string status, string keyWords)
         {
-            var result = ReportBiz.GetTransferTimeOut(orgId);
+            var result = ReportBiz.GetTransferTimeOut(orgId, guaranteeType, keyWords);
             return Json(new { code = 0, data = result, msg = "" });
         }
 
 
         [HttpPost]
-        public JsonResult GetSettleTimeOut(string orgId)
+        public JsonResult GetSettleTimeOut(string orgId, string guaranteeType, string status, string keyWords)
         {
-            var result = ReportBiz.GetSettleTimeOut(orgId);
+            var result = ReportBiz.GetSettleTimeOut(orgId, guaranteeType, keyWords);
             return Json(new { code = 0, data = result, msg = "" });
         }
 
         #endregion
-
-
-        //#region 【视图】
-        //public ActionResult BorrowTimeOutChartView()
-        //{
-        //    if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
-        //    return View();
-        //}
-
-
-        //public ActionResult BorrowTimeOutListView()
-        //{
-        //    if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
-
-        //    return View();
-        //}
-
-
-        //public ActionResult ArchiveChartView()
-        //{
-        //    if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
-
-        //    return View();
-        //}
-
-        //#endregion
-
-
-        //[HttpPost]
-        //public JsonResult GetByYearMonth(DateTime? yearMonth)
-        //{
-        //    if (!yearMonth.HasValue) yearMonth = DateTime.Now;
-        //    var result = ReportBiz.GetByYearMonth(yearMonth.Value);
-        //    return Json(new { code = 0, data = result, msg = "" });
-        //}
-
-        //[HttpPost]
-        //public JsonResult GetByDay(DateTime? day)
-        //{
-        //    if (!day.HasValue) day = DateTime.Now;
-        //    var result = ReportBiz.GetByDay(day.Value);
-        //    return Json(new { code = 0, data = result, msg = "" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult GetArchiveTotal()
-        //{
-        //    var result = ReportBiz.GetArchiveTotal();
-        //    return Json(new { code = 0, data = result, msg = "" });
-        //}
     }
 }

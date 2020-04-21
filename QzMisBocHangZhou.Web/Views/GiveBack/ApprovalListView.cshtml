@@ -39,6 +39,7 @@
                                         <div class="layui-btn-group">
                                             <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
                                             <button class="layui-btn layui-btn" id="btn-Export">导出核对数据</button>
+                                            <button class="layui-btn layui-btn" id="btn-return">批量归还</button>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +104,7 @@
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度
                 , title: '归还清单'
                 , cols: [[
-                    { type: 'numbers' }
+                    { type: 'checkbox' }
                     , { field: 'OrgName', title: '机构名称' }
                     , { field: 'OrgCode', title: '机构代码' }
                     , { field: 'QuotaNo', title: '额度号' }
@@ -122,7 +123,6 @@
                 , even: true
                 , loading: true
                 , where: {
-                    keywords: $('#KeyWords').val(),
                     orgId: '@Model.OrgId'
                 }
             });
@@ -155,6 +155,37 @@
                 return false;
             });
 
+            $('#btn-return').click(function () {
+                var checkStatus = table.checkStatus('GiveBackList');
+                if (checkStatus.data.length <= 0) {
+                    top.layer.msg('未选中任何数据', { time: 1000, shade: '0.3', shadeClose: true });
+                    return false;
+                } else {
+                    for (var i = 0; i < checkStatus.data.length; i++) {
+                        debugger;
+                        $.ajax({
+                            url: '/GiveBack/Returned',
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: "json",
+                            data: JSON.stringify({ id: checkStatus.data[i].Id }),
+                            success: function (result) {
+                                if (result.msg == '') {
+                                    console.log("归还成功:" + checkStatus.data[i].Id);
+                                }
+                                else {
+                                    console.log("归还失败:" + checkStatus.data[i].Id + ",原因:" + result.msg);
+                                }
+                            },
+                            error: function (result) {
+                                console.log("服务接口请求失败:" + checkStatus.data[i].Id);
+                            }
+                        });
+                    }
+                    tabIns.reload();
+                }
+            });
+
             var returnAction = function (bId) {
                 layer.confirm('即将归还借阅档案， 是否确定？', {
                     btn: ['确定', '取消'] //按钮
@@ -168,12 +199,12 @@
                         success: function (result) {
                             layer.close(inds);
                             if (result.msg == '') {
-                                top.layer.msg('编辑成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                                top.layer.msg('归还成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
                                     tabIns.reload();
                                 });
                             }
                             else {
-                                top.layer.msg('编辑失败! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                                top.layer.msg('归还失败! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true }, function () {
                                 });
                             }
                         },

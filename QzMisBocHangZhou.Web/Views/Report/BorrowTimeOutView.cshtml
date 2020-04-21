@@ -28,6 +28,29 @@
                                 <select name="OrgId" id="OrgId" lay-filter="UserOrgFilter" lay-search=""></select>
                             </div>
                             <div class="layui-input-inline">
+                                <select name="GuaranteeType" id="GuaranteeType" lay-filter="GuaranteeType" lay-verify="required">
+                                    <option value="">--押品登记类型--</option>
+                                    <option value="已办妥正式抵押登记(他项权证)">已办妥正式抵押登记(他项权证)</option>
+                                    <option value="已办妥预抵押登记">已办妥预抵押登记</option>
+                                    <option value="车辆登记证">车辆登记证</option>
+                                    <option value="保单">保单</option>
+                                    <option value="存单">存单</option>
+                                    <option value="公积金组合">公积金组合</option>
+                                </select>
+                            </div>
+                            @*<div class="layui-input-inline">
+                                <select name="Status" id="Status" lay-filter="StatusFilter" lay-search="">
+                                    <option value="">全部</option>
+                                    <option value="0">未移交</option>
+                                    <option value="1">在库</option>
+                                    <option value="5">借阅</option>
+                                    <option value="11">结清</option>
+                                </select>
+                            </div>*@
+                            <div class="layui-input-inline">
+                                <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" placeholder="产品大类码" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
                                 <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
                             </div>
                         </div>
@@ -110,7 +133,10 @@
             $('#btn-Search').click(function () {
                 table.reload('ArchiveInfo', {
                     where: {
-                        orgId: $('#OrgId').val()
+                        orgId: $('#OrgId').val(),
+                        guaranteeType: $('#GuaranteeType').val(),
+                        //status: $('#Status').val(),
+                        keyWords: $('#KeyWords').val()
                     }
                 });
                 return false;

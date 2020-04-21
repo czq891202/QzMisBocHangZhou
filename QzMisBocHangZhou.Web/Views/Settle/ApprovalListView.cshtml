@@ -39,8 +39,10 @@
                                         <div class="layui-input-inline">
                                             <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" class="layui-input">
                                         </div>
-                                        <div class="layui-input-inline">
+                                        <div class="layui-btn-group">
                                             <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
+                                            <button class="layui-btn" id="btn-submit">批量通过</button>
+                                            <button class="layui-btn" id="btn-rollback">批量驳回</button>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +133,7 @@
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度
                 , title: '押品档案'
                 , cols: [[
-                    { type: 'numbers' }
+                    { type: 'checkbox' }
                     , { field: 'OrgName', title: '机构名称' }
                     , { field: 'OrgCode', title: '机构代码' }
                     , { field: 'QuotaNo', title: '额度号' }
@@ -219,6 +221,67 @@
                 return false;
             });
 
+            $('#btn-submit').click(function () {
+                var checkStatus = table.checkStatus('BorrowList');
+                if (checkStatus.data.length <= 0) {
+                    top.layer.msg('未选中任何数据', { time: 1000, shade: '0.3', shadeClose: true });
+                    return false;
+                } else {
+                    for (var i = 0; i < checkStatus.data.length; i++) {
+                        debugger;
+                        $.ajax({
+                            url: '/Settle/PassReview',
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: "json",
+                            data: JSON.stringify({ id: checkStatus.data[i].Id }),
+                            success: function (result) {
+                                if (result.msg == '') {
+                                    console.log("通过成功:" + checkStatus.data[i].Id);
+                                }
+                                else {
+                                    console.log("通过失败:" + checkStatus.data[i].Id + ",原因:" + result.msg);
+                                }
+                            },
+                            error: function (result) {
+                                console.log("服务接口请求失败:" + checkStatus.data[i].Id);
+                            }
+                        });
+                    }
+                    tabIns.reload();
+                }
+            });
+
+            $('#btn-rollback').click(function () {
+                var checkStatus = table.checkStatus('BorrowList');
+                if (checkStatus.data.length <= 0) {
+                    top.layer.msg('未选中任何数据', { time: 1000, shade: '0.3', shadeClose: true });
+                    return false;
+                } else {
+                    for (var i = 0; i < checkStatus.data.length; i++) {
+                        debugger;
+                        $.ajax({
+                            url: '/Settle/RollBack',
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: "json",
+                            data: JSON.stringify({ id: checkStatus.data[i].Id }),
+                            success: function (result) {
+                                if (result.msg == '') {
+                                    console.log("驳回成功:" + checkStatus.data[i].Id);
+                                }
+                                else {
+                                    console.log("驳回失败:" + checkStatus.data[i].Id + ",原因:" + result.msg);
+                                }
+                            },
+                            error: function (result) {
+                                console.log("服务接口请求失败:" + checkStatus.data[i].Id);
+                            }
+                        });
+                    }
+                    tabIns.reload();
+                }
+            });
 
             var submitAction = function (tId) {
                 layer.confirm('即将通过待审核清单！是否确定？', {

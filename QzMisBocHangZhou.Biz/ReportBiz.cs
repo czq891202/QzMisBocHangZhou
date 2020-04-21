@@ -10,46 +10,28 @@ namespace QzMisBocHangZhou.Biz
 {
     public class ReportBiz
     {
-        public static List<ArchiveBorrowInfo> GetBorrowTimeOut(string orgId)
+        public static List<ArchiveBorrowInfo> GetBorrowTimeOut(string orgId, string guaranteeType, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
-            return ReportDAL.GetBorrowTimeOut(orgId);
+            return ReportDAL.GetBorrowTimeOut(orgId, guaranteeType, keyWords);
         }
 
 
-        public static List<ArchiveTransferInfo> GetTransferTimeOut(string orgId)
+        public static List<ArchiveTransferInfo> GetTransferTimeOut(string orgId, string guaranteeType, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             var day = BaseDataDAL.GetDay("移交");
 
-            return ReportDAL.GetTransferTimeOut(orgId, day);
+            return ReportDAL.GetTransferTimeOut(orgId, day, guaranteeType, keyWords);
         }
 
-        public static List<ArchiveSettleInfo> GetSettleTimeOut(string orgId)
+        public static List<ArchiveSettleInfo> GetSettleTimeOut(string orgId, string guaranteeType, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             var day = BaseDataDAL.GetDay("结清未领取");
-            return ReportDAL.GetSettleTimeOut(orgId, day);
-        }
-
-
-        //public static List<ReportBorrow> GetByYearMonth(DateTime date)
-        //{
-        //    return ReportDAL.GetByYearMonth(date);
-        //}
-
-
-        //public static List<ReportBorrow> GetByDay(DateTime date)
-        //{
-        //    return ReportDAL.GetByDay(date);
-        //}
-
-
-        //public static List<ReportArchive> GetArchiveTotal()
-        //{
-        //    return ReportDAL.GetArchiveTotal();
-        //}
+            return ReportDAL.GetSettleTimeOut(orgId, day, guaranteeType, keyWords);
+        }        
     }
 }
