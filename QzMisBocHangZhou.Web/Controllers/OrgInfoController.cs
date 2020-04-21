@@ -42,6 +42,17 @@ namespace QzMisBocHangZhou.Web.Controllers
             var result = OrgInfoBiz.GetAll();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        /// <summary>
+        /// 获取组织树
+        /// </summary>
+        /// <param name="orgid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult GetOrgTree(string orgid)
+        {
+            var result = OrgInfoBiz.GetOrgTree(orgid);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public JsonResult GetOrgInfoListByUser()

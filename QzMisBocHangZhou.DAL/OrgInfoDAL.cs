@@ -16,20 +16,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<OrgInfo>(sql);
         }
 
-
-        //public static List<OrgInfo> Get()
-        //{
-        //    var sql = @"select t.*, Level 
-        //                from OrgInfo t 
-        //                where t.IsLock = 0 
-        //                start with t.parentid = '-1' 
-        //                connect by prior t.id = t.parentid 
-        //                order by level, t.Code";
-
-        //    return DBCache.DataBase.ExecuteEntityList<OrgInfo>(sql);
-        //}
-
-
         public static OrgInfo Get(string id)
         {
             var sql = "select * from OrgInfo where Id = :Id";
@@ -37,7 +23,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntity<OrgInfo>(sql,
                 DBCache.DataBase.CreatDbParameter("Id", id));
         }
-
 
         public static OrgInfo GetByCode(string code)
         {
@@ -47,19 +32,17 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("Code", code));
         }
 
-
         public static List<OrgInfo> GetChild(string id)
         {
             var sql = @"select t.*, Level 
                         from OrgInfo t 
                         where t.IsLock = 0 
-                        start with Id = :Id 
+                        start with Id in (select column_value from table (split (:Id)))
                         connect by prior t.id = t.parentid 
                         order by level, t.Code";
 
             return DBCache.DataBase.ExecuteEntityList<OrgInfo>(sql, DBCache.DataBase.CreatDbParameter("Id", id));
         }
-
 
         public static int Add(OrgInfo orgInfo)
         {

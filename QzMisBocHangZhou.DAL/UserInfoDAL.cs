@@ -34,8 +34,7 @@ namespace QzMisBocHangZhou.DAL
 
         public static List<UserListViewModel> Get()
         {
-            var sql = @"select u.*, o.name as OrgName, r.rolename from UserInfo u 
-                        left join OrgInfo o on u.orgid = o.id 
+            var sql = @"select u.*, r.rolename,(select wm_concat(to_char(name)) from OrgInfo o where o.Id in (select column_value from table (split (u.OrgId)))) AS OrgName from UserInfo u 
                         left join Role r on u.roleid = r.id";
             return DBCache.DataBase.ExecuteEntityList<UserListViewModel>(sql);
         }

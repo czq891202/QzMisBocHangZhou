@@ -51,8 +51,10 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">管辖机构</label>
                         <div class="layui-input-block" lay-filter="org-block-Filter">
-                            <select name="OrgId" id="OrgId" lay-filter="UserOrgFilter" lay-verify="required" lay-search></select>
+                            @*<select name="zTreeSelectM" id="zTreeSelectM" lay-filter="UserOrgFilter" lay-verify="required" lay-search></select>*@
+                            <div id="OrgId"></div>
                         </div>
+
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">联系方式</label>
@@ -70,7 +72,7 @@
                         <div class="layui-input-block">
                             <div class="layui-footer" style="left: 0;">
                                 <button class="layui-btn" lay-submit="" lay-filter="component-form-submit">提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <button type="reset" id="btn_reset" class="layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
                     </div>
@@ -82,12 +84,14 @@
         layui.config({
             base: '../../Scripts/layuiadmin/' //静态资源所在路径
         }).extend({
-            index: 'lib/index' //主入口模块
-        }).use(['index', 'form', 'layer'], function () {
+            index: 'lib/index', //主入口模块
+            zTreeSelectM: 'zTreeSelectM/zTreeSelectM'
+            }).use(['index', 'form', 'layer','zTreeSelectM'], function () {
             var $ = layui.$
                 , layer = layui.layer
                 , index = parent.layer.getFrameIndex(window.name)
-                , form = layui.form;
+                , form = layui.form
+                , zTreeSelectM = layui.zTreeSelectM;
 
             form.render(null, 'component-form-group');
 
@@ -114,33 +118,36 @@
                         parent.layer.close(index);
                     });
                 }
-            });
-
+                });
+                var orgid = "@Model.OrgId";
             //机构下拉框绑定
-            var orgloadingIndex = layer.load(2);
-            $.ajax({
-                url: '/OrgInfo/GetOrgInfoList',
-                type: 'get',
-                contentType: 'application/json',
-                dataType: "json",
-                success: function (result) {
-                    //往下拉菜单里添加元素
-                    //layer.alert(JSON.stringify(result));
-                    $.each(result, function (index, item) {
-                        $('#OrgId').append(new Option(item.Name, item.Id));
-                    });
-                    form.render('select');
-                    form.val('component-form-group', {'OrgId' : '@Model.OrgId'});
-                    layer.close(orgloadingIndex);
-                },
-                error: function (result) {
-                    //console.log(result);
-                    top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false }, function () {
-                        parent.layer.close(index);
-                    });
+            var _zTreeSelectM = zTreeSelectM({
+                elem: '#OrgId',//元素容器【必填】
+                url:'/OrgInfo/GetOrgTree',
+                //候选数据【必填】
+                width: '100%',  //设置了长度
+                verify: 'required',
+                selected: orgid.split(','),//默认值
+                max: 3,//最多选中个数，默认5
+                name: '#OrgId',//input的name 不设置与选择器相同(去#.)
+                delimiter: ',',//值的分隔符
+                field: { idName: 'id', titleName: 'name' },//候选项数据的键名
+                zTreeSetting: { //zTree设置
+                    check: {
+                        enable: true,
+                        chkboxType: { "Y": "", "N": "" }
+                    },
+                    data: {
+                        simpleData: {
+                            enable: false
+                        },
+                        key: {
+                            name: 'name',
+                            children: 'children'
+                        }
+                    }
                 }
             });
-
 
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
@@ -165,11 +172,18 @@
                     });
                 }
                 else {
+                    debugger;
+                    data.field.orgid = _zTreeSelectM.values.toString();
                     submitAction(data);
                 }
                 return false;
             });
 
+            //按钮组事件监听
+            $('#btn_reset').click(function () {
+                console.log('zTreeSelectM 当前选中的值名：', _zTreeSelectM.selected);
+                console.log('zTreeSelectM 当前选中的值：', _zTreeSelectM.values);
+            });
 
             var submitAction = function (data) {
                 //layer.alert(JSON.stringify(data.field));

@@ -35,7 +35,7 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                sql += @" and org.Id in (select Id from OrgInfo where IsLock = 0 start with Id = :OrgId connect by prior Id = ParentId) ";
+                sql += @" and org.Id in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
             }
 

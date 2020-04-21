@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace QzMisBocHangZhou.Model
 {
@@ -62,5 +63,16 @@ namespace QzMisBocHangZhou.Model
 
         public static readonly string RootId = "00000";
         public static readonly string RootCode = "00000";
+    }
+
+    /// <summary>
+    /// 组织树
+    /// </summary>
+    public class OrgTree
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string parentId { get; set; }        
+        public List<OrgTree> children { get; set; }
     }
 }
