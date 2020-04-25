@@ -20,21 +20,16 @@ namespace QzMisBocHangZhou.Model
         /// </summary>
         public string Borrower { get; set; }
 
-
         /// <summary>
         /// 借阅时间
         /// </summary>
         public DateTime? BorrowDate { get; set; }
 
-
         public string ArchiveId { get; set; }
-
 
         public DateTime? PreReturnDate { get; set; }
 
-
         public DateTime? RealReturnDate { get; set; }
-
 
         /// <summary>
         /// 用途
@@ -42,7 +37,7 @@ namespace QzMisBocHangZhou.Model
         public string UsedBy { get; set; }
 
         /// <summary>
-        /// 状态(0:待审核, 1:审核通过, 2:已归还, 3:归还审核中)
+        /// 状态(0:借阅待审核, 1:借阅审核通过, 2:借阅出库, 3:归还审核中, 4:已归还)
         /// </summary>
         public int Status { get; set; }
 
@@ -87,62 +82,61 @@ namespace QzMisBocHangZhou.Model
         public string LoanBorrower { get; set; }
     }
 
-    public class Removed_ArchiveBorrowDetails
-    {
-        public string Id { get; set; }
+    //public class Removed_ArchiveBorrowDetails
+    //{
+    //    public string Id { get; set; }
 
-        public string PId { get; set; }
+    //    public string PId { get; set; }
 
-        public string ArchiveId { get; set; }
+    //    public string ArchiveId { get; set; }
 
-        public DateTime? PreReturnDate { get; set; }
+    //    public DateTime? PreReturnDate { get; set; }
 
-        public DateTime? RealReturnDate { get; set; }
+    //    public DateTime? RealReturnDate { get; set; }
 
-        public string ReturnPepole { get; set; }
+    //    public string ReturnPepole { get; set; }
 
-        public string Remark { get; set; }
+    //    public string Remark { get; set; }
 
-        /// <summary>
-        /// 用途
-        /// </summary>
-        public string UsedBy { get; set; }
+    //    /// <summary>
+    //    /// 用途
+    //    /// </summary>
+    //    public string UsedBy { get; set; }
 
+    //    /// <summary>
+    //    /// 状态(0:未归还， 1:已归还)
+    //    /// </summary>
+    //    public int IsReturned { get; set; }
 
-        /// <summary>
-        /// 状态(0:未归还， 1:已归还)
-        /// </summary>
-        public int IsReturned { get; set; }
+    //    public string PreReturnDateString
+    //    {
+    //        get
+    //        {
+    //            return PreReturnDate?.ToString("yyyy-MM-dd");
+    //        }
+    //    }
 
-        public string PreReturnDateString
-        {
-            get
-            {
-                return PreReturnDate?.ToString("yyyy-MM-dd");
-            }
-        }
+    //    public string RealReturnDateString
+    //    {
+    //        get
+    //        {
+    //            return RealReturnDate?.ToString("yyyy-MM-dd");
+    //        }
+    //    }
 
-        public string RealReturnDateString
-        {
-            get
-            {
-                return RealReturnDate?.ToString("yyyy-MM-dd");
-            }
-        }
+    //    public string QuotaNo { get; set; }
 
-        public string QuotaNo { get; set; }
+    //    public string LoanAccount { get; set; }
 
-        public string LoanAccount { get; set; }
+    //    public string LabelCode { get; set; }
 
-        public string LabelCode { get; set; }
+    //    public string Borrower { get; set; }
 
-        public string Borrower { get; set; }
+    //    public string GuaranteeCrdNo { get; set; }
 
-        public string GuaranteeCrdNo { get; set; }
-
-        /// <summary>
-        /// 核验状态
-        /// </summary>
-        public VerifyType Status { get; set; } = VerifyType.未核对;
-    }
+    //    /// <summary>
+    //    /// 核验状态
+    //    /// </summary>
+    //    public VerifyType Status { get; set; } = VerifyType.未核对;
+    //}
 }

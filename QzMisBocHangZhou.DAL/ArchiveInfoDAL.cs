@@ -17,15 +17,12 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<ArchiveInfo>(sql);
         }
 
-
         public static ArchiveInfo Get(string id)
         {
             var sql = "select * from ArchiveInfo t where Id = :Id";
             return DBCache.DataBase.ExecuteEntity<ArchiveInfo>(sql,
                 DBCache.DataBase.CreatDbParameter("Id", id));
-
         }
-
 
         public static PagingResult<ArchiveInfo> PagingQuery(int page, int limit, string keywords, string orgId, int status)
         {
@@ -79,10 +76,7 @@ namespace QzMisBocHangZhou.DAL
 
             return new PagingResult<ArchiveInfo>() { Count = rCount, Result = data };
         }
-
-
         #endregion
-
 
         #region 【新增】
         public static int Add(ArchiveInfo data)
@@ -151,11 +145,7 @@ namespace QzMisBocHangZhou.DAL
                     DBCache.DataBase.CreatDbParameter("LinkedAccount", data.LinkedAccount)
                 );
         }
-
-
         #endregion
-
-
         #region 【编辑】
         public static int Update(ArchiveInfo data)
         {
@@ -163,7 +153,6 @@ namespace QzMisBocHangZhou.DAL
             var pars = GetUpdateParas(data);
             return DBCache.DataBase.ExecuteNonQuery(sql, pars);
         }
-
 
         public static int Update(DbCommand cmd, ArchiveInfo data)
         {
@@ -175,7 +164,22 @@ namespace QzMisBocHangZhou.DAL
             cmd.Parameters.AddRange(pars);
             return cmd.ExecuteNonQuery();
         }
-
+        /// <summary>
+        /// 更改状态
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="data"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static int ChangeArchiveStatus(string archiveId, ArchiveStatusType status)
+        {
+            var pars = new List<DbParameter>();
+            var sql = @"update ArchiveInfo Set Status = :Status
+                        where Id = :Id";
+            pars.Add(DBCache.DataBase.CreatDbParameter("Id", archiveId));
+            pars.Add(DBCache.DataBase.CreatDbParameter("Status", status.GetHashCode()));
+            return DBCache.DataBase.ExecuteNonQuery(sql, pars.ToArray());
+        }
         private static string GetUpdateSql()
         {
             var sql = @"update ArchiveInfo set 
@@ -246,10 +250,7 @@ namespace QzMisBocHangZhou.DAL
             };
 
             return paras.ToArray();
-        }
-
-
+        }         
         #endregion
-
     }
 }

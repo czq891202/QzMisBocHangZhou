@@ -63,7 +63,7 @@ namespace QzMisBocHangZhou.Biz
         }
 
         /// <summary>
-        /// 导出借阅表
+        /// 借阅待审核清单导出
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -121,7 +121,6 @@ namespace QzMisBocHangZhou.Biz
                 return ms.ToArray();
             }
         }
-
 
         public static MemoryStream ExportSettle(string id)
         {

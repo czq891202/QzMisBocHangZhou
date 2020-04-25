@@ -22,12 +22,10 @@ namespace QzMisBocHangZhou.Web.Controllers
             return View(AppSession.GetUser());
         }
 
-
         public ActionResult AppendArchiveView(string tId)
         {
             return View(new EditViewModel<string>() { Data = tId, User = AppSession.GetUser() });
         }
-
 
         /// <summary>
         /// 审批列表
@@ -38,60 +36,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
             return View(AppSession.GetUser());
         }
-
-        ///// <summary>
-        ///// 结清编辑
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult EditView(string mode, string tId)
-        //{
-        //    if (string.IsNullOrWhiteSpace(mode) || mode.Equals("add", StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(tId))
-        //    {
-        //        var user = AppSession.GetUser();
-        //        var data = ArchiveSettleInfoBiz.CreatDefault(user.OrgId, user.RealName);
-        //        tId = data.Id;
-        //        //return View(new EditViewModel<ArchiveSettleInfo>() { Data = result, User = AppSession.GetUser() });
-        //    }
-
-        //    var result = ArchiveSettleInfoBiz.Get(tId);
-        //    return View(new EditViewModel<ArchiveSettleInfo>() { Data = result, User = AppSession.GetUser() });
-        //}
-
-
-        ///// <summary>
-        ///// 结清查看
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult ShowView(string tId)
-        //{
-        //    var result = ArchiveSettleInfoBiz.Get(tId);
-        //    return View(result);
-        //}
-
-
-
-        ///// <summary>
-        ///// 结清审批列表
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult ApprovalListView()
-        //{
-        //    if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
-        //    return View(AppSession.GetUser());
-        //}
-
-
-
-        ///// <summary>
-        ///// 结清审批
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult ApprovalView(string tId)
-        //{
-        //    var result = ArchiveSettleInfoBiz.Get(tId);
-        //    return View(result);
-        //}
-
         #endregion
 
 
@@ -117,14 +61,12 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
 
-
         [HttpPost]
         public JsonResult SubmitReview(string tId, string usedBy, DateTime? settleDate)
         {
             var success = ArchiveSettleInfoBiz.SubmitReview(tId, usedBy, settleDate, AppSession.GetUser());
             return Json(new { code = 0, data = success, msg = "" });
         }
-
 
         [HttpPost]
         public JsonResult RollBack(string id)

@@ -86,6 +86,7 @@
 
     <script type="text/html" id="optTpl2">
         <a class="layui-btn layui-btn-xs" lay-event="out">结清出库</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">驳回</a>
     </script>
 
 
@@ -157,7 +158,6 @@
                 }
             });
 
-
             var tabIns2 = table.render({
                 elem: '#PreOutList'
                 , url: '/Settle/GetPreOut'
@@ -173,7 +173,7 @@
                     , { field: 'CustomerNo', title: '客户号' }
                     , { field: 'UsedBy', title: '结清类型' }
                     , { field: 'SettleDateString', title: '结清日期' }
-                    , { title: '操作', toolbar: '#optTpl2', width: 120 }
+                    , { title: '操作', toolbar: '#optTpl2', width: 150 }
                 ]]
                 , page: true
                 , limit: 15
@@ -186,7 +186,6 @@
                     orgId: '@Model.OrgId',
                 }
             });
-
 
             //操作栏事件监听
             table.on('tool(SettleList)', function (obj) {
@@ -207,6 +206,8 @@
 
                 if (layEvent == 'out') {
                     outAction(data.Id);
+                } else if (layEvent == 'rollback') {
+                    rollBackAction(data.Id);
                 }
             });
 
@@ -355,7 +356,6 @@
                     return;
                 });
             };
-
 
             var outAction = function (tId) {
                 layer.confirm('即将结清出库！是否确定？', {

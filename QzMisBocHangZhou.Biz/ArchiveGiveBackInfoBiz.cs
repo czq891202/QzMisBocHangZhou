@@ -11,14 +11,14 @@ namespace QzMisBocHangZhou.Biz
         {
             return ArchiveBorrowInfoDAL.Get(id);
         }
-
+        //获取待归还列表
         public static PagingResult<ArchiveBorrowInfo> GetPreGiveBack(int page, int limit, string orgId, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return ArchiveBorrowInfoDAL.GetPreGiveBack(page, limit, orgId, keyWords);
         }
-
+        //提交归还审批
         public static bool SubmitGiveBack(string bId, DateTime? givebackDate, UserInfo user)
         {
             if (string.IsNullOrWhiteSpace(bId)) return false;
@@ -34,21 +34,26 @@ namespace QzMisBocHangZhou.Biz
 
             return ArchiveBorrowInfoDAL.SubmitGiveBack(data) > 0;
         }
-
+        //获取待归还审批列表
         public static PagingResult<ArchiveBorrowInfo> GetGiveBackReview(int page, int limit, string orgId, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return ArchiveBorrowInfoDAL.GetGiveBackReview(page, limit, orgId, keyWords);
         }
-
+        //归还审批撤回
         public static bool GiveBackRollBack(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
 
+            var data = ArchiveBorrowInfoDAL.Get(id);
+            if (data == null) return false;
+            if (string.IsNullOrWhiteSpace(data.Id)) return false;
+            if (string.IsNullOrWhiteSpace(data.ArchiveId)) return false;
+
             return ArchiveBorrowInfoDAL.GiveBackRollBack(id) > 0;
         }
-
+        //归还
         public static bool Returned(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
