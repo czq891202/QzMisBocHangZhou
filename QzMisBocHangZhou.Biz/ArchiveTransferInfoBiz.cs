@@ -36,8 +36,7 @@ namespace QzMisBocHangZhou.Biz
         {
             if (arcData == null) return false;
             if (string.IsNullOrWhiteSpace(arcData.Id)) return false;
-            if (string.IsNullOrWhiteSpace(arcData.LabelCode)) return false;
-            
+            if (string.IsNullOrWhiteSpace(arcData.LabelCode)) return false;            
 
             var transferData = new ArchiveTransferInfo()
             {
@@ -58,8 +57,10 @@ namespace QzMisBocHangZhou.Biz
         public static bool RollBack(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
+            var data = ArchiveTransferInfoDAL.Get(id);
+            if (data == null || string.IsNullOrEmpty(data.ArchiveId)) return false;
 
-            return ArchiveTransferInfoDAL.RollBack(id) > 0;
+            return ArchiveTransferInfoDAL.RollBack(data) > 0;
         }
 
         public static bool PassReview(string id, UserInfo user)

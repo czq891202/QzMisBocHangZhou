@@ -148,7 +148,17 @@
                     , limits: [15, 30, 50, 100]
                     , method: 'post'
                     , even: true
-                    , loading: true
+                    , loading: true, done: function (res) {
+                        debugger;
+                        var that = this.elem.next();
+                        res.data.forEach(function (item, index) {
+                            if (item.Status == "22") {
+                                var tr = that.find(".layui-table-box tbody tr[data-index='" + index + "']");
+                                tr.css("background-color", "yellow");
+
+                            }
+                        });
+                    }
                     , where: {
                         keywords: '',
                         orgId: '@Model.OrgId',

@@ -42,25 +42,13 @@
                             if (Model.CanBorrow)
                             {
                                 <li class="layui-col-xs6">
-                                    <a lay-href="../Borrow/ListView" class="layadmin-backlog-body">
+                                    <a lay-href="../GiveBack/ListView" class="layadmin-backlog-body">
                                         <h3>待归还档案</h3>
                                         <p><cite>@Model.BorrowReturnNo</cite></p>
                                     </a>
                                 </li>
                             }
                         }
-
-                        @*@{
-                            if (Model.CanSettle)
-                            {
-                                <li class="layui-col-xs6">
-                                    <a lay-href="../Settle/ListView" class="layadmin-backlog-body">
-                                        <h3>待结清领取档案</h3>
-                                        <p><cite>@Model.ApprovalSettleOutNo</cite></p>
-                                    </a>
-                                </li>
-                            }
-                        }*@
 
                         @{
                             if (Model.CanApprovalTransfer)
@@ -97,6 +85,73 @@
                                 </li>
                             }
                         }
+
+                        @{
+                            if (Model.CanApprovalSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../Transfer/ApprovalListView" class="layadmin-backlog-body">
+                                        <h3>超期未移交（数量没有）</h3>
+                                        <p><cite>@Model.ApprovalSettleNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (Model.CanApprovalSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../GiveBack/ListView" class="layadmin-backlog-body">
+                                        <h3>超期未归还（数量没有）</h3>
+                                        <p><cite>@Model.ApprovalSettleNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (Model.CanApprovalSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../Transfer/ListView" class="layadmin-backlog-body">
+                                        <h3>移交驳回（数量没有）</h3>
+                                        <p><cite>@Model.ApprovalSettleNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (Model.CanApprovalSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../Borrow/ListView" class="layadmin-backlog-body">
+                                        <h3>借阅驳回（数量没有）</h3>
+                                        <p><cite>@Model.ApprovalSettleNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (Model.CanApprovalSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../GiveBack/ListView" class="layadmin-backlog-body">
+                                        <h3>归还驳回（数量没有）</h3>
+                                        <p><cite>@Model.ApprovalSettleNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (Model.CanApprovalSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../Settle/ListView" class="layadmin-backlog-body">
+                                        <h3>结清驳回（数量没有）</h3>
+                                        <p><cite>@Model.ApprovalSettleNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }                        
                     </ul>
                 </div>
             </div>

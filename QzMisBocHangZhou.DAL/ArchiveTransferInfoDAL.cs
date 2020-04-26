@@ -12,9 +12,9 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
 
             var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower, ai.Id,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact, ai.status 
                         from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
-                        where ai.Status = 0  and ai.Id not in (select ArchiveId from ArchiveTransferInfo where ArchiveId is not null) ";
+                        where (ai.Status = 0 or ai.Status = 22) and ai.Id not in (select ArchiveId from ArchiveTransferInfo where ArchiveId is not null and status <> 2) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
@@ -167,12 +167,15 @@ namespace QzMisBocHangZhou.DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static int RollBack(string id)
+        public static int RollBack(ArchiveTransferInfo data)
         {
-            var sql = @"delete ArchiveTransferInfo where Id = :Id ";
-            return DBCache.DataBase.ExecuteNonQuery(
-                sql,
-                DBCache.DataBase.CreatDbParameter("Id", id));
+            return DBCache.DataBase.ExecuteNonQuery((cmd) =>
+            {
+                var ret = 0;
+                ret = SetInfoPass(cmd, data, "2");
+
+                return ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.移交驳回) + ret;
+            });
         }
 
 
@@ -181,34 +184,21 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteNonQuery((cmd) =>
             {
                 var ret = 0;
-                ret = SetInfoPass(cmd, data);
+                ret = SetInfoPass(cmd, data, "1");
 
-                return ChangeArchiveStatus(cmd, data) + ret;
+                return ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.已入库) + ret;
             });
         }
 
-        private static int SetInfoPass(DbCommand cmd, ArchiveTransferInfo data)
+        private static int SetInfoPass(DbCommand cmd, ArchiveTransferInfo data, string status)
         {
-            var sql = @"update ArchiveTransferInfo set Status = 1, Receiver = :Receiver where Id = :Id ";
+            var sql = @"update ArchiveTransferInfo set Status = :Status, Receiver = :Receiver where Id = :Id ";
             cmd.CommandText = sql;
 
             cmd.Parameters.Clear();
+            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Status", status));
             cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Receiver", data.Receiver));
             cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Id", data.Id));
-
-            return cmd.ExecuteNonQuery();
-        }
-
-        private static int ChangeArchiveStatus(DbCommand cmd, ArchiveTransferInfo data)
-        {
-            var sql = @"update ArchiveInfo Set Status = :Status, LastEditDate = :LastEditDate
-                        where Id = :Id ";
-            cmd.CommandText = sql;
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Status", ArchiveStatusType.已入库.GetHashCode()));
-            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("LastEditDate", DateTime.Now));
-            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Id", data.ArchiveId));
 
             return cmd.ExecuteNonQuery();
         }
