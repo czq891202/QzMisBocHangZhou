@@ -60,6 +60,15 @@
                     <div class="layui-fluid">
                         <div class="layui-card">
                             <div class="layui-card-body" style="padding: 15px;">
+                                <form class="layui-form" lay-filter="component-form-group" action="">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <div class="layui-btn-group">
+                                                <button class="layui-btn" id="btn-excel">导出数据</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                                 <div class="layui-form-item">
                                     <table class="layui-table layui-form" id="PreOutList" lay-filter="PreOutList" lay-size="sm"></table>
                                 </div>
@@ -211,6 +220,10 @@
                 }
             });
 
+            $('#btn-excel').click(function () {
+                window.open('../Settle/ExportSettleOutExcel');
+                return false;
+            });
 
             $('#btn-Search').click(function () {
                 table.reload('SettleList', {

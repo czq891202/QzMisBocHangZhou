@@ -2,6 +2,7 @@
 using NPOI.XSSF.UserModel;
 using QzMisBocHangZhou.Model;
 using System;
+using System.Data;
 using System.IO;
 
 namespace QzMisBocHangZhou.Biz
@@ -80,7 +81,6 @@ namespace QzMisBocHangZhou.Biz
 
             var sheet = excel.GetSheetAt(0);
 
-
             //写入表头数据
             sheet.GetRow(1).GetCell(1).SetCellValue(user.OrgName);
             sheet.GetRow(1).GetCell(4).SetCellValue(user.RealName);
@@ -136,6 +136,74 @@ namespace QzMisBocHangZhou.Biz
             cell.CellStyle.BorderTop = BorderStyle.Thin;
 
             return cell;
+        }
+
+        /// <summary>
+        /// 导出Excel
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static MemoryStream DataTableToExcel(DataTable dt, string sheetName = "Sheet1")
+        {
+            var ms = new NpoiMemoryStream();
+            ms.AllowClose = false;
+            XSSFWorkbook workbook = new XSSFWorkbook();
+
+            if (!string.IsNullOrEmpty(dt.TableName))
+            {
+                sheetName = dt.TableName;
+            }
+            ISheet sheet = workbook.CreateSheet(sheetName);
+            #region 【列头及样式】
+            XSSFRow headRow = (XSSFRow)sheet.CreateRow(0);
+            ICellStyle headStyle = workbook.CreateCellStyle();
+            headStyle.Alignment = HorizontalAlignment.Center;
+            IFont font = workbook.CreateFont();
+            font.FontHeightInPoints = 10;
+            font.Boldweight = 700;
+            headStyle.SetFont(font);
+            foreach(DataColumn column in dt.Columns)
+            {
+                headRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
+                headRow.GetCell(column.Ordinal).CellStyle = headStyle;
+            }
+            #endregion
+            #region【填充内容】
+            int rowIndex = 0;
+            foreach(DataRow dr in dt.Rows)
+            {
+                rowIndex++;
+                XSSFRow dataRow = (XSSFRow)sheet.CreateRow(rowIndex);
+                foreach(DataColumn column in dt.Columns)
+                {
+                    string cellValue = dr[column].ToString();
+                    dataRow.CreateCell(column.Ordinal).SetCellValue(cellValue);
+                }
+            }
+            #endregion
+
+            //返回内存流
+            workbook.Write(ms);
+            ms.Flush();
+            ms.Seek(0, SeekOrigin.Begin);
+            ms.AllowClose = true;
+            return ms;
+        }
+    }
+
+    public class NpoiMemoryStream : MemoryStream
+    {
+        public NpoiMemoryStream()
+        {
+            AllowClose = true;
+        }
+
+        public bool AllowClose { get; set; }
+
+        public override void Close()
+        {
+            if (AllowClose)
+                base.Close();
         }
     }
 }

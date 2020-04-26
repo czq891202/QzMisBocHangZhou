@@ -88,7 +88,6 @@ namespace QzMisBocHangZhou.DAL
             return new PagingResult<ArchiveSettleInfo>() { Count = rCount, Result = data };
         }
 
-
         public static PagingResult<ArchiveSettleInfo> GetPreOut(int page, int limit, string orgId, string keyWords)
         {
             var pars = new List<DbParameter>();
@@ -122,6 +121,19 @@ namespace QzMisBocHangZhou.DAL
             var data = DBCache.DataBase.ExecuteEntityListByPageing<ArchiveSettleInfo>(page, limit, sql, pars.ToArray());
 
             return new PagingResult<ArchiveSettleInfo>() { Count = rCount, Result = data };
+        }
+
+        public static List<ArchiveSettleInfo> GetPreOut()
+        {
+            var pars = new List<DbParameter>();
+
+            var sql = @"select ast.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+                        From ArchiveSettleInfo ast left join OrgInfo o on ast.OrgId = o.Id 
+                        Left join ArchiveInfo ai on ast.ArchiveId = ai.Id
+                        where ast.Status = 1 ";
+
+            return DBCache.DataBase.ExecuteEntityList<ArchiveSettleInfo>(sql);
         }
 
 

@@ -62,7 +62,6 @@ namespace QzMisBocHangZhou.DAL
                 );
         }
 
-
         public static int Update(OrgInfo orgInfo)
         {
             var sql = @"update OrgInfo set ParentId = :ParentId, TypeName = : TypeName, Name = :Name, Code = :Code, IsLock = :IsLock, 
@@ -80,18 +79,28 @@ namespace QzMisBocHangZhou.DAL
                     DBCache.DataBase.CreatDbParameter("Id", orgInfo.Id));
         }
 
-
         public static int Disable(string id)
         {
             var sql = @"update OrgInfo set IsLock = 1 where Id in (select Id from OrgInfo start with Id = :Id connect by prior Id = ParentId)";
             return DBCache.DataBase.ExecuteNonQuery(sql, DBCache.DataBase.CreatDbParameter("Id", id));
         }
 
-
         public static int Enable(string id)
         {
             var sql = @"update OrgInfo set IsLock = 0 where Id in (select Id from OrgInfo start with Id = :Id connect by prior ParentId = Id)";
             return DBCache.DataBase.ExecuteNonQuery(sql, DBCache.DataBase.CreatDbParameter("Id", id));
+        }
+
+        public static List<OrgInfo> GetAllParent(string orgid)
+        {
+            var sql = @"select t.*, Level 
+                        from OrgInfo t 
+                        where t.IsLock = 0 
+                        start with Id = :Id
+                        connect by prior t.parentid = t.id
+                        order by level, t.Code";
+
+            return DBCache.DataBase.ExecuteEntityList<OrgInfo>(sql, DBCache.DataBase.CreatDbParameter("Id", orgid));
         }
     }
 }

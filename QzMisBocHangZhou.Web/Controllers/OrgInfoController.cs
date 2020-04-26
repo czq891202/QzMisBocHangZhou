@@ -1,6 +1,7 @@
 ﻿using QzMisBocHangZhou.Biz;
 using QzMisBocHangZhou.Model;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace QzMisBocHangZhou.Web.Controllers
@@ -75,6 +76,11 @@ namespace QzMisBocHangZhou.Web.Controllers
             }
 
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
+        }
+
+        public static List<OrgInfo>  GetAllParent(string orgid)
+        {
+            return OrgInfoBiz.GetAllParent(orgid);
         }
     }
 }

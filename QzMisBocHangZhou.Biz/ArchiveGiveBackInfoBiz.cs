@@ -51,7 +51,7 @@ namespace QzMisBocHangZhou.Biz
             if (string.IsNullOrWhiteSpace(data.Id)) return false;
             if (string.IsNullOrWhiteSpace(data.ArchiveId)) return false;
 
-            return ArchiveBorrowInfoDAL.GiveBackRollBack(id) > 0;
+            return ArchiveBorrowInfoDAL.GiveBackRollBack(data) > 0;
         }
         //归还
         public static bool Returned(string id)

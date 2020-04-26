@@ -25,12 +25,16 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveSettleInfoDAL.GetPreReview(page, limit, orgId, keyWords);
         }
 
-
         public static PagingResult<ArchiveSettleInfo> GetPreOut(int page, int limit, string orgId, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return ArchiveSettleInfoDAL.GetPreOut(page, limit, orgId, keyWords);
+        }
+
+        public static List<ArchiveSettleInfo> GetPreOut()
+        {
+            return ArchiveSettleInfoDAL.GetPreOut();
         }
 
 

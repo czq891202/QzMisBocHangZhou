@@ -2,6 +2,7 @@
 using QzMisBocHangZhou.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,11 @@ namespace QzMisBocHangZhou.Biz
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return ArchiveBorrowInfoDAL.GetPreOut(page, limit, orgId, keyWords);
+        }
+
+        public static List<ArchiveBorrowInfo> GetPreOut()
+        {
+            return ArchiveBorrowInfoDAL.GetPreOut();
         }
         //借阅待审核清单导出
         public static List<ArchiveBorrowInfo> GetExcelData(string orgId)

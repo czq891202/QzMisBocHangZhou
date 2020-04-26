@@ -96,5 +96,10 @@ namespace QzMisBocHangZhou.Biz
 
             return true;
         }
+
+        public static List<OrgInfo> GetAllParent(string orgid)
+        {
+            return OrgInfoDAL.GetAllParent(orgid);
+        }
     }
 }

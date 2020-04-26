@@ -78,6 +78,10 @@ namespace QzMisBocHangZhou.Model
         public string CustomerNo { get; set; }
 
         public string LoanBorrower { get; set; }
+
+        public string StorageLocation { get; set; }
+
+        public string ProductCode { get; set; }
     }
 
     public class Removed_ArchiveSettleDetail

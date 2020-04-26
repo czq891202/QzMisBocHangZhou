@@ -1,6 +1,7 @@
 ﻿using QzMisBocHangZhou.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -93,7 +94,7 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
 
             var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact, ai.ProductCode, ai.StorageLocation
                         From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
                         Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
                         where ab.Status = 1 ";
@@ -121,6 +122,15 @@ namespace QzMisBocHangZhou.DAL
             var data = DBCache.DataBase.ExecuteEntityListByPageing<ArchiveBorrowInfo>(page, limit, sql, pars.ToArray());
 
             return new PagingResult<ArchiveBorrowInfo>() { Count = rCount, Result = data };
+        }
+        public static List<ArchiveBorrowInfo> GetPreOut()
+        {
+            var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact, ai.ProductCode, ai.StorageLocation
+                        From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
+                        Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
+                        where ab.Status = 1 ";            
+            return DBCache.DataBase.ExecuteEntityList<ArchiveBorrowInfo>(sql);
         }
         //借阅待审核清单导出
         public static List<ArchiveBorrowInfo> GetExcelData(string orgId)

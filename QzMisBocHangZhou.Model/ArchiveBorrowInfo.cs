@@ -80,63 +80,9 @@ namespace QzMisBocHangZhou.Model
         public string LabelCode { get; set; }
 
         public string LoanBorrower { get; set; }
+
+        public string StorageLocation { get; set; }
+
+        public string ProductCode { get; set; }
     }
-
-    //public class Removed_ArchiveBorrowDetails
-    //{
-    //    public string Id { get; set; }
-
-    //    public string PId { get; set; }
-
-    //    public string ArchiveId { get; set; }
-
-    //    public DateTime? PreReturnDate { get; set; }
-
-    //    public DateTime? RealReturnDate { get; set; }
-
-    //    public string ReturnPepole { get; set; }
-
-    //    public string Remark { get; set; }
-
-    //    /// <summary>
-    //    /// 用途
-    //    /// </summary>
-    //    public string UsedBy { get; set; }
-
-    //    /// <summary>
-    //    /// 状态(0:未归还， 1:已归还)
-    //    /// </summary>
-    //    public int IsReturned { get; set; }
-
-    //    public string PreReturnDateString
-    //    {
-    //        get
-    //        {
-    //            return PreReturnDate?.ToString("yyyy-MM-dd");
-    //        }
-    //    }
-
-    //    public string RealReturnDateString
-    //    {
-    //        get
-    //        {
-    //            return RealReturnDate?.ToString("yyyy-MM-dd");
-    //        }
-    //    }
-
-    //    public string QuotaNo { get; set; }
-
-    //    public string LoanAccount { get; set; }
-
-    //    public string LabelCode { get; set; }
-
-    //    public string Borrower { get; set; }
-
-    //    public string GuaranteeCrdNo { get; set; }
-
-    //    /// <summary>
-    //    /// 核验状态
-    //    /// </summary>
-    //    public VerifyType Status { get; set; } = VerifyType.未核对;
-    //}
 }
