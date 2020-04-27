@@ -335,6 +335,7 @@
                             if (result.msg == '') {
                                 top.layer.msg('驳回成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
                                     tabIns.reload();
+                                    tabIns2.reload();
                                 });
                             }
                             else {
@@ -354,7 +355,6 @@
                     return;
                 });
             };
-
             var outAction = function (tId) {
                 layer.confirm('即将借阅出库！是否确定？', {
                     btn: ['确定', '取消'] //按钮

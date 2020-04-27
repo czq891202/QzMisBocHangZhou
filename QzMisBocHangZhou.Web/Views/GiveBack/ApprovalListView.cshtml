@@ -57,6 +57,7 @@
         <a class="layui-btn layui-btn-xs" lay-event="return">归还</a>
         {{#  if(d.UsedBy == '期转现'){ }}
         <a class="layui-btn layui-btn-xs" lay-event="changeIn">变更入库</a>{{#  } }}
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="rollback">驳回</a>
     </script>
 
     <script>
@@ -114,7 +115,7 @@
                     , { field: 'Borrower', title: '借阅人' }
                     , { field: 'BorrowDateString', title: '借阅时间' }
                     , { field: 'PreReturnDateString', title: '预归还时间' }
-                    , { title: '操作', toolbar: '#optTpl', width: 80 }
+                    , { title: '操作', toolbar: '#optTpl', width: 150 }
                 ]]
                 , page: true
                 , limit: 15
@@ -137,6 +138,9 @@
                 }
                 else if (layEvent == 'changeIn') {
                     changeInAction(data.Id);
+                }
+                else if (layEvent == 'rollback') {
+                    rollBackAction(data.Id);
                 }
             });
 
@@ -162,7 +166,6 @@
                     return false;
                 } else {
                     for (var i = 0; i < checkStatus.data.length; i++) {
-                        debugger;
                         $.ajax({
                             url: '/GiveBack/Returned',
                             type: 'post',
@@ -211,6 +214,41 @@
                         error: function (result) {
                             layer.close(inds);
                             //console.log(result);
+                            top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                            });
+                        }
+                    });
+                }, function (inds) {
+                    layer.close(inds);
+                    return;
+                });
+            };
+
+            var rollBackAction = function (tId) {
+                layer.confirm('即将驳回待审核项， 是否确定需要驳回？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function (inds) {
+                    $.ajax({
+                        url: '/GiveBack/RollBack',
+                        type: 'post',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        data: JSON.stringify({ id: tId }),
+                        success: function (result) {
+                            layer.close(inds);
+                            //console.log(result);
+                            if (result.msg == '') {
+                                top.layer.msg('编辑成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                                    tabIns.reload();
+                                });
+                            }
+                            else {
+                                top.layer.msg('编辑失败! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                                });
+                            }
+                        },
+                        error: function (result) {
+                            layer.close(inds);
                             top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
                             });
                         }

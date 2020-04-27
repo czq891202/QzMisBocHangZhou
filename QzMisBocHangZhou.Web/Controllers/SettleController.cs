@@ -39,7 +39,6 @@ namespace QzMisBocHangZhou.Web.Controllers
         }
         #endregion
 
-
         #region 接口
         [HttpPost]
         public JsonResult GetPreSettle(int page, int limit, string orgId, string keywords)
@@ -113,7 +112,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
 
-
         [HttpPost]
         public JsonResult PassReview(string id)
         {
@@ -121,111 +119,12 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
 
-
         [HttpPost]
         public JsonResult SettleOut(string id)
         {
             var success = ArchiveSettleInfoBiz.SettleOut(id);
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
-
-
-
-        //[HttpPost]
-        //public JsonResult GetApprovaSettleList(int page, int limit, string orgId)
-        //{
-        //    var data = ArchiveSettleInfoBiz.GetApprovaSettleList(page, limit, orgId);
-        //    return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult GetSettleList(int page, int limit, string orgId)
-        //{
-        //    var data = ArchiveSettleInfoBiz.Get(page, limit, orgId);
-        //    return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult GetArchiveList(int page, int limit, string orgId, string SettleId)
-        //{
-        //    var data = ArchiveSettleInfoBiz.GetArchiveList(page, limit, orgId, SettleId);
-        //    return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult AddSettleDetail(string SettleId, string archiveId)
-        //{
-        //    var success = ArchiveSettleInfoBiz.AddSettleDetail(SettleId, archiveId);
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult DelSettleDetail(string SettleId, string archiveId)
-        //{
-        //    var success = ArchiveSettleInfoBiz.DelSettleDetail(SettleId, archiveId);
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult Edit(ArchiveSettleInfo data)
-        //{
-        //    var success = ArchiveSettleInfoBiz.Update(data);
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-        //[HttpPost]
-        //public JsonResult SubmitReview(string id)
-        //{
-        //    var success = ArchiveSettleInfoBiz.SubmitReview(id);
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-        //[HttpPost]
-        //public JsonResult DelSettleInfo(string id)
-        //{
-        //    var success = ArchiveSettleInfoBiz.Del(id);
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult GetSettleDetails(string tId)
-        //{
-        //    var result = ArchiveSettleInfoBiz.GetDetails(tId);
-        //    return Json(new { code = 0, data = result, msg = "" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult PassReview(string id)
-        //{
-        //    var success = ArchiveSettleInfoBiz.PassReview(id, AppSession.GetUser());
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-
-        //[HttpPost]
-        //public JsonResult RollBack(string id)
-        //{
-        //    var success = ArchiveSettleInfoBiz.RollBack(id);
-        //    return Json(new ResultModel<string>() { msg = success ? "" : "error" });
-        //}
-
-
-        //[HttpPost]
-        //public ActionResult ExportExcel(string tId)
-        //{
-        //    //TODO:excel
-        //    Stream dataStream = null;
-        //    return new FileStreamResult(dataStream, "application/ms-excel") { FileDownloadName = "exportInfo.xlsx" };
-        //}
-
-
         #endregion
     }
 }

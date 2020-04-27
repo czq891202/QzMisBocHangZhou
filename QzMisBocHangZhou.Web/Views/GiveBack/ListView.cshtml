@@ -145,6 +145,16 @@
                 , method: 'post'
                 , even: true
                 , loading: true
+                , loading: true, done: function (res) {
+                    var that = this.elem.next();
+                    res.data.forEach(function (item, index) {
+                        if (item.Status == "24") {
+                            var tr = that.find(".layui-table-box tbody tr[data-index='" + index + "']");
+                            tr.css("background-color", "yellow");
+
+                        }
+                    });
+                }
                 , where: {
                     orgId: '@Model.OrgId',
                 }
@@ -186,7 +196,6 @@
                 var layEvent = obj.event;
 
                 if (layEvent == 'submit') {
-                    debugger;
                     submitAction(data.Id);
                 }
             });
@@ -226,7 +235,7 @@
             var submitAction = function (id) {
                 var idx = layer.open({
                     type: 2,
-                    title: '借阅编辑',
+                    title: '归还编辑',
                     shadeClose: false,
                     shade: 0.8,
                     area: ['600px', '400px'],

@@ -35,7 +35,7 @@ namespace QzMisBocHangZhou.Model
 
 
         /// <summary>
-        /// 状态(0:待审核, 1:审核通过, 2:已领取)
+        /// 状态(0:待审核, 1:审核通过, 2:已领取, 3:驳回 )
         /// </summary>
         public int Status { get; set; }
 

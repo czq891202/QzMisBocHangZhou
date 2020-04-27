@@ -23,9 +23,9 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
 
             var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower, ai.Id, ai.Status as ArcStatus,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status
                         from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
-                        where (ai.Status = 1 or ai.Status = 5) and ai.Id not in (select ArchiveId from ArchiveSettleInfo where ArchiveId is not null) ";
+                        where (ai.Status = 1 or ai.Status = 5 or ai.Status = 25) and ai.Id not in (select ArchiveId from ArchiveSettleInfo where ArchiveId is not null and STATUS <> 3) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
@@ -78,7 +78,6 @@ namespace QzMisBocHangZhou.DAL
 
                 pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", $"%{keyWords.Trim()}%"));
             }
-
             sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
 
 
@@ -116,7 +115,6 @@ namespace QzMisBocHangZhou.DAL
 
             sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
 
-
             var rCount = DBCache.DataBase.GetRecordCount(sql, pars.ToArray());
             var data = DBCache.DataBase.ExecuteEntityListByPageing<ArchiveSettleInfo>(page, limit, sql, pars.ToArray());
 
@@ -136,7 +134,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<ArchiveSettleInfo>(sql);
         }
 
-
         public static int SubmitReview(ArchiveSettleInfo data)
         {
             var sql = @"insert into ArchiveSettleInfo 
@@ -149,24 +146,24 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("Status", 0),
                 DBCache.DataBase.CreatDbParameter("SettleDate", data.SettleDate),
                 DBCache.DataBase.CreatDbParameter("UsedBy", data.UsedBy),
-                DBCache.DataBase.CreatDbParameter("ArchiveId", data.ArchiveId));
-            
+                DBCache.DataBase.CreatDbParameter("ArchiveId", data.ArchiveId));            
         }
-
 
         /// <summary>
         /// 撤回/驳回
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static int RollBack(string id)
+        public static int RollBack(ArchiveSettleInfo data)
         {
-            var sql = @"delete ArchiveSettleInfo where Id = :Id ";
-            return DBCache.DataBase.ExecuteNonQuery(
-                sql,
-                DBCache.DataBase.CreatDbParameter("Id", id));
-        }
+            return DBCache.DataBase.ExecuteNonQuery((cmd) =>
+            {
+                var ret = 0;
+                ret = SetInfoPass(cmd, data, 3);
 
+                return ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.结清驳回) + ret;
+            });
+        }
 
         public static int PassReview(ArchiveSettleInfo data)
         {
@@ -185,10 +182,9 @@ namespace QzMisBocHangZhou.DAL
                 var ret = 0;
                 ret = SetInfoPass(cmd, data, 1);
 
-                return ret + ChangeArchiveStatus(cmd, data, arcType);
+                return ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, arcType) + ret;
             });
         }
-
 
         private static int SetInfoPass(DbCommand cmd, ArchiveSettleInfo data, int status)
         {
@@ -200,23 +196,7 @@ namespace QzMisBocHangZhou.DAL
             cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Status", status));
 
             return cmd.ExecuteNonQuery();
-        }
-
-
-        private static int ChangeArchiveStatus(DbCommand cmd, ArchiveSettleInfo data, ArchiveStatusType type)
-        {
-            var sql = @"update ArchiveInfo Set Status = :Status, LastEditDate = :LastEditDate
-                        where Id = :Id ";
-            cmd.CommandText = sql;
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Status", ArchiveStatusType.已结清.GetHashCode()));
-            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("LastEditDate", DateTime.Now));
-            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Id", data.ArchiveId));
-
-            return cmd.ExecuteNonQuery();
-        }
-
+        }        
 
         public static int SettleOut(string id)
         {

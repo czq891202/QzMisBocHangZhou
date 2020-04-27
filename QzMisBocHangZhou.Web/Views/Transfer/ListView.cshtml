@@ -149,7 +149,6 @@
                     , method: 'post'
                     , even: true
                     , loading: true, done: function (res) {
-                        debugger;
                         var that = this.elem.next();
                         res.data.forEach(function (item, index) {
                             if (item.Status == "22") {

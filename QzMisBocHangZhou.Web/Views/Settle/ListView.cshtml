@@ -160,6 +160,16 @@
                 , method: 'post'
                 , even: true
                 , loading: true
+                , loading: true, done: function (res) {
+                    var that = this.elem.next();
+                    res.data.forEach(function (item, index) {
+                        if (item.Status == "25") {
+                            var tr = that.find(".layui-table-box tbody tr[data-index='" + index + "']");
+                            tr.css("background-color", "yellow");
+
+                        }
+                    });
+                }
                 , where: {
                     keywords: '',
                     orgId: '@Model.OrgId',

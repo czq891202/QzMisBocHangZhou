@@ -37,7 +37,7 @@ namespace QzMisBocHangZhou.Model
         public string UsedBy { get; set; }
 
         /// <summary>
-        /// 状态(0:借阅待审核, 1:借阅审核通过, 2:借阅出库, 3:归还审核中, 4:已归还)
+        /// 状态(0:借阅待审核, 1:借阅审核通过, 2:借阅出库, 3:归还审核中, 4:已归还, 5:借阅驳回, 6:归还驳回)
         /// </summary>
         public int Status { get; set; }
 

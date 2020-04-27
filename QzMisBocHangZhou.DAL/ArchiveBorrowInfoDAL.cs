@@ -25,9 +25,9 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
 
             var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower, ai.Id,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status
                         from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
-                        where ai.Status = 1  and ai.Id not in (select ArchiveId from ArchiveBorrowInfo where Status <> 2 and ArchiveId is not null) ";
+                        where (ai.Status = 1 or ai.Status = 23) and ai.Id not in (select ArchiveId from ArchiveBorrowInfo where (Status <> 4 and Status <> 5)and ArchiveId is not null) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
@@ -194,18 +194,21 @@ namespace QzMisBocHangZhou.DAL
         //借阅撤回/驳回
         public static int RollBack(ArchiveBorrowInfo data)
         {
+            var ret = 0;
             try
             {
-                ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.已入库);
-                var sql = @"delete ArchiveBorrowInfo where Id = :Id ";
-                return DBCache.DataBase.ExecuteNonQuery(
-                    sql,
-                    DBCache.DataBase.CreatDbParameter("Id", data.Id));
+                DBCache.DataBase.ExecuteNonQuery((cmd) =>
+                {
+                    ret = SetInfoPass(cmd, data, 5);
+
+                    return ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.借阅驳回) + ret;
+                });
             }
             catch
             {
-                return 0;
+                ret = 0;
             }
+            return ret;
         }
         #endregion
         #region【通用】
@@ -240,11 +243,11 @@ namespace QzMisBocHangZhou.DAL
         {
             var pars = new List<DbParameter>();
 
-            var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+            var sql = @"select ab.Id,ab.ArchiveId,ab.BorrowDate,ab.PreReturnDate, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status
                         From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
                         Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
-                        where ab.Status = 2 and ai.Status = 5";
+                        where (ab.Status = 2 or ab.Status = 6) and (ai.Status = 5 OR ai.Status = 24)";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
@@ -314,16 +317,26 @@ namespace QzMisBocHangZhou.DAL
 
             return new PagingResult<ArchiveBorrowInfo>() { Count = rCount, Result = data };
         }
-        //归还审批撤回
+        //归还审批驳回
         public static int GiveBackRollBack(ArchiveBorrowInfo data)
         {
             try
             {
-                ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.借阅出库);
-                var sql = @"update ArchiveBorrowInfo set Status = 2 where Id = :Id ";
-                return DBCache.DataBase.ExecuteNonQuery(
-                    sql,
-                    DBCache.DataBase.CreatDbParameter("Id", data.Id));
+                var ret = 0;
+                try
+                {
+                    DBCache.DataBase.ExecuteNonQuery((cmd) =>
+                    {
+                        ret = SetInfoPass(cmd, data, 6);
+
+                        return ArchiveInfoDAL.ChangeArchiveStatus(data.ArchiveId, ArchiveStatusType.归还驳回) + ret;
+                    });
+                }
+                catch
+                {
+                    ret = 0;
+                }
+                return ret;
             }
             catch
             {
