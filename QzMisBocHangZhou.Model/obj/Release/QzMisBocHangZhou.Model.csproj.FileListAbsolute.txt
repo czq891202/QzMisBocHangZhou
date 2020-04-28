@@ -1,0 +1,6 @@
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\bin\Release\QzMisBocHangZhou.Model.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\bin\Release\QzMisBocHangZhou.Model.pdb
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Release\QzMisBocHangZhou.Model.csprojAssemblyReference.cache
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Release\QzMisBocHangZhou.Model.csproj.CoreCompileInputs.cache
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Release\QzMisBocHangZhou.Model.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Release\QzMisBocHangZhou.Model.pdb

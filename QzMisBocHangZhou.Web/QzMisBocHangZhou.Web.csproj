@@ -114,6 +114,7 @@
     <Content Include="App_Data\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

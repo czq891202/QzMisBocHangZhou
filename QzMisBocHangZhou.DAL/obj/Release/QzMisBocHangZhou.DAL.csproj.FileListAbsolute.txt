@@ -1,0 +1,13 @@
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\QzMisBocHangZhou.DAL.dll.config
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\QzMisBocHangZhou.DAL.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\QzMisBocHangZhou.DAL.pdb
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\Dapper.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\Oracle.ManagedDataAccess.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\QzMisBocHangZhou.Model.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\QzMisBocHangZhou.Model.pdb
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\bin\Release\Dapper.xml
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\obj\Release\QzMisBocHangZhou.DAL.csprojAssemblyReference.cache
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\obj\Release\QzMisBocHangZhou.DAL.csproj.CoreCompileInputs.cache
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\obj\Release\QzMisBocHangZhou.DAL.csproj.CopyComplete
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\obj\Release\QzMisBocHangZhou.DAL.dll
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\obj\Release\QzMisBocHangZhou.DAL.pdb

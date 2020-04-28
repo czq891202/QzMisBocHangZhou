@@ -1,0 +1,215 @@
+﻿@model QzMisBocHangZhou.Model.UserInfo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>机构列表</title>
+    <meta http-equiv="X-UA-Compatible" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="renderer" content="webkit">
+
+    <script type="text/javascript" src="~/Scripts/layuiadmin/layui/layui.js"></script>
+    <link rel="stylesheet" media="all" href="~/Scripts/layuiadmin/layui/css/layui.css" />
+    <link rel="stylesheet" media="all" href="~/Scripts/layuiadmin/style/admin.css" />
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-btn-group">
+                            <button class="layui-btn layui-btn-sm" id="btn-add">新增</button>
+                            <button class="layui-btn layui-btn-sm" id="btn-refresh">刷新</button>
+                        </div>
+                        <table class="layui-table layui-form" id="OrgInfoList" lay-filter="OrgInfoList" lay-size="sm"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        layui.config({
+            base: '../../Scripts/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'table', 'treeTable', 'form'], function () {
+            var $ = layui.$
+                , form = layui.form
+                , layer = layui.layer
+                , treetable = layui.treeTable
+                , table = layui.table;
+            var tab = null;
+            // 渲染表格
+            var renderTable = function () {
+                layer.load(2);
+                tab = treetable.render({
+                    elem: '#OrgInfoList',
+                    primary_key: 'Id',
+                    parent_key: 'ParentId',
+                    //top_value: '@Model.ParentOrgId',
+                    top_value: '-1',
+                    url: '/OrgInfo/GetOrgInfoList',
+                    icon_key: 'Name',
+                    hide_class: 'layui-hide',
+                    is_click_icon: false,
+                    is_checkbox: false,
+                    is_cache: true,
+                    cols: [
+                        { key: 'Name', title: '机构名称' },
+                        { key: 'TypeName', title: '机构类型' },
+                        { key: 'Code', title: '机构编号' },
+                        { key: 'Remark', title: '备注' },
+                        { key: 'Contact', title: '联系方式' },
+                        {
+                            title: '是否禁用',
+                            width: '80px',
+                            align: 'center',
+                            template: function (item) {
+                                if (item.IsLock == 1) {
+                                    return '<input type="checkbox" name="chkLock" lay-filter="chkLock" lay-skin="switch" lay-text="ON|OFF" value="1" checked="true" disabled="true")>';
+                                }
+                                else {
+                                    return '<input type="checkbox" name="chkLock" lay-filter="chkLock" lay-skin="switch" lay-text="ON|OFF" value="1" disabled="true")>';
+                                }
+                            }
+                        },
+                        {
+                            title: '操作',
+                            align: 'center',
+                            template: function (item) {
+                                return '<a class="layui-btn layui-btn-xs" lay-filter="add" lay-event="add">新增</a>' +
+                                    '<a class="layui-btn layui-btn-xs" lay-filter="edit" lay-event="edit">编辑</a>';
+                            }
+                        },
+                    ],
+                    end: function (e) {
+                        layer.closeAll('loading');
+                        form.render();
+                    }
+                });
+
+                //全部展开
+                //treetable.openAll(tab);
+            };
+
+            // 渲染表格
+            renderTable();
+
+            //表格按钮组事件监听
+            treetable.on('tree(add)', function (data) {
+                //layer.msg(JSON.stringify(data));
+                openEdit('add', '', data.item.Id);
+            })
+
+            treetable.on('tree(edit)', function (data) {
+                //layer.msg(JSON.stringify(data));
+                openEdit('edit', data.item.Id, data.item.ParentId);
+            })
+
+
+            //treetable.on('tree(chkLock)', function (data) {
+            //    layer.msg(JSON.stringify(data));
+            //    //disableAction(data.item.Id);
+            //})
+
+            //treetable.on('tree(enable)', function (data) {
+            //    //layer.msg(JSON.stringify(data));
+            //    enableAction(data.item.Id);
+            //})
+
+
+            //按钮组事件监听
+            $('#btn-add').click(function () {
+                openEdit('add', '', '-1');
+            });
+
+            $('#btn-refresh').click(function () {
+                renderTable();
+            });
+
+            var openEdit = function (mode, id, pId) {
+                layer.open({
+                    type: 2,
+                    title: '机构编辑',
+                    shadeClose: false,
+                    shade: 0.8,
+                    area: ['600px', '600px'],
+                    id: 'edit',
+                    content: '/OrgInfo/OrgInfoEditView?mode=' + mode + '&id=' + id + '&pId=' + pId,    //iframe的url
+                    end: function (layero, index) {
+                        renderTable();
+                    }
+                });
+            }
+
+            //var disableAction = function (data) {
+            //    layer.confirm('此操作将禁用本节点及所有子节点！是否确定需要禁用？', {
+            //        btn: ['确定', '取消'] //按钮
+            //    }, function () {
+            //        $.ajax({
+            //            url: '/OrgInfo/Disable',
+            //            type: 'post',
+            //            contentType: 'application/json',
+            //            dataType: "json",
+            //            data: JSON.stringify({ id: data }),
+            //            success: function (result) {
+            //                //console.log(result);
+            //                if (result.msg == '') {
+            //                    layer.msg('禁用成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+            //                        renderTable();
+            //                    });
+            //                }
+            //                else {
+            //                    layer.msg('禁用成功! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true });
+            //                }
+            //            },
+            //            error: function (result) {
+            //                layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true });
+            //            }
+            //        });
+            //    }, function () {
+            //        return;
+            //    });
+            //}
+
+            //var enableAction = function (data) {
+            //    layer.confirm('此操作将启用本节点及其所有父节点！是否确定需要启用？', {
+            //        btn: ['确定', '取消'] //按钮
+            //    }, function () {
+            //        $.ajax({
+            //            url: '/OrgInfo/Enable',
+            //            type: 'post',
+            //            contentType: 'application/json',
+            //            dataType: "json",
+            //            data: JSON.stringify({ id: data }),
+            //            success: function (result) {
+            //                //console.log(result);
+            //                if (result.msg == '') {
+            //                    layer.msg('启用成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+            //                        renderTable();
+            //                    });
+            //                }
+            //                else {
+            //                    layer.msg('启用成功! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true });
+            //                }
+            //            },
+            //            error: function (result) {
+            //                layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true });
+            //            }
+            //        });
+            //    }, function () {
+            //        return;
+            //    });
+            //}
+
+        });
+    </script>
+</body>
+</html>
