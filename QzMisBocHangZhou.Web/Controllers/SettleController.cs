@@ -17,10 +17,12 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// 结清清单
         /// </summary>
         /// <returns></returns>
-        public ActionResult ListView()
+        public ActionResult ListView(string tabname = "tabIns")
         {
             if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
-            return View(AppSession.GetUser());
+            var userinfo = AppSession.GetUser();
+            userinfo.Ext = tabname;
+            return View(userinfo);
         }
 
         public ActionResult AppendArchiveView(string tId)

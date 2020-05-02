@@ -98,11 +98,22 @@
                             }
                         }
                         @{
+                            if (Model.CanSettle)
+                            {
+                                <li class="layui-col-xs6">
+                                    <a lay-href="../Settle/ListView?tabname=tabIns3" class="layadmin-backlog-body">
+                                        <h3>待结清领取档案</h3>
+                                        <p><cite>@Model.ApprovalSettleOutNo</cite></p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @{
                             if (Model.CanGiveBack)
                             {
                                 <li class="layui-col-xs6">
                                     <a lay-href="../GiveBack/ListView" class="layadmin-backlog-body">
-                                        <h3>超期未归还（数量没有）</h3>
+                                        <h3>超期未归还</h3>
                                         <p><cite>@Model.GiveBackExtendedNo</cite></p>
                                     </a>
                                 </li>
@@ -151,7 +162,7 @@
                                     </a>
                                 </li>
                             }
-                        }                        
+                        }
                     </ul>
                 </div>
             </div>

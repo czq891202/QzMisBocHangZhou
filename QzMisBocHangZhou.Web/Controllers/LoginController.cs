@@ -31,7 +31,7 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// 缓存登陆用户信息 
         /// </summary>
         /// <param name="userName"></param>
-        private void CacheInfo(string userName)
+        public static void CacheInfo(string userName)
         {
             var userInfo = UserInfoBiz.GetDetailsByName(userName);
             AppSession.AddUser(userInfo);

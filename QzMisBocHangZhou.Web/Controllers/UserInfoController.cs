@@ -88,6 +88,7 @@ namespace QzMisBocHangZhou.Web.Controllers
             if (AppSession.GetUser().LastLandingTime == null || AppSession.GetUser().LastLandingTime.GetType() == typeof(System.DBNull))
             {
                 UserInfoBiz.SetLastLandingTime(AppSession.GetUser());
+                LoginController.CacheInfo(AppSession.GetUser().UserName);
             }
             return Json(new ResultModel<bool>() { data = success, msg = success ? "" : "error" });
         }

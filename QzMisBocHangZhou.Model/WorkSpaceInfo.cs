@@ -19,7 +19,7 @@ namespace QzMisBocHangZhou.Model
         public bool CanApprovalBorrow { get; set; }
 
         public bool CanSettle { get; set; }
-        public int ApprovalSettleOutNo { get; set; }
+        
 
         public bool CanGiveBack { get; set; }
         public bool CanApprovalGiveBack { get; set; }
@@ -66,5 +66,9 @@ namespace QzMisBocHangZhou.Model
         /// 结清驳回
         /// </summary>
         public int SettleRollBackNo { get; set; }
+        /// <summary>
+        /// 待结清领取档案
+        /// </summary>
+        public int ApprovalSettleOutNo { get; set; }
     }
 }

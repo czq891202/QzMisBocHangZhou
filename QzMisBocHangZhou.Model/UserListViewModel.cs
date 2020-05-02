@@ -16,6 +16,11 @@ namespace QzMisBocHangZhou.Model
         /// <summary>
         /// 角色名称
         /// </summary>
-        public string RoleName { get; set; }       
+        public string RoleName { get; set; }
+
+        /// <summary>
+        /// 扩展字段
+        /// </summary>
+        public string Ext { get; set; }
     }
 }
