@@ -10,6 +10,7 @@ namespace QzMisBocHangZhou.DAL
 {
     public class ReportDAL
     {
+        //借阅超时
         public static List<ArchiveBorrowInfo> GetBorrowTimeOut(string orgId, string guaranteeType = "", string keyWords = "")
         {
             var pars = new List<DbParameter>();
@@ -42,8 +43,7 @@ namespace QzMisBocHangZhou.DAL
 
             return DBCache.DataBase.ExecuteEntityList<ArchiveBorrowInfo>(sql, pars.ToArray());
         }
-
-
+        //移交超时
         public static List<ArchiveTransferInfo> GetTransferTimeOut(string orgId, int day, string guaranteeType = "", string keyWords = "")
         {
             var pars = new List<DbParameter>();
@@ -76,11 +76,9 @@ namespace QzMisBocHangZhou.DAL
 
             sql += " order by OrgCode, ai.LoanReleaseDate, ai.QuotaNo, ai.LoanAccount";
 
-            return DBCache.DataBase.ExecuteEntityList<ArchiveTransferInfo>(sql, pars.ToArray());
-            
+            return DBCache.DataBase.ExecuteEntityList<ArchiveTransferInfo>(sql, pars.ToArray());            
         }
-
-
+        //结清超时
         public static List<ArchiveSettleInfo> GetSettleTimeOut(string orgId, int day, string guaranteeType = "", string keyWords = "")
         {
             var pars = new List<DbParameter>();
@@ -115,6 +113,38 @@ namespace QzMisBocHangZhou.DAL
 
             var rCount = DBCache.DataBase.GetRecordCount(sql, pars.ToArray());
             return DBCache.DataBase.ExecuteEntityList<ArchiveSettleInfo>(sql, pars.ToArray());
+        }
+        //档案追溯
+        public static PagingResult<ArchiveInfoReport> GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string keyWords)
+        {
+            var pars = new List<DbParameter>();
+
+            var sql = @"select a.*, o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContatc, b.Handover, b.Receiver, b.TransferDate, b.Status as TransStatus, c.SettlePeople, c.SettleDate, c.Status as SettleStatus, c.UsedBy as  SettleUsedBy, d.Borrower as BorrowPeople, d.BorrowDate, d.UsedBy as BorrowUsedBy, d.Status as BorrowStatus, d.PreReturnDate from ArchiveInfo a left join ArchiveTransferInfo b on a.Id = b.ArchiveId left join ArchiveSettleInfo c on a.Id = c.ArchiveId left join ArchiveBorrowInfo d on a.Id = d.ArchiveId left join OrgInfo o on a.OrgId = o.Id where 1 = 1 ";
+
+            if (!string.IsNullOrWhiteSpace(orgId))
+            {
+                sql += @" and o.Id in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(guaranteeType))
+            {
+                sql += @" and a.GuaranteeType = :GuaranteeType ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("GuaranteeType", guaranteeType));
+            }
+
+            if (!string.IsNullOrWhiteSpace(keyWords))
+            {
+                sql += @" and ( a.ProductCode = :KeyWords or a.Borrower = :KeyWords)";
+                pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", keyWords));
+            }
+
+            sql += " order by a.Id, d.BorrowDate asc ";
+
+            var rCount = DBCache.DataBase.GetRecordCount(sql, pars.ToArray());
+            var data = DBCache.DataBase.ExecuteEntityListByPageing<ArchiveInfoReport>(page, limit, sql, pars.ToArray());
+
+            return new PagingResult<ArchiveInfoReport>() { Count = rCount, Result = data };
         }
     }
 }

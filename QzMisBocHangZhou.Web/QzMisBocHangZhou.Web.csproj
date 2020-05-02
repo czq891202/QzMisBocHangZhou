@@ -930,6 +930,7 @@
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\css\awesomeStyle\awesome.less" />
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\css\awesomeStyle\fa.less" />
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\README.md" />
+    <Content Include="Views\Report\ArchiveInfoTimeView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

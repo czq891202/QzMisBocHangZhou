@@ -32,12 +32,10 @@ namespace QzMisBocHangZhou.Model
         /// </summary>
         public int Status { get; set; }
 
-
         /// <summary>
         /// 档案Id
         /// </summary>
         public string ArchiveId { get; set; }
-
 
         public string TransferDateString
         {

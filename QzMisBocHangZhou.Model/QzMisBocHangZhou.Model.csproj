@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveBorrowInfo.cs" />
+    <Compile Include="ArchiveInfoReport.cs" />
     <Compile Include="ArchiveProcTime.cs" />
     <Compile Include="ArchiveSettleInfo.cs" />
     <Compile Include="ArchiveTransferInfo.cs" />

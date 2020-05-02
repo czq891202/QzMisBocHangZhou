@@ -148,7 +148,8 @@
                     , limits: [15, 30, 50, 100]
                     , method: 'post'
                     , even: true
-                    , loading: true, done: function (res) {
+                    , loading: true
+                    , done: function (res) {
                         var that = this.elem.next();
                         res.data.forEach(function (item, index) {
                             if (item.Status == "22") {
