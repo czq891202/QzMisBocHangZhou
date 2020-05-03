@@ -115,7 +115,7 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<ArchiveSettleInfo>(sql, pars.ToArray());
         }
         //档案追溯
-        public static PagingResult<ArchiveInfoReport> GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string keyWords)
+        public static PagingResult<ArchiveInfoReport> GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string status, string keyWords)
         {
             var pars = new List<DbParameter>();
 
@@ -131,6 +131,12 @@ namespace QzMisBocHangZhou.DAL
             {
                 sql += @" and a.GuaranteeType = :GuaranteeType ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("GuaranteeType", guaranteeType));
+            }
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                sql += @" and a.Status in (select column_value from table (split (:Status))) ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("Status", status));
             }
 
             if (!string.IsNullOrWhiteSpace(keyWords))

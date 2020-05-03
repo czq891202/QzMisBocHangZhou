@@ -34,10 +34,33 @@ namespace QzMisBocHangZhou.Biz
             return ReportDAL.GetSettleTimeOut(orgId, day, guaranteeType, keyWords);
         }
         //档案追溯
-        public static PagingResult<ArchiveInfoReport> GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string keyWords)
+        public static PagingResult<ArchiveInfoReport> GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string status, string keyWords)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
-            return ReportDAL.GetArchiveInfoTime(page, limit, orgId, guaranteeType, keyWords);
+            var archivestatus = string.Empty;
+            if (!string.IsNullOrEmpty(status))
+            {
+                switch (status)
+                {
+                    case "0"://草稿-未移交
+                        archivestatus = "0,22";
+                        break;
+                    case "1"://在库
+                        archivestatus = "1,3,4,10,19,25,21,23";
+                        break;
+                    case "5"://借阅
+                        archivestatus = "5,6,24";
+                        break;
+                    case "11"://结清
+                        archivestatus = "11";
+                        break;
+                    default:
+                        archivestatus = "";
+                        break;
+                }
+            }
+
+            return ReportDAL.GetArchiveInfoTime(page, limit, orgId, guaranteeType, archivestatus, keyWords);
         }
     }
 }

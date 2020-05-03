@@ -95,7 +95,7 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string status, string keyWords)
         {
-            var data = ReportBiz.GetArchiveInfoTime(page, limit, orgId, guaranteeType, keyWords);
+            var data = ReportBiz.GetArchiveInfoTime(page, limit, orgId, guaranteeType, status, keyWords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
         #endregion

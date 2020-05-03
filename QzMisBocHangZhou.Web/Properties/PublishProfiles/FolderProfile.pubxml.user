@@ -55,31 +55,31 @@
       <publishTime>07/09/2019 14:48:16</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Biz.dll">
-      <publishTime>04/28/2020 18:42:39</publishTime>
+      <publishTime>05/03/2020 09:05:56</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Biz.pdb">
-      <publishTime>04/28/2020 18:42:39</publishTime>
+      <publishTime>05/03/2020 09:05:56</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.dll">
-      <publishTime>04/28/2020 18:42:38</publishTime>
+      <publishTime>05/03/2020 09:05:56</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.dll.config">
       <publishTime>08/14/2019 15:32:35</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.pdb">
-      <publishTime>04/28/2020 18:42:38</publishTime>
+      <publishTime>05/03/2020 09:05:56</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Model.dll">
-      <publishTime>04/28/2020 18:42:38</publishTime>
+      <publishTime>05/03/2020 09:05:55</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Model.pdb">
-      <publishTime>04/28/2020 18:42:38</publishTime>
+      <publishTime>05/03/2020 09:05:55</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Web.dll">
-      <publishTime>04/28/2020 18:42:41</publishTime>
+      <publishTime>05/03/2020 09:05:57</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Web.pdb">
-      <publishTime>04/28/2020 18:42:41</publishTime>
+      <publishTime>05/03/2020 09:05:57</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 21:50:24</publishTime>
@@ -2469,6 +2469,9 @@
     <File Include="Views/PrintLabel/PrintLabelListView.cshtml">
       <publishTime>04/15/2020 22:17:35</publishTime>
     </File>
+    <File Include="Views/Report/ArchiveInfoTimeView.cshtml">
+      <publishTime>05/03/2020 08:59:15</publishTime>
+    </File>
     <File Include="Views/Report/BorrowTimeOutView.cshtml">
       <publishTime>04/21/2020 22:46:52</publishTime>
     </File>
@@ -2491,13 +2494,13 @@
       <publishTime>04/26/2020 23:00:50</publishTime>
     </File>
     <File Include="Views/Settle/ListView.cshtml">
-      <publishTime>04/27/2020 20:15:23</publishTime>
+      <publishTime>05/02/2020 14:38:41</publishTime>
     </File>
     <File Include="Views/Transfer/ApprovalListView.cshtml">
       <publishTime>04/27/2020 19:34:05</publishTime>
     </File>
     <File Include="Views/Transfer/ListView.cshtml">
-      <publishTime>04/27/2020 19:19:34</publishTime>
+      <publishTime>05/02/2020 13:59:37</publishTime>
     </File>
     <File Include="Views/Transfer/TransferEditView.cshtml">
       <publishTime>04/02/2020 21:51:54</publishTime>
@@ -2512,13 +2515,13 @@
       <publishTime>09/02/2019 01:00:15</publishTime>
     </File>
     <File Include="Views/UserInfo/UserPasswordEditView.cshtml">
-      <publishTime>04/08/2020 22:10:27</publishTime>
+      <publishTime>04/29/2020 19:39:10</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>05/29/2019 14:47:26</publishTime>
     </File>
     <File Include="Views/WorkSpace/WorkSpaceView.cshtml">
-      <publishTime>04/27/2020 21:36:08</publishTime>
+      <publishTime>04/29/2020 23:02:39</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>08/15/2019 20:57:02</publishTime>
