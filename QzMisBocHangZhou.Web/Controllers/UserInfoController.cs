@@ -12,7 +12,7 @@ namespace QzMisBocHangZhou.Web.Controllers
         public ActionResult UserListView()
         {
             if (!AppSession.IsExits()) return Redirect("/Login/LoginView");
-            return View();
+            return View(AppSession.GetUser());
         }
 
         public ActionResult UserEditView(string mode, string id)
@@ -39,9 +39,9 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         #endregion
         [HttpPost]
-        public JsonResult GetUserInfoList()
+        public JsonResult GetUserInfoList(string orgId, string keywords)
         {
-            var userList = UserInfoBiz.Get();
+            var userList = UserInfoBiz.Get(orgId, keywords);
             return Json(new { code = 0, data = userList, msg = "" });
         }
 

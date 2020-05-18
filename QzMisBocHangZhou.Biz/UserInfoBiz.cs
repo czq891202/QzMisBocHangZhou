@@ -15,9 +15,11 @@ namespace QzMisBocHangZhou.Biz
             return UserInfoDAL.Login(userName, password) > 0;
         }
 
-        public static List<UserListViewModel> Get()
+        public static List<UserListViewModel> Get(string orgId, string keywords)
         {
-            return UserInfoDAL.Get();
+            if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
+
+            return UserInfoDAL.Get(orgId, keywords);
         }
 
         public static UserInfo Get(string id)

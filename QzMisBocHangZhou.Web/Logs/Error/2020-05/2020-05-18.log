@@ -1,0 +1,114 @@
+
+2020-05-18 22:40:24,629 [25] ERROR ErrorLog 
+调用: /UserInfo/UserListView
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_UPGRADE_INSECURE_REQUESTS","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE","HTTP_SEC_FETCH_DEST"]
+
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 无法对 null 引用执行运行时绑定
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 ASP._Page_Views_UserInfo_UserListView_cshtml.Execute() 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Views\UserInfo\UserListView.cshtml:行号 80
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-05-18 22:41:53,146 [25] ERROR ErrorLog 
+调用: /UserInfo/UserListView
+调用参数: ["ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_UPGRADE_INSECURE_REQUESTS","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE","HTTP_SEC_FETCH_DEST"]
+
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_UserInfo_UserListView_cshtml.Execute() 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Views\UserInfo\UserListView.cshtml:行号 80
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-05-18 22:54:42,899 [8] ERROR ErrorLog 
+调用: /UserInfo/GetUserInfoList
+调用参数: ["page","limit","ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE","HTTP_SEC_FETCH_DEST"]
+
+Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01008: 并非所有变量都已绑定
+   在 OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   在 OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader()
+   在 QzMisBocHangZhou.DAL.DbContext`1.<>c__16`1.<ExecuteEntityList>b__16_0(DbCommand command) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 183
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteDb[TResult](DbCommand command, String commandText, Func`2 execFunc, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 291
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteDb[TResult](String commandText, CommandType cmdType, Func`2 execFunc, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 276
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteEntityList[TResult](String commandText, CommandType cmdType, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 180
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteEntityList[TResult](String commandText, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 174
+   在 QzMisBocHangZhou.DAL.UserInfoDAL.Get(String orgId, String keywords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\UserInfoDAL.cs:行号 55
+   在 QzMisBocHangZhou.Biz.UserInfoBiz.Get(String orgId, String keywords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Biz\UserInfoBiz.cs:行号 22
+   在 QzMisBocHangZhou.Web.Controllers.UserInfoController.GetUserInfoList(String orgId, String keywords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Controllers\UserInfoController.cs:行号 44
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+
+2020-05-18 22:55:35,025 [5] ERROR ErrorLog 
+调用: /UserInfo/GetUserInfoList
+调用参数: ["page","limit","orgId","keyWords","ASP.NET_SessionId","ALL_HTTP","ALL_RAW","APPL_MD_PATH","APPL_PHYSICAL_PATH","AUTH_TYPE","AUTH_USER","AUTH_PASSWORD","LOGON_USER","REMOTE_USER","CERT_COOKIE","CERT_FLAGS","CERT_ISSUER","CERT_KEYSIZE","CERT_SECRETKEYSIZE","CERT_SERIALNUMBER","CERT_SERVER_ISSUER","CERT_SERVER_SUBJECT","CERT_SUBJECT","CONTENT_LENGTH","CONTENT_TYPE","GATEWAY_INTERFACE","HTTPS","HTTPS_KEYSIZE","HTTPS_SECRETKEYSIZE","HTTPS_SERVER_ISSUER","HTTPS_SERVER_SUBJECT","INSTANCE_ID","INSTANCE_META_PATH","LOCAL_ADDR","PATH_INFO","PATH_TRANSLATED","QUERY_STRING","REMOTE_ADDR","REMOTE_HOST","REMOTE_PORT","REQUEST_METHOD","SCRIPT_NAME","SERVER_NAME","SERVER_PORT","SERVER_PORT_SECURE","SERVER_PROTOCOL","SERVER_SOFTWARE","URL","HTTP_CONNECTION","HTTP_CONTENT_LENGTH","HTTP_CONTENT_TYPE","HTTP_ACCEPT","HTTP_ACCEPT_ENCODING","HTTP_ACCEPT_LANGUAGE","HTTP_COOKIE","HTTP_HOST","HTTP_REFERER","HTTP_USER_AGENT","HTTP_X_REQUESTED_WITH","HTTP_ORIGIN","HTTP_SEC_FETCH_SITE","HTTP_SEC_FETCH_MODE","HTTP_SEC_FETCH_DEST"]
+
+Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01008: 并非所有变量都已绑定
+   在 OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   在 OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader()
+   在 QzMisBocHangZhou.DAL.DbContext`1.<>c__16`1.<ExecuteEntityList>b__16_0(DbCommand command) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 183
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteDb[TResult](DbCommand command, String commandText, Func`2 execFunc, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 291
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteDb[TResult](String commandText, CommandType cmdType, Func`2 execFunc, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 276
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteEntityList[TResult](String commandText, CommandType cmdType, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 180
+   在 QzMisBocHangZhou.DAL.DbContext`1.ExecuteEntityList[TResult](String commandText, DbParameter[] parms) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\DataAccess\DbContext.cs:行号 174
+   在 QzMisBocHangZhou.DAL.UserInfoDAL.Get(String orgId, String keywords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.DAL\UserInfoDAL.cs:行号 55
+   在 QzMisBocHangZhou.Biz.UserInfoBiz.Get(String orgId, String keywords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Biz\UserInfoBiz.cs:行号 22
+   在 QzMisBocHangZhou.Web.Controllers.UserInfoController.GetUserInfoList(String orgId, String keywords) 位置 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Web\Controllers\UserInfoController.cs:行号 44
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)

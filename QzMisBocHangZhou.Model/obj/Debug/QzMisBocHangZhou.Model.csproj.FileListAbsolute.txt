@@ -14,3 +14,4 @@ E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\bin\
 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Debug\QzMisBocHangZhou.Model.csproj.CoreCompileInputs.cache
 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Debug\QzMisBocHangZhou.Model.dll
 E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Debug\QzMisBocHangZhou.Model.pdb
+E:\01 Project\05 ZH Project\02 Code\QzMisBocHangZhou\QzMisBocHangZhou.Model\obj\Debug\QzMisBocHangZhou.Model.csprojAssemblyReference.cache

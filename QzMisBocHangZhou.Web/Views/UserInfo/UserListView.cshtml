@@ -1,4 +1,4 @@
-﻿
+﻿@model QzMisBocHangZhou.Model.UserInfo
 @{
     Layout = null;
 }
@@ -23,11 +23,26 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body">
-                        <div class="layui-btn-group">
-                            <button class="layui-btn layui-btn-sm" id="btn-add">新增</button>
-                            <button class="layui-btn layui-btn-sm" id="btn-refresh">刷新</button>
+                        <form class="layui-form" lay-filter="component-form-group" action="">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="OrgId" id="OrgId" lay-filter="UserOrgFilter" lay-search=""></select>
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" placeholder="登录名/用户名" class="layui-input">
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
+                                        <button class="layui-btn layui-btn-sm" id="btn-add">新增</button>
+                                        <button class="layui-btn layui-btn-sm" id="btn-refresh">刷新</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="layui-form-item">
+                            <table class="layui-table" id="UserList" lay-filter="UserList"></table>
                         </div>
-                        <table class="layui-table" id="UserList" lay-filter="UserList"></table>
                     </div>
                 </div>
             </div>
@@ -52,6 +67,26 @@
                 , layer = layui.layer
                 , table = layui.table;
 
+            $.ajax({
+                url: '/OrgInfo/GetOrgInfoListByUser',
+                type: 'get',
+                contentType: 'application/json',
+                dataType: "json",
+                success: function (result) {
+                    //往下拉菜单里添加元素
+                    $.each(result, function (index, item) {
+                        $('#OrgId').append(new Option(item.Name, item.Id));
+                    });
+                    form.render('select');
+                    form.val('component-form-group', { 'OrgId': '@Model.OrgId' });
+                    layer.close(orgloadingIndex);
+                },
+                error: function (result) {
+                    top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false }, function () {
+                        parent.layer.close(index);
+                    });
+                }
+            });
             var tabIns = table.render({
                 elem: '#UserList'
                 , url: '/UserInfo/GetUserInfoList'
@@ -90,6 +125,16 @@
 
             $('#btn-refresh').click(function () {
                 tabIns.reload();
+            });
+
+            $('#btn-Search').click(function () {
+                table.reload('UserList', {
+                    where: {
+                        orgId: $('#OrgId').val(),
+                        keyWords: $('#KeyWords').val()
+                    }
+                });
+                return false;
             });
 
             var openEdit = function (mode, id) {

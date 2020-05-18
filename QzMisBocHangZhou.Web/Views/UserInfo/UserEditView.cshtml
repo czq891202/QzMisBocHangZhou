@@ -54,7 +54,6 @@
                             @*<select name="zTreeSelectM" id="zTreeSelectM" lay-filter="UserOrgFilter" lay-verify="required" lay-search></select>*@
                             <div id="OrgId"></div>
                         </div>
-
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">联系方式</label>
@@ -128,7 +127,7 @@
                 width: '100%',  //设置了长度
                 verify: 'required',
                 selected: orgid.split(','),//默认值
-                max: 3,//最多选中个数，默认5
+                max: 20,//最多选中个数，默认5
                 name: '#OrgId',//input的name 不设置与选择器相同(去#.)
                 delimiter: ',',//值的分隔符
                 field: { idName: 'id', titleName: 'name' },//候选项数据的键名
@@ -172,7 +171,6 @@
                     });
                 }
                 else {
-                    debugger;
                     data.field.orgid = _zTreeSelectM.values.toString();
                     submitAction(data);
                 }
@@ -186,7 +184,6 @@
             });
 
             var submitAction = function (data) {
-                //layer.alert(JSON.stringify(data.field));
                 $.ajax({
                     url: '/UserInfo/Edit',
                     type: 'post',
@@ -194,7 +191,6 @@
                     dataType: "json",
                     data: JSON.stringify(data.field),
                     success: function (result) {
-                        //console.log(result);
                         if (result.msg == '') {
                             top.layer.msg('编辑成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
                                 parent.layer.closeAll();
@@ -207,7 +203,6 @@
                         }
                     },
                     error: function (result) {
-                        //console.log(result);
                         top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
                             parent.layer.closeAll();
                         });

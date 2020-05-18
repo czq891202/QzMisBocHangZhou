@@ -23,8 +23,8 @@ layui.define(['jquery', 'layer'], function (exports) {
 			selected: [],
 			//空值项提示，支持将{max}替换为max			
 			tips: '请选择 最多 {max} 个',
-			//最多选中个数，默认5
-			max: 5,
+			//最多选中个数，默认20
+			max: 20,
 			//选择框宽度
 			width: null,
 			//值验证，与lay-verify一致

@@ -14,7 +14,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             return View(new EditViewModel<ArchiveInfo>());
         }
 
-
         /// <summary>
         /// 档案列表
         /// </summary>
@@ -25,7 +24,6 @@ namespace QzMisBocHangZhou.Web.Controllers
 
             return View(AppSession.GetUser());
         }
-
 
         /// <summary>
         /// 档案编辑
@@ -46,9 +44,7 @@ namespace QzMisBocHangZhou.Web.Controllers
                 return View(new EditViewModel<ArchiveInfo>() { Data = result, User = AppSession.GetUser() });
             }
         }
-
         #endregion
-
 
         #region 【档案】
         [HttpPost]
@@ -57,7 +53,6 @@ namespace QzMisBocHangZhou.Web.Controllers
             var data = ArchiveInfoBiz.PagingQuery(page, limit, keywords, orgId, status);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
-
 
         [HttpPost]
         public JsonResult Edit(ArchiveInfo data)
@@ -74,7 +69,6 @@ namespace QzMisBocHangZhou.Web.Controllers
 
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
-
         #endregion
                              
     }
