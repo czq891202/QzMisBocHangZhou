@@ -2185,8 +2185,8 @@ a {
 }
 
 .layui-form-selectup dl {
-    top: auto;
-    bottom: 42px
+    top: 42px;
+    bottom: unset;
 }
 
 .layui-select-none {

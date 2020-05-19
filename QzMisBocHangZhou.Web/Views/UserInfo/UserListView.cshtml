@@ -79,7 +79,6 @@
                     });
                     form.render('select');
                     form.val('component-form-group', { 'OrgId': '@Model.OrgId' });
-                    layer.close(orgloadingIndex);
                 },
                 error: function (result) {
                     top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false }, function () {
@@ -121,6 +120,7 @@
             //按钮组事件监听
             $('#btn-add').click(function () {
                 openEdit('add', '');
+                return false;
             });
 
             $('#btn-refresh').click(function () {
@@ -143,7 +143,7 @@
                     title: '用户编辑',
                     shadeClose: false,
                     shade: 0.8,
-                    area: ['600px', '100%'],
+                    area: ['600px', '95%'],
                     id: 'edit',
                     content: '/UserInfo/UserEditView?mode=' + mode + '&id=' + id,    //iframe的url
                     end: function (layero, index) {
@@ -178,12 +178,6 @@
                         layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false });
                     }
                 });
-
-                //var json = JSON.parse(decodeURIComponent($(this).data('json')));
-                //layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
-
-                //json = table.clearCacheKey(json);
-                //console.log(json); //当前行数据
             });
 
         });

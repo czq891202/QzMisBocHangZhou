@@ -24,7 +24,7 @@
             <div class="layui-card-body" style="padding: 15px;">
                 <form class="layui-form" lay-filter="component-form-group" action="">
                     @Html.HiddenFor(model => model.Id)
-                    @Html.HiddenFor(model => model.ParentId)
+                    @*@Html.HiddenFor(model => model.ParentId)*@
                     <div class="layui-form-item">
                         <label class="layui-form-label">机构名称</label>
                         <div class="layui-input-block">
@@ -34,7 +34,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">机构简称</label>
                         <div class="layui-input-block">
-                            <input type="text" name="Name" value=@Model.ShortName lay-verify="required" placeholder="请输入机构简称" autocomplete="off" class="layui-input">
+                            <input type="text" name="ShortName" value=@Model.ShortName lay-verify="required" placeholder="请输入机构简称" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -51,6 +51,14 @@
                                 <option value="省行" disabled>省行</option>
                                 <option value="二级分行">二级分行</option>
                                 <option value="支行">支行</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上级机构</label>
+                        <div class="layui-input-block">
+                            <select name="ParentId" id="ParentId" lay-filter="ParentId" lay-verify="required">
+                                <option value=""></option>
                             </select>
                         </div>
                     </div>
@@ -101,18 +109,8 @@
 
             form.val('component-form-group', {'TypeName' : '@Model.TypeName'});
 
-            var setDropdownStatus = function (pId) {
-                if (pId == '-1') {
-                    $('select').attr('disabled', 'disabled');
-                    form.render('select');
-                }
-            };
-
-            setDropdownStatus('@Model.ParentId');
-
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
-                //layer.alert(JSON.stringify(data.field));
                 $.ajax({
                     url: '/OrgInfo/Edit',
                     type: 'post',
@@ -142,15 +140,29 @@
                 return false;
             });
 
-            ///* 监听指定开关 */
-            //form.on('switch(component-form-IsLock)', function (data) {
-            //    if (this.checked) {
-            //            layer.tips('警告: 编辑状态下，此操作将禁用此机构的全部子机构', data.othis)
-            //    }
-            //    else {
-            //            layer.tips('警告: 编辑状态下，此操作将启用此机构的所有父节点', data.othis)
-            //    }
-            //});
+            var orgloadingIndex = layer.load(2);
+            $.ajax({
+                url: '/OrgInfo/GetOrgInfoList',
+                type: 'get',
+                contentType: 'application/json',
+                dataType: "json",
+                success: function (result) {
+                    //往下拉菜单里添加元素
+                    $.each(result, function (index, item) {
+                        $('#ParentId').append(new Option(item.Name, item.Id));
+                    });
+                    form.render('select');
+                    if ('@Model.ParentId' != '-1') {
+                        form.val('component-form-group', { 'ParentId': '@Model.ParentId' });
+                    }
+                    layer.close(orgloadingIndex);
+                },
+                error: function (result) {
+                    top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false }, function () {
+                        parent.layer.close(index);
+                    });
+                }
+            });
         });
     </script>
 </body>

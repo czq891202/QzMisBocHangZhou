@@ -104,26 +104,12 @@
 
             //表格按钮组事件监听
             treetable.on('tree(add)', function (data) {
-                //layer.msg(JSON.stringify(data));
                 openEdit('add', '', data.item.Id);
             })
 
             treetable.on('tree(edit)', function (data) {
-                //layer.msg(JSON.stringify(data));
                 openEdit('edit', data.item.Id, data.item.ParentId);
             })
-
-
-            //treetable.on('tree(chkLock)', function (data) {
-            //    layer.msg(JSON.stringify(data));
-            //    //disableAction(data.item.Id);
-            //})
-
-            //treetable.on('tree(enable)', function (data) {
-            //    //layer.msg(JSON.stringify(data));
-            //    enableAction(data.item.Id);
-            //})
-
 
             //按钮组事件监听
             $('#btn-add').click(function () {
@@ -140,75 +126,14 @@
                     title: '机构编辑',
                     shadeClose: false,
                     shade: 0.8,
-                    area: ['600px', '600px'],
+                    area: ['600px', '95%'],
                     id: 'edit',
-                    content: '/OrgInfo/OrgInfoEditView?mode=' + mode + '&id=' + id + '&pId=' + pId,    //iframe的url
+                    content: '/OrgInfo/OrgInfoEditView?mode=' + mode + '&id=' + id + '&pId=' + pId, 
                     end: function (layero, index) {
                         renderTable();
                     }
                 });
             }
-
-            //var disableAction = function (data) {
-            //    layer.confirm('此操作将禁用本节点及所有子节点！是否确定需要禁用？', {
-            //        btn: ['确定', '取消'] //按钮
-            //    }, function () {
-            //        $.ajax({
-            //            url: '/OrgInfo/Disable',
-            //            type: 'post',
-            //            contentType: 'application/json',
-            //            dataType: "json",
-            //            data: JSON.stringify({ id: data }),
-            //            success: function (result) {
-            //                //console.log(result);
-            //                if (result.msg == '') {
-            //                    layer.msg('禁用成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
-            //                        renderTable();
-            //                    });
-            //                }
-            //                else {
-            //                    layer.msg('禁用成功! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true });
-            //                }
-            //            },
-            //            error: function (result) {
-            //                layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true });
-            //            }
-            //        });
-            //    }, function () {
-            //        return;
-            //    });
-            //}
-
-            //var enableAction = function (data) {
-            //    layer.confirm('此操作将启用本节点及其所有父节点！是否确定需要启用？', {
-            //        btn: ['确定', '取消'] //按钮
-            //    }, function () {
-            //        $.ajax({
-            //            url: '/OrgInfo/Enable',
-            //            type: 'post',
-            //            contentType: 'application/json',
-            //            dataType: "json",
-            //            data: JSON.stringify({ id: data }),
-            //            success: function (result) {
-            //                //console.log(result);
-            //                if (result.msg == '') {
-            //                    layer.msg('启用成功!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
-            //                        renderTable();
-            //                    });
-            //                }
-            //                else {
-            //                    layer.msg('启用成功! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true });
-            //                }
-            //            },
-            //            error: function (result) {
-            //                layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true });
-            //            }
-            //        });
-            //    }, function () {
-            //        return;
-            //    });
-            //}
-
         });
     </script>
 </body>

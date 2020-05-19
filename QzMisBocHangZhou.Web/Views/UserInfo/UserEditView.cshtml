@@ -118,7 +118,8 @@
                     });
                 }
                 });
-                var orgid = "@Model.OrgId";
+
+            var org = "@Model.OrgId";
             //机构下拉框绑定
             var _zTreeSelectM = zTreeSelectM({
                 elem: '#OrgId',//元素容器【必填】
@@ -126,7 +127,7 @@
                 //候选数据【必填】
                 width: '100%',  //设置了长度
                 verify: 'required',
-                selected: orgid.split(','),//默认值
+                selected: org.split(','),//默认值
                 max: 20,//最多选中个数，默认5
                 name: '#OrgId',//input的name 不设置与选择器相同(去#.)
                 delimiter: ',',//值的分隔符
