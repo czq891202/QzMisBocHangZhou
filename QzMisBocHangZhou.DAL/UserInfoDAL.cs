@@ -91,8 +91,9 @@ namespace QzMisBocHangZhou.DAL
 
         public static int Update(UserInfo user)
         {
-            var sql = "update UserInfo set OrgId = :OrgId, RoleId = :RoleId, RealName = :RealName, Mobile = :Mobile, Status = :Status where Id = :Id";
+            var sql = "update UserInfo set OrgId = :OrgId, RoleId = :RoleId, RealName = :RealName, Mobile = :Mobile, Status = :Status, UserName = :UserName where Id = :Id";
             return DBCache.DataBase.ExecuteNonQuery(sql,
+                DBCache.DataBase.CreatDbParameter("UserName", user.UserName),
                 DBCache.DataBase.CreatDbParameter("OrgId", user.OrgId),
                 DBCache.DataBase.CreatDbParameter("RoleId", user.RoleId),
                 DBCache.DataBase.CreatDbParameter("RealName", user.RealName),
