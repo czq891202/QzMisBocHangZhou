@@ -53,14 +53,13 @@ namespace QzMisBocHangZhou.Biz
             if (!RequiredData(data)) return false;
 
             return ArchiveInfoDAL.Update(data) > 0;
-
         }
 
 
         private static bool RequiredData(ArchiveInfo data)
         {
             if (string.IsNullOrWhiteSpace(data.Id)) return false;
-            if (string.IsNullOrWhiteSpace(data.OrgId) || data.OrgId.Equals("00000", StringComparison.OrdinalIgnoreCase)) return false;
+            if (string.IsNullOrWhiteSpace(data.OrgId) || data.OrgId.Equals("00012", StringComparison.OrdinalIgnoreCase)) return false;
             if (string.IsNullOrWhiteSpace(data.LoanAccount) && string.IsNullOrWhiteSpace(data.QuotaNo)) return false;
             
             return true;

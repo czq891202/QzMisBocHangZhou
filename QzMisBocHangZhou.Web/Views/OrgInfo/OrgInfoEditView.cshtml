@@ -48,9 +48,10 @@
                         <div class="layui-input-block">
                             <select name="TypeName" id="TypeName" lay-filter="TypeName" lay-verify="required">
                                 <option value=""></option>
-                                <option value="省行" disabled>省行</option>
+                                <option value="一级分行" disabled>一级分行</option>
                                 <option value="二级分行">二级分行</option>
-                                <option value="支行">支行</option>
+                                <option value="一级支行">一级支行</option>
+                                <option value="网点">网点</option>
                             </select>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
                         <label class="layui-form-label">上级机构</label>
                         <div class="layui-input-block">
                             <select name="ParentId" id="ParentId" lay-filter="ParentId" lay-verify="required">
-                                <option value=""></option>
+                                <option value="-1">根级别</option>
                             </select>
                         </div>
                     </div>

@@ -51,7 +51,7 @@ namespace QzMisBocHangZhou.Biz
             List<OrgTree> trees = new List<OrgTree>();
             if (string.IsNullOrEmpty(orgids))
             {
-                orgids = "00000";
+                orgids = OrgInfo.RootId;
             }
             foreach (string orgid in orgids.Split(','))
             {

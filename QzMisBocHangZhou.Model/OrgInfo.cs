@@ -61,8 +61,8 @@ namespace QzMisBocHangZhou.Model
         public string ShortName { get; set; }
 
 
-        public static readonly string RootId = "00000";
-        public static readonly string RootCode = "00000";
+        public static readonly string RootId = "00012";
+        public static readonly string RootCode = "00012";
     }
 
     /// <summary>
