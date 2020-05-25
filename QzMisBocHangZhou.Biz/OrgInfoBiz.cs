@@ -58,33 +58,66 @@ namespace QzMisBocHangZhou.Biz
                 var orgInfo = OrgInfoDAL.GetChild(orgid);
                 if (orgInfo != null)
                 {
-                    OrgTree treep = new OrgTree();
-                    var org = orgInfo.First(r => r.Id == orgid);
-                    treep.id = org?.Id;
-                    treep.name = org?.Name;
-                    treep.children = new List<OrgTree>();
-                    trees.Add(treep);
-                    SetOrgTree(treep.children, orgid, orgInfo);
+                    //OrgTree treep = new OrgTree();
+                    //var org = orgInfo.First(r => r.Id == orgid);
+                    //treep.id = org?.Id;
+                    //treep.label = org?.Name;
+                    //treep.children = new List<OrgTree>();
+                    //trees.Add(treep);
+                    //SetOrgTree(treep.children, orgid, orgInfo);
+                    SetOrgTree(orgInfo, trees, orgid);
                 }
             }
             return trees;
         }
 
-        private static void SetOrgTree(List<OrgTree> trees,string parentid,List<OrgInfo> orgs)
+        private static void SetOrgTree(List<OrgInfo> orgs, List<OrgTree> trees,string orgid)
         {
-            var drs = orgs.Where(r => r.ParentId == parentid).ToList();
-            foreach(var dr in drs)
+            OrgTree tree = new OrgTree();
+            var org = orgs.First(r => r.Id == orgid);
+            tree.id = org?.Id;
+            tree.label = org?.Name;
+            var children = orgs.Where(r => r.ParentId == orgid).ToList();
+            if (children.Count > 0)
             {
-                OrgTree tree = new OrgTree();
-                tree.id = dr.Id;
-                tree.parentId = dr.ParentId;
-                tree.name = dr.Name;
-                trees.Add(tree);
                 tree.children = new List<OrgTree>();
-                SetOrgTree(tree.children, dr.Id, orgs);
+                trees.Add(tree);
+                foreach (var child in children)
+                {
+                    SetOrgTree(orgs, tree.children, child.Id);
+                }
             }
+            else
+            {
+                trees.Add(tree);
+            }
+
+            //var drs = orgs.Where(r => r.ParentId == parentid).ToList();
+            //foreach(var dr in drs)
+            //{
+            //    OrgTree tree = new OrgTree();
+            //    tree.id = dr.Id;
+            //    tree.label = dr.Name;
+            //    trees.Add(tree);
+            //    tree.children = new List<OrgTree>();
+            //    SetOrgTree(tree.children, dr.Id, orgs);
+            //}
         }
-        
+
+        //private static void SetOrgTree(List<OrgTree> trees, string parentid, List<OrgInfo> orgs)
+        //{
+        //    var drs = orgs.Where(r => r.ParentId == parentid).ToList();
+        //    foreach (var dr in drs)
+        //    {
+        //        OrgTree tree = new OrgTree();
+        //        tree.id = dr.Id;
+        //        tree.label = dr.Name;
+        //        trees.Add(tree);
+        //        tree.children = new List<OrgTree>();
+        //        SetOrgTree(tree.children, dr.Id, orgs);
+        //    }
+        //}
+
         private static bool RequiredData(OrgInfo data)
         {
             if (data == null) return false;

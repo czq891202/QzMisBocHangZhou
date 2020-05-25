@@ -71,8 +71,7 @@ namespace QzMisBocHangZhou.Model
     public class OrgTree
     {
         public string id { get; set; }
-        public string name { get; set; }
-        public string parentId { get; set; }        
+        public string label { get; set; }
         public List<OrgTree> children { get; set; }
     }
 }
