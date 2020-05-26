@@ -36,7 +36,6 @@
                                         <div id="app">
                                             <treeselect v-model="value" :multiple="false" :options="options" placeholder="请选择组织" />
                                         </div>
-                                        <input type="text" class="OrgId" id="OrgId" style="visibility:hidden"/>
                                     </div>
                                     <div class="layui-input-inline">
                                         <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" placeholder="登录名/用户名" class="layui-input">
@@ -75,26 +74,7 @@
                 , form = layui.form
                 , layer = layui.layer
                 , table = layui.table;
-
-            @*$.ajax({
-                url: '/OrgInfo/GetOrgInfoListByUser',
-                type: 'get',
-                contentType: 'application/json',
-                dataType: "json",
-                success: function (result) {
-                    //往下拉菜单里添加元素
-                    $.each(result, function (index, item) {
-                        $('#OrgId').append(new Option(item.Name, item.Id));
-                    });
-                    form.render('select');
-                    form.val('component-form-group', { 'OrgId': '@Model.OrgId' });
-                },
-                error: function (result) {
-                    top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false }, function () {
-                        parent.layer.close(index);
-                    });
-                }
-            });*@
+            
             var tabIns = table.render({
                 elem: '#UserList'
                 , url: '/UserInfo/GetUserInfoList'
@@ -212,8 +192,6 @@
                     axios.get('/OrgInfo/GetOrgTree').then(function (response) {
                         orgTree.options = response.data;
                     })
-                },
-                valueChange(val) {
                 }
             }
         });
