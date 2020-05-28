@@ -21,6 +21,7 @@
     <script src="~/Scripts/axios.min.js"></script>
     <script src="~/Scripts/vue-treeselect.umd.min.js"></script>
     <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/polyfill.min.js"></script>
     <link rel="stylesheet" media="all" href="~/Scripts/style/vue-treeselect.min.css" />
 </head>
 <body>
@@ -202,20 +203,20 @@
                 // define options
                 options: []
             },
-            mounted() {
+            mounted: function () {
                 this.GetOrgTree();
             },
             watch: {
-                "value":"valueChange"
+                //"value":"valueChange"
             },
             methods: {
-                GetOrgTree() {
+                GetOrgTree: function () {
                     var orgTree = this;
                     axios.get('/OrgInfo/GetOrgTree').then(function (response) {
                         orgTree.options = response.data;
                     })
                 },
-                valueChange(val) {
+                valueChange: function (val) {
                 },
             }
         });

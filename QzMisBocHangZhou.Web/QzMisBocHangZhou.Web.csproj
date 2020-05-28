@@ -646,6 +646,7 @@
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\js\jquery.ztree.exhide.js" />
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\js\jquery.ztree.exhide.min.js" />
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\log v3.x.txt" />
+    <Content Include="Scripts\polyfill.min.js" />
     <Content Include="Scripts\Skin\base.css" />
     <Content Include="Scripts\Skin\default\BankLogo1.jpg" />
     <Content Include="Scripts\Skin\default\BankLogo2.jpg" />
