@@ -42,6 +42,13 @@
                                         <input type="text" name="KeyWords" id="KeyWords" autocomplete="off" placeholder="登录名/用户名" class="layui-input">
                                     </div>
                                     <div class="layui-input-inline">
+                                        <select name="Status" id="Status" lay-filter="Status" f>
+                                            <option value="0" selected = "selected">启用</option>
+                                            <option value="">全部</option>
+                                            <option value="1">禁用</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-input-inline">
                                         <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
                                         <button class="layui-btn layui-btn-sm" id="btn-add">新增</button>
                                         <button class="layui-btn layui-btn-sm" id="btn-refresh">刷新</button>
@@ -93,6 +100,11 @@
                 , page: false
                 , method: 'post'  //提交方式
                 , even: true
+                , where: {
+                    orgId: typeof app._data.value == "undefined" ? null : app._data.value,
+                    keyWords: $('#KeyWords').val(),
+                    status: $('#Status').val()
+                }
             });
 
             //操作栏事件监听
@@ -121,7 +133,8 @@
                 table.reload('UserList', {
                     where: {
                         orgId: typeof app._data.value == "undefined" ? null : app._data.value,
-                        keyWords: $('#KeyWords').val()
+                        keyWords: $('#KeyWords').val(),
+                        status: $('#Status').val()
                     }
                 });
                 return false;

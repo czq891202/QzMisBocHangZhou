@@ -39,9 +39,9 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         #endregion
         [HttpPost]
-        public JsonResult GetUserInfoList(string orgId, string keywords)
+        public JsonResult GetUserInfoList(string orgId, string keywords, string status)
         {
-            var userList = UserInfoBiz.Get(orgId, keywords);
+            var userList = UserInfoBiz.Get(orgId, keywords, status);
             return Json(new { code = 0, data = userList, msg = "" });
         }
 
