@@ -15,6 +15,12 @@
     <File Include="bin/App_Data/log4net.config">
       <publishTime>12/10/2016 17:51:44</publishTime>
     </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>07/03/2020 21:08:16</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>07/03/2020 21:08:16</publishTime>
+    </File>
     <File Include="bin/Dapper.dll">
       <publishTime>03/30/2019 17:21:38</publishTime>
     </File>
@@ -55,31 +61,31 @@
       <publishTime>07/09/2019 14:48:16</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Biz.dll">
-      <publishTime>05/03/2020 09:05:56</publishTime>
+      <publishTime>07/03/2020 21:06:27</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Biz.pdb">
-      <publishTime>05/03/2020 09:05:56</publishTime>
+      <publishTime>07/03/2020 21:06:27</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.dll">
-      <publishTime>05/03/2020 09:05:56</publishTime>
+      <publishTime>07/03/2020 21:06:26</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.dll.config">
       <publishTime>08/14/2019 15:32:35</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.pdb">
-      <publishTime>05/03/2020 09:05:56</publishTime>
+      <publishTime>07/03/2020 21:06:26</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Model.dll">
-      <publishTime>05/03/2020 09:05:55</publishTime>
+      <publishTime>07/03/2020 21:06:26</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Model.pdb">
-      <publishTime>05/03/2020 09:05:55</publishTime>
+      <publishTime>07/03/2020 21:06:26</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Web.dll">
-      <publishTime>05/03/2020 09:05:57</publishTime>
+      <publishTime>07/03/2020 21:08:04</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Web.pdb">
-      <publishTime>05/03/2020 09:05:57</publishTime>
+      <publishTime>07/03/2020 21:08:04</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 21:50:24</publishTime>
@@ -211,7 +217,13 @@
       <publishTime>10/21/2019 12:46:32</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>05/29/2019 14:47:26</publishTime>
+      <publishTime>05/21/2020 22:05:12</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>07/03/2020 21:08:07</publishTime>
+    </File>
+    <File Include="Scripts/axios.min.js">
+      <publishTime>05/25/2020 18:40:42</publishTime>
     </File>
     <File Include="Scripts/echarts.js">
       <publishTime>09/17/2019 15:29:40</publishTime>
@@ -238,7 +250,7 @@
       <publishTime>08/16/2019 00:48:13</publishTime>
     </File>
     <File Include="Scripts/layuiadmin/layui/css/layui.css">
-      <publishTime>04/02/2020 22:09:01</publishTime>
+      <publishTime>05/19/2020 22:47:21</publishTime>
     </File>
     <File Include="Scripts/layuiadmin/layui/css/layui.mobile.css">
       <publishTime>06/06/2019 12:19:13</publishTime>
@@ -664,7 +676,7 @@
       <publishTime>04/19/2020 19:28:41</publishTime>
     </File>
     <File Include="Scripts/layuiadmin/modules/zTreeSelectM/zTreeSelectM.js">
-      <publishTime>04/19/2020 23:09:07</publishTime>
+      <publishTime>05/21/2020 23:59:29</publishTime>
     </File>
     <File Include="Scripts/layuiadmin/modules/zTreeSelectM/zTree_v3/.gitignore">
       <publishTime>12/17/2019 13:36:14</publishTime>
@@ -2289,6 +2301,9 @@
     <File Include="Scripts/layuiadmin/tpl/system/theme.html">
       <publishTime>05/31/2018 02:24:34</publishTime>
     </File>
+    <File Include="Scripts/polyfill.min.js">
+      <publishTime>06/02/2020 18:11:58</publishTime>
+    </File>
     <File Include="Scripts/Skin/base.css">
       <publishTime>07/19/2016 11:15:37</publishTime>
     </File>
@@ -2382,6 +2397,18 @@
     <File Include="Scripts/style/treetable.css">
       <publishTime>03/06/2019 13:16:09</publishTime>
     </File>
+    <File Include="Scripts/style/vue-treeselect.min.css">
+      <publishTime>05/25/2020 18:40:54</publishTime>
+    </File>
+    <File Include="Scripts/vue-treeselect.umd.min.js">
+      <publishTime>05/25/2020 18:40:42</publishTime>
+    </File>
+    <File Include="Scripts/vue.js">
+      <publishTime>05/25/2020 18:40:42</publishTime>
+    </File>
+    <File Include="Scripts/vue.min.js">
+      <publishTime>05/25/2020 18:40:42</publishTime>
+    </File>
     <File Include="Views/ActiveX/PrintCab.CAB">
       <publishTime>08/19/2019 21:11:46</publishTime>
     </File>
@@ -2461,10 +2488,10 @@
       <publishTime>09/01/2019 00:47:05</publishTime>
     </File>
     <File Include="Views/OrgInfo/OrgInfoEditView.cshtml">
-      <publishTime>01/02/2020 12:11:47</publishTime>
+      <publishTime>06/02/2020 18:11:58</publishTime>
     </File>
     <File Include="Views/OrgInfo/OrgInfoListView.cshtml">
-      <publishTime>04/21/2020 00:04:48</publishTime>
+      <publishTime>06/02/2020 20:22:26</publishTime>
     </File>
     <File Include="Views/PrintLabel/PrintLabelListView.cshtml">
       <publishTime>04/15/2020 22:17:35</publishTime>
@@ -2494,7 +2521,7 @@
       <publishTime>04/26/2020 23:00:50</publishTime>
     </File>
     <File Include="Views/Settle/ListView.cshtml">
-      <publishTime>05/02/2020 14:38:41</publishTime>
+      <publishTime>05/19/2020 21:54:01</publishTime>
     </File>
     <File Include="Views/Transfer/ApprovalListView.cshtml">
       <publishTime>04/27/2020 19:34:05</publishTime>
@@ -2506,10 +2533,10 @@
       <publishTime>04/02/2020 21:51:54</publishTime>
     </File>
     <File Include="Views/UserInfo/UserEditView.cshtml">
-      <publishTime>04/20/2020 22:31:49</publishTime>
+      <publishTime>06/02/2020 18:11:58</publishTime>
     </File>
     <File Include="Views/UserInfo/UserListView.cshtml">
-      <publishTime>04/19/2020 22:43:49</publishTime>
+      <publishTime>06/02/2020 20:10:09</publishTime>
     </File>
     <File Include="Views/UserInfo/UserMobileEditView.cshtml">
       <publishTime>09/02/2019 01:00:15</publishTime>
@@ -2527,7 +2554,7 @@
       <publishTime>08/15/2019 20:57:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/28/2020 18:42:46</publishTime>
+      <publishTime>07/03/2020 21:07:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -23,7 +23,10 @@ namespace QzMisBocHangZhou.Biz
 
         public static PagingResult<ArchiveInfo> PagingQuery(int page, int limit, string keywords, string orgId, int status)
         {
-            if (string.IsNullOrWhiteSpace(orgId) || orgId.Equals(OrgInfo.RootId, StringComparison.OrdinalIgnoreCase)) orgId = string.Empty;
+            if (string.IsNullOrWhiteSpace(orgId) || orgId.Equals(OrgInfo.RootId, StringComparison.OrdinalIgnoreCase))
+            {
+                orgId = OrgInfo.RootId;
+            }
             keywords = keywords?.Trim();
 
             return ArchiveInfoDAL.PagingQuery(page, limit, keywords, orgId, status);
@@ -61,7 +64,7 @@ namespace QzMisBocHangZhou.Biz
             if (string.IsNullOrWhiteSpace(data.Id)) return false;
             if (string.IsNullOrWhiteSpace(data.OrgId) || data.OrgId.Equals("00012", StringComparison.OrdinalIgnoreCase)) return false;
             if (string.IsNullOrWhiteSpace(data.LoanAccount) && string.IsNullOrWhiteSpace(data.QuotaNo)) return false;
-            
+
             return true;
         }
     }
