@@ -169,7 +169,7 @@
             var printAction = function (info, num) {
                 var activeX = document.getElementById("printLabelActiveX");
                 //console.log(JSON.stringify(info));
-                var title = "中国银行浙江省分行授信档案【一级】";
+                var title = "中国银行浙江省分行押品档案【一级】";
 
                 for (i = 1; i <= num; i++) {
                     var printContent = "D";
@@ -196,7 +196,7 @@
                     success: function (result) {
                         //console.log(result);
                         if (result.msg == '') {
-                            var title = "中国银行浙江省分行授信档案【一级】";
+                            var title = "中国银行浙江省分行押品档案【一级】";
                             var activeX = document.getElementById("printLabelActiveX");
                             var printContent = "D";
                             printContent += "|" + result.data.OrgCode;
