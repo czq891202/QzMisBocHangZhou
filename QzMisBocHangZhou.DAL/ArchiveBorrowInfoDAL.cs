@@ -24,14 +24,11 @@ namespace QzMisBocHangZhou.DAL
         {
             var pars = new List<DbParameter>();
 
-            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower, ai.Id,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status
-                        from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
-                        where (ai.Status = 1 or ai.Status = 23) and ai.Id not in (select ArchiveId from ArchiveBorrowInfo where (Status <> 4 and Status <> 5)and ArchiveId is not null) ";
+            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, abi.Borrower as LoanBorrower, ai.Id,o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status,abi.UsedBy from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id  LEFT JOIN (select * from ArchiveBorrowInfo where Status in(0,1,2,3,6) and ArchiveId is not null) abi ON ai.ID = abi.ArchiveId where (ai.Status = 1 or ai.Status = 23 or ai.Status = 25) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                sql += @" and OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
+                sql += @" and ai.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
             }
 
@@ -58,7 +55,7 @@ namespace QzMisBocHangZhou.DAL
         {
             var pars = new List<DbParameter>();
 
-            var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
+            var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ab.Borrower as LoanBorrower,
                         o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
                         From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
                         Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
@@ -133,7 +130,7 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<ArchiveBorrowInfo>(sql);
         }
         //借阅待审核清单导出
-        public static List<ArchiveBorrowInfo> GetExcelData(string orgId)
+        public static List<ArchiveBorrowInfo> GetBorrow(string orgId)
         {
             var pars = new List<DbParameter>();
 
@@ -147,6 +144,33 @@ namespace QzMisBocHangZhou.DAL
             {
                 sql += @" and ab.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
+
+            return DBCache.DataBase.ExecuteEntityList<ArchiveBorrowInfo>(sql, pars.ToArray());
+        }
+        //借阅清单导出
+        public static List<ArchiveBorrowInfo> GetBorrowList(string orgId, string keyWords)
+        {
+            var pars = new List<DbParameter>();
+
+            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, abi.Borrower as LoanBorrower, ai.Id,o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status,abi.UsedBy from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id  LEFT JOIN (select * from ArchiveBorrowInfo where Status in(0,1,2,3,6) and ArchiveId is not null) abi ON ai.ID = abi.ArchiveId where (ai.Status = 1 or ai.Status = 23 or ai.Status = 25) ";
+
+            if (!string.IsNullOrWhiteSpace(orgId))
+            {
+                sql += @" and ai.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(keyWords))
+            {
+                sql += @" and (ai.LoanAccount like :KeyWords
+                        or ai.QuotaNo like :KeyWords 
+                        or ai.Borrower like :KeyWords 
+                        or ai.CustomerNo like :keywords)";
+
+                pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", $"%{keyWords.Trim()}%"));
             }
 
             sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
@@ -267,7 +291,6 @@ namespace QzMisBocHangZhou.DAL
 
             sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
 
-
             var rCount = DBCache.DataBase.GetRecordCount(sql, pars.ToArray());
             var data = DBCache.DataBase.ExecuteEntityListByPageing<ArchiveBorrowInfo>(page, limit, sql, pars.ToArray());
 
@@ -348,7 +371,7 @@ namespace QzMisBocHangZhou.DAL
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
-        public static List<InventoryDetail> GetInventoryArchiveList(string orgId)
+        public static List<InventoryDetail> GetGiveback(string orgId)
         {
             var sql = $"select tpa.Id as ArchiveId, tpa.LabelCode from Archiveinfo tpa left join ArchiveBorrowInfo abi on tpa.Id = abi.archiveid  where tpa.STATUS = {ArchiveStatusType.借阅出库.GetHashCode()} and abi.status = 3 ";
 
@@ -360,6 +383,41 @@ namespace QzMisBocHangZhou.DAL
             }
 
             sql += " order by tpa.CREATEDATE, tpa.ORGID desc ";
+            return DBCache.DataBase.ExecuteEntityList<InventoryDetail>(sql, pars.ToArray());
+        }
+        /// <summary>
+        /// 读取归还档案信息
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<InventoryDetail> GetGivebacktList(string orgId, string keyWords)
+        {
+            var pars = new List<DbParameter>();
+
+            var sql = @"select ab.Id,ab.ArchiveId,ab.BorrowDate,ab.PreReturnDate, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status
+                        From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
+                        Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
+                        where (ab.Status = 2 or ab.Status = 6) and (ai.Status = 5 OR ai.Status = 24)";
+
+            if (!string.IsNullOrWhiteSpace(orgId))
+            {
+                sql += @" and ab.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(keyWords))
+            {
+                sql += @" and (ai.LoanAccount like :KeyWords
+                        or ai.QuotaNo like :KeyWords 
+                        or ai.Borrower like :KeyWords 
+                        or ai.CustomerNo like :keywords)";
+
+                pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", $"%{keyWords.Trim()}%"));
+            }
+
+            sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
+
             return DBCache.DataBase.ExecuteEntityList<InventoryDetail>(sql, pars.ToArray());
         }
         //归还

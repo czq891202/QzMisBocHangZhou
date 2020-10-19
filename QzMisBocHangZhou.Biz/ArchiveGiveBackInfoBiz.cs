@@ -66,10 +66,30 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.Returned(data) > 0;
         }
 
-        public static byte[] Export(string orgId, UserInfo user)
+        public static byte[] ExportGiveback(UserInfo user, string orgId)
         {
             var info = CreatNewInfo(user);
-            var details = ArchiveBorrowInfoDAL.GetInventoryArchiveList(orgId);
+            var details = ArchiveBorrowInfoDAL.GetGiveback(orgId);
+
+            if (details == null || details.Count == 0) return new byte[1];
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in details)
+            {
+                item.Id = Guid.NewGuid().ToString();
+                item.InventoryId = info.Id;
+                item.Status = VerifyType.未核对;
+
+                sb.Append("|".PadRight(12, '|')).Append($"{item.LabelCode}".PadRight(18, '0')).Append("|").Append("1".PadLeft(18, '0')).Append("|".PadRight(5, '|')).AppendLine();
+            }
+
+            return Encoding.UTF8.GetBytes(sb.ToString());
+        }
+
+        public static byte[] ExporGivebacktList(UserInfo user, string orgId, string keyWords)
+        {
+            var info = CreatNewInfo(user);
+            var details = ArchiveBorrowInfoDAL.GetGivebacktList(orgId, keyWords);
 
             if (details == null || details.Count == 0) return new byte[1];
 

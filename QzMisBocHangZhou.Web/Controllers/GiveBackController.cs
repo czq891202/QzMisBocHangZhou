@@ -131,11 +131,18 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
         
-        public ActionResult ExportList(string orgId)
+        public ActionResult ExportGiveback(string orgId)
         {
-            var txt = ArchiveGiveBackInfoBiz.Export(orgId, AppSession.GetUser());
+            var txt = ArchiveGiveBackInfoBiz.ExportGiveback(AppSession.GetUser(), orgId);
 
-            return File(txt, "application/vnd.ms-txt", $"{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
+            return File(txt, "application/vnd.ms-txt", $"零贷档案待审核归还单-{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
+        }
+
+        public ActionResult ExporGivebacktList(string orgId, string keyWords)
+        {
+            var txt = ArchiveGiveBackInfoBiz.ExporGivebacktList(AppSession.GetUser(), orgId, keyWords);
+
+            return File(txt, "application/vnd.ms-txt", $"零贷档案归还单{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
         }
         #endregion
     }

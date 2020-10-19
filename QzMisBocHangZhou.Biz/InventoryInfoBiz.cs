@@ -31,6 +31,7 @@ namespace QzMisBocHangZhou.Biz
         public static byte[] Export(string orgId, UserInfo user)
         {
             var info = CreatNewInfo(user);
+            if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
             var details = InventoryInfoDAL.GetInventoryArchiveList(orgId);
 
             if (details == null || details.Count == 0) return new byte[1];

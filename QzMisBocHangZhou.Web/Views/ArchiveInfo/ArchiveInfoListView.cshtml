@@ -34,8 +34,8 @@
                                     <option value="-1">全部</option>
                                     <option value="0">未移交</option>
                                     <option value="1">在库</option>
-                                    <option value="2">借阅</option>
-                                    <option value="3">结清</option>
+                                    <option value="5">借阅</option>
+                                    <option value="11">结清</option>
                                 </select>
                             </div>
                             <div class="layui-input-inline">
@@ -54,10 +54,20 @@
         </div>
     </div>
 
+    <script type="text/html" id="table-statusTpl">
+        {{# if(d.Status === 0) { }}
+        <span>未移交</span>
+        {{# } else if(d.Status === 5) { }}
+        <span>借阅</span>
+        {{# } else if(d.Status === 11) {}}
+        <span>结清</span>
+        {{# } else {}}
+        <span>在库</span>
+        {{# } }}
+    </script>
+
     <script type="text/html" id="optTpl">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        @*{{#  if(d.Status == '0'){ }}
-        <a class="layui-btn layui-btn-xs" lay-event="bind">绑定</a>{{#  } }}*@
     </script>
     <script>
         layui.config({
@@ -113,6 +123,7 @@
                     , { field: 'LoanAmount', title: '贷款金额' }
                     , { field: 'LabelCode', title: '标签号' }
                     , { field: 'CustomerNo', title: '客户号' }
+                    , { field: 'Status', title: '状态', templet: '#table-statusTpl' }
                     , { title: '操作', toolbar: '#optTpl', width: 120 }
                 ]]
                 , page: true
@@ -144,7 +155,7 @@
             $('#btn-add').click(function () {
                 openEdit('add', '');
                 return false;
-            });                        
+            });
 
             $('#btn-Search').click(function () {
                 table.reload('ArchiveInfo', {

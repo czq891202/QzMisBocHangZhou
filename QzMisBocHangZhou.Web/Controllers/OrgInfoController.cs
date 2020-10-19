@@ -58,7 +58,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpGet]
         public JsonResult GetOrgInfoListByUser()
         {
-            var result = OrgInfoBiz.GetChild(AppSession.GetUser().OrgId);
+            var orgid = AppSession.GetUser().OrgId;
+            var result = OrgInfoBiz.GetOrgTree(orgid);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

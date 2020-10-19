@@ -138,6 +138,16 @@ namespace QzMisBocHangZhou.Web.Controllers
         {
             var excel = ExportExcel.ExportBorrow(Server.MapPath("../ExcelTemplate/Borrow.xlsx"), AppSession.GetUser());
 
+            return File(excel, "application/ms-excel", $"零贷档案待审核借阅表 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");
+        }
+        /// <summary>
+        /// 借阅清单导出
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ExportBorrowListExcel(string orgId, string keywords)
+        {
+            var excel = ExportExcel.ExportBorrowListExcel(Server.MapPath("../ExcelTemplate/Borrow.xlsx"), AppSession.GetUser(), orgId, keywords);
+
             return File(excel, "application/ms-excel", $"零贷档案借阅表 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");
         }
         /// <summary>

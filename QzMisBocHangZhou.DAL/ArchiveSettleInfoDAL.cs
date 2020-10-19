@@ -25,7 +25,7 @@ namespace QzMisBocHangZhou.DAL
             var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower, ai.Id, ai.Status as ArcStatus,
                         o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status
                         from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
-                        where (ai.Status = 1 or ai.Status = 5 or ai.Status = 25) and ai.Id not in (select ArchiveId from ArchiveSettleInfo where ArchiveId is not null and STATUS <> 3) ";
+                        where (ai.Status = 1 or ai.Status = 5 or ai.Status = 25 or ai.Status = 23) and ai.Id not in (select ArchiveId from ArchiveSettleInfo where ArchiveId is not null and STATUS <> 3) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {

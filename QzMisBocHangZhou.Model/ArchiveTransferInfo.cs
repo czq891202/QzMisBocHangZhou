@@ -60,6 +60,10 @@ namespace QzMisBocHangZhou.Model
         public string CustomerNo { get; set; }
 
         public string Borrower { get; set; }
+        /// <summary>
+        /// 押品crms登记类型
+        /// </summary>
+        public string GuaranteType { get; set; }
     }
 
     /// <summary>

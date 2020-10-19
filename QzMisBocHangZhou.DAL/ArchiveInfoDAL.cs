@@ -56,7 +56,7 @@ namespace QzMisBocHangZhou.DAL
             else if(status == 1)
             {
                 //在库
-                sql += $" and (STATUS = {ArchiveStatusType.已入库.GetHashCode()}) ";
+                sql += $" and (STATUS <> {ArchiveStatusType.草稿.GetHashCode()}) and (STATUS <> {ArchiveStatusType.借阅出库.GetHashCode()}) and (STATUS <> {ArchiveStatusType.已结清.GetHashCode()}) and (STATUS <> {ArchiveStatusType.变更结清出库.GetHashCode()}) ";
             }
             else if (status == 2)
             {

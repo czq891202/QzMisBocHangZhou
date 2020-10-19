@@ -80,8 +80,17 @@ namespace QzMisBocHangZhou.Web.Controllers
         {
             var excel = ExportExcel.ExportTransfer(Server.MapPath("../ExcelTemplate/Transfer.xlsx"), AppSession.GetUser());
 
+            return File(excel, "application/ms-excel", $"零贷档案待审核交接单 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");
+        }
+
+        public ActionResult ExportTransferListExcel(string orgId, string keywords)
+        {
+            if (string.IsNullOrEmpty(orgId)) orgId = OrgInfo.RootId;
+            var excel = ExportExcel.ExportTransferList(Server.MapPath("../ExcelTemplate/Transfer.xlsx"), AppSession.GetUser(), orgId, keywords);
+
             return File(excel, "application/ms-excel", $"零贷档案交接单 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");
         }
+
         /// <summary>
         /// 移交待审核电子数据核对
         /// </summary>

@@ -91,35 +91,9 @@
             var $ = layui.$
                 , form = layui.form
                 , layer = layui.layer
-                , laydate = layui.laydate
                 , table = layui.table;
 
             form.render(null, 'component-form-group');
-
-            //机构下拉框绑定
-            var orgloadingIndex = layer.load(2);
-            $.ajax({
-                url: '/OrgInfo/GetOrgInfoListByUser',
-                type: 'get',
-                contentType: 'application/json',
-                dataType: "json",
-                success: function (result) {
-                    //往下拉菜单里添加元素
-                    //layer.alert(JSON.stringify(result));
-                    $.each(result, function (index, item) {
-                        $('#OrgId').append(new Option(item.Name, item.Id));
-                    });
-                    form.render('select');
-                    form.val('component-form-group', { 'OrgId': '@Model.OrgId' });
-                    layer.close(orgloadingIndex);
-                },
-                error: function (result) {
-                    //console.log(result);
-                    top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: false }, function () {
-                        parent.layer.close(index);
-                    });
-                }
-            });
 
             var tabIns = table.render({
                 elem: '#ArchiveList'
@@ -199,7 +173,7 @@
             });
 
             $('#btn-Export').click(function () {
-                window.open('../Inventory/ExportList?orgId=' + $('#OrgId').val());
+                window.open('../Inventory/ExportList?orgId=' + app._data.value.toString());
                 return false;
             });
 

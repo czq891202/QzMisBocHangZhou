@@ -43,11 +43,18 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.GetPreOut();
         }
         //借阅待审核清单导出
-        public static List<ArchiveBorrowInfo> GetExcelData(string orgId)
+        public static List<ArchiveBorrowInfo> GetBorrow(string orgId)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
-            return ArchiveBorrowInfoDAL.GetExcelData(orgId);
+            return ArchiveBorrowInfoDAL.GetBorrow(orgId);
+        }
+        //借阅清单导出
+        public static List<ArchiveBorrowInfo> GetBorrowList(string orgId, string keyWords)
+        {
+            if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
+
+            return ArchiveBorrowInfoDAL.GetBorrowList(orgId, keyWords);
         }
         //提交借阅
         public static bool SubmitReview(string tId, string usedBy, DateTime? borrowDate, UserInfo user)

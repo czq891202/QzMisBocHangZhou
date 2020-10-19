@@ -53,7 +53,7 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
             if (!orgId.Equals(OrgInfo.RootId, StringComparison.OrdinalIgnoreCase))
             {
-                sql += @" and tpa.OrgId = :OrgId ";
+                sql += @" and tpa.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
             }
 
@@ -66,7 +66,8 @@ namespace QzMisBocHangZhou.DAL
             var pars = new List<DbParameter>();
 
             var sql = @"select at.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower,
-                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,
+                        nvl(GUARANTEETYPE, '0') as GuaranteType
                         From ArchiveTransferInfo at left join OrgInfo o on at.OrgId = o.Id 
                         Left join ArchiveInfo ai on at.ArchiveId = ai.Id
                         where at.Status = 0 ";
@@ -95,9 +96,12 @@ namespace QzMisBocHangZhou.DAL
 
             return new PagingResult<ArchiveTransferInfo>() { Count = rCount, Result = data };
         }
-
-
-        public static List<ArchiveTransferInfo> GetExcelData(string orgId)
+        /// <summary>
+        /// 导出待审批
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<ArchiveTransferInfo> ExportTransfer(string orgId)
         {
             var pars = new List<DbParameter>();
 
@@ -111,13 +115,46 @@ namespace QzMisBocHangZhou.DAL
             {
                 sql += @" and at.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            } 
+
+            sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
+
+            return DBCache.DataBase.ExecuteEntityList<ArchiveTransferInfo>(sql, pars.ToArray());
+        }
+        /// <summary>
+        /// 导出可移交的
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<ArchiveTransferInfo> ExportTransferList(string orgId, string keywords)
+        {
+            var pars = new List<DbParameter>();
+
+            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower, ai.Id,
+                        o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact, ai.status 
+                        from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
+                        where (ai.Status = 0 or ai.Status = 22) and ai.Id not in (select ArchiveId from ArchiveTransferInfo where ArchiveId is not null and status <> 2) ";
+
+            if (!string.IsNullOrWhiteSpace(orgId))
+            {
+                sql += @" and OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                sql += @" and (LoanAccount like :KeyWords
+                        or QuotaNo like :KeyWords 
+                        or Borrower like :KeyWords 
+                        or CustomerNo like :keywords)";
+
+                pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", $"%{keywords.Trim()}%"));
             }
 
             sql += " order by OrgCode, ai.QuotaNo, ai.LoanAccount";
 
             return DBCache.DataBase.ExecuteEntityList<ArchiveTransferInfo>(sql, pars.ToArray());
         }
-
 
         public static ArchiveTransferInfo Get(string id)
         {

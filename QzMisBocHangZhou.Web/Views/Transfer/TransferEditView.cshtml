@@ -210,14 +210,12 @@
                 }
             });
 
-
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
                 //console.log(JSON.stringify(data));
                 submitAction(data);
                 return false;
             });
-
 
             var submitAction = function (data) {
                 layer.confirm('即将提交审批！是否确定？', {

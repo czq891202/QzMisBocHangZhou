@@ -24,12 +24,27 @@ namespace QzMisBocHangZhou.Biz
 
             return ArchiveTransferInfoDAL.GetPreReview(page, limit, orgId, keyWords);
         }
-
-        public static List<ArchiveTransferInfo> GetExcelData(string orgId)
+        /// <summary>
+        /// 导出待审批
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<ArchiveTransferInfo> ExportTransfer(string orgId)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
-            return ArchiveTransferInfoDAL.GetExcelData(orgId);
+            return ArchiveTransferInfoDAL.ExportTransfer(orgId);
+        }
+        /// <summary>
+        /// 导出可移交的
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public static List<ArchiveTransferInfo> ExportTransferList(string orgId, string keywords)
+        {
+            if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
+
+            return ArchiveTransferInfoDAL.ExportTransferList(orgId, keywords);
         }
 
         public static bool SubmitReview(ArchiveInfo arcData, UserInfo user)
@@ -75,19 +90,16 @@ namespace QzMisBocHangZhou.Biz
 
         public static byte[] Export(string orgId, UserInfo user)
         {
-            var info = CreatNewInfo(user);
+            if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
             var details = ArchiveTransferInfoDAL.GetInventoryArchiveList(orgId);
 
             if (details == null || details.Count == 0) return new byte[1];
 
             StringBuilder sb = new StringBuilder();
+            int rownum = 1;
             foreach (var item in details)
             {
-                item.Id = Guid.NewGuid().ToString();
-                item.InventoryId = info.Id;
-                item.Status = VerifyType.未核对;
-
-                sb.Append("|".PadRight(12, '|')).Append($"{item.LabelCode}".PadRight(18, '0')).Append("|").Append("1".PadLeft(18, '0')).Append("|".PadRight(5, '|')).AppendLine();
+                sb.Append(rownum++).Append("|").Append($"{item.LabelCode}".PadRight(18, '0')).Append("|").Append("1".PadLeft(18, '0')).AppendLine();
             }
 
             return Encoding.UTF8.GetBytes(sb.ToString());
