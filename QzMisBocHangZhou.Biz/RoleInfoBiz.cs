@@ -11,23 +11,18 @@ namespace QzMisBocHangZhou.Biz
         {
             return RoleInfoDAL.Get();
         }
-
         public static Role Get(string id)
         {
             if (string.IsNullOrEmpty(id)) return new Role();
 
             return RoleInfoDAL.Get(id);
         }
-
-
         public static List<RoleValue> GetRoleValue(string roleId)
         {
             if (string.IsNullOrEmpty(roleId)) return new List<RoleValue>();
 
             return RoleInfoDAL.GetRoleValue(roleId);
         }
-
-
         public static bool Add(Role data, List<string> navIds)
         {
             data.Id = Guid.NewGuid().ToString();
@@ -35,14 +30,11 @@ namespace QzMisBocHangZhou.Biz
 
             return RoleInfoDAL.Add(data, BuildRoleValueData(data.Id, navIds)) > 0;
         }
-
-
         public static bool Update(Role data, List<string> navIds)
         {
             if (!RequiredData(data)) return false;
             return RoleInfoDAL.Update(data, BuildRoleValueData(data.Id, navIds)) > 0;
         }
-
         private static List<RoleValue> BuildRoleValueData(string roleId, List<string> navIds)
         {
             var result = new List<RoleValue>();
@@ -57,20 +49,15 @@ namespace QzMisBocHangZhou.Biz
                     NavigationId = id,
                     ActionType = ""
                 });
-
             }
             return result;
         }
-
-
         public static bool Del(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
             RoleInfoDAL.Del(id);
             return true;
         }
-
-
         private static bool RequiredData(Role role)
         {
             if (role == null) return false;

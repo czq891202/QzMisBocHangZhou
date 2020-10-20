@@ -14,7 +14,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<Role>(sql);
         }
 
-
         public static Role Get(string id)
         {
             var sql = "select * from Role where Id = :Id";
@@ -24,7 +23,6 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("Id", id));
         }
 
-
         public static List<RoleValue> GetRoleValue(string roleId)
         {
             var sql = "select * from RoleValue where RoleId = :RoleId";
@@ -32,9 +30,7 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<RoleValue>(sql,
                 DBCache.DataBase.CreatDbParameter("RoleId", roleId));
         }
-
         #endregion
-
 
         #region 【Add】
         public static int Add(Role role, List<RoleValue> roleValues)
@@ -78,9 +74,7 @@ namespace QzMisBocHangZhou.DAL
 
             return 1;
         }
-
         #endregion
-
 
         #region 【Update】
         public static int Update(Role role, List<RoleValue> roleValues)
@@ -113,8 +107,6 @@ namespace QzMisBocHangZhou.DAL
         
         #endregion
 
-
-
         #region 【Del】
         public static int Del(string id)
         {
@@ -126,7 +118,6 @@ namespace QzMisBocHangZhou.DAL
             });
         }
 
-
         private static int DelRoleInfo(DbCommand cmd, string id)
         {
             var sql = "delete Role where Id = :Id";
@@ -136,7 +127,6 @@ namespace QzMisBocHangZhou.DAL
             return cmd.ExecuteNonQuery();
         }
 
-
         private static int DelRoleValueInfo(DbCommand cmd, string roleId)
         {
             var sql = "delete RoleValue where RoleId = :RoleId";
@@ -145,7 +135,6 @@ namespace QzMisBocHangZhou.DAL
             cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("RoleId", roleId));
             return cmd.ExecuteNonQuery();
         }
-
         #endregion
     }
 }

@@ -58,13 +58,6 @@ namespace QzMisBocHangZhou.Biz
                 var orgInfo = OrgInfoDAL.GetChild(orgid);
                 if (orgInfo != null)
                 {
-                    //OrgTree treep = new OrgTree();
-                    //var org = orgInfo.First(r => r.Id == orgid);
-                    //treep.id = org?.Id;
-                    //treep.label = org?.Name;
-                    //treep.children = new List<OrgTree>();
-                    //trees.Add(treep);
-                    //SetOrgTree(treep.children, orgid, orgInfo);
                     SetOrgTree(orgInfo, trees, orgid);
                 }
             }
@@ -91,32 +84,7 @@ namespace QzMisBocHangZhou.Biz
             {
                 trees.Add(tree);
             }
-
-            //var drs = orgs.Where(r => r.ParentId == parentid).ToList();
-            //foreach(var dr in drs)
-            //{
-            //    OrgTree tree = new OrgTree();
-            //    tree.id = dr.Id;
-            //    tree.label = dr.Name;
-            //    trees.Add(tree);
-            //    tree.children = new List<OrgTree>();
-            //    SetOrgTree(tree.children, dr.Id, orgs);
-            //}
-        }
-
-        //private static void SetOrgTree(List<OrgTree> trees, string parentid, List<OrgInfo> orgs)
-        //{
-        //    var drs = orgs.Where(r => r.ParentId == parentid).ToList();
-        //    foreach (var dr in drs)
-        //    {
-        //        OrgTree tree = new OrgTree();
-        //        tree.id = dr.Id;
-        //        tree.label = dr.Name;
-        //        trees.Add(tree);
-        //        tree.children = new List<OrgTree>();
-        //        SetOrgTree(tree.children, dr.Id, orgs);
-        //    }
-        //}
+        }              
 
         private static bool RequiredData(OrgInfo data)
         {

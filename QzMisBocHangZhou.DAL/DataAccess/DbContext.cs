@@ -12,7 +12,6 @@ namespace QzMisBocHangZhou.DAL
         private readonly string m_ConnectString;
         private DbProvider<DbConnect> m_Provider;
 
-
         /// <summary>
         /// construct 
         /// </summary>
@@ -28,14 +27,11 @@ namespace QzMisBocHangZhou.DAL
             this.m_ConnectString = connectionStr;
             this.m_Provider = new DbProvider<DbConnect>();
         }
-
-
         #region 【ExecuteNonQuery】
         public int ExecuteNonQuery(string commandText, params DbParameter[] parms)
         {
             return ExecuteNonQuery(commandText, CommandType.Text, parms);
         }
-
 
         public int ExecuteNonQuery(string commandText, CommandType cmdType, params DbParameter[] parms)
         {
@@ -43,13 +39,11 @@ namespace QzMisBocHangZhou.DAL
                 (command) => command.ExecuteNonQuery(), parms);
         }
 
-
         public int ExecuteNonQuery(DbCommand cmd, string commandText, params DbParameter[] parms)
         {
             return ExecuteDb(cmd, commandText,
                 (command) => command.ExecuteNonQuery(), parms);
         }
-
 
         public int ExecuteNonQuery(Func<DbCommand, int> fun)
         {
@@ -81,16 +75,13 @@ namespace QzMisBocHangZhou.DAL
                 }
             }
         }
-
         #endregion
-
 
         #region 【ExecuteScalar】
         public TResult ExecuteScalar<TResult>(string commandText, params DbParameter[] parms)
         {
             return ExecuteScalar<TResult>(commandText, CommandType.Text, parms);
         }
-
 
         public TResult ExecuteScalar<TResult>(string commandText, CommandType cmdType, params DbParameter[] parms)
         {
@@ -102,22 +93,18 @@ namespace QzMisBocHangZhou.DAL
                 }, parms);
         }
 
-
         public TResult ExecuteScalar<TResult>(DbCommand cmd, string commandText, params DbParameter[] parms)
         {
             return ExecuteDb(cmd, commandText,
                 (command) => ConvertEx.To<TResult>(command.ExecuteScalar()), parms);
         }
-
         #endregion
-
 
         #region【ExecuteDataSet】
         public DataSet ExecuteDataSet(string cmdText, params DbParameter[] parms)
         {
             return ExecuteDataSet(cmdText, CommandType.Text, parms);
         }
-
 
         public DataSet ExecuteDataSet(string commandText, CommandType cmdType, params DbParameter[] parms)
         {
@@ -132,17 +119,14 @@ namespace QzMisBocHangZhou.DAL
                         return data;
                     }
                 }, parms);
-        }
-
+        }        
         #endregion
-
 
         #region 【ExecuteDataTable】
         public DataTable ExecuteDataTable(string commandText, params DbParameter[] parms)
         {
             return ExecuteDataTable(commandText, CommandType.Text, parms);
         }
-
 
         public DataTable ExecuteDataTable(string commandText, CommandType cmdType, params DbParameter[] parms)
         {
@@ -158,10 +142,7 @@ namespace QzMisBocHangZhou.DAL
                     }
                 }, parms);
         }
-
-
         #endregion
-
 
         #region 【ExecuteEntities】
         public TResult ExecuteEntity<TResult>(string commandText, params DbParameter[] parms) where TResult : new()
@@ -174,7 +155,6 @@ namespace QzMisBocHangZhou.DAL
             return ExecuteEntityList<TResult>(commandText, CommandType.Text, parms);
         }
 
-
         public List<TResult> ExecuteEntityList<TResult>(string commandText, CommandType cmdType = CommandType.Text, params DbParameter[] parms) where TResult : new()
         {
             return ExecuteDb(commandText, cmdType,
@@ -186,7 +166,6 @@ namespace QzMisBocHangZhou.DAL
                     }
                 }, parms);
         }
-
 
         public List<TResult> ExecuteEntityListByPageing<TResult>(int page, int limit, string commandText, params DbParameter[] parms) where TResult : new()
         {
@@ -207,7 +186,6 @@ namespace QzMisBocHangZhou.DAL
             return ExecuteEntityList<TResult>(pageSql, listPars.ToArray());
         }
 
-
         public int GetRecordCount(string commandText, params DbParameter[] parms)
         {
             if (string.IsNullOrWhiteSpace(commandText))
@@ -217,32 +195,23 @@ namespace QzMisBocHangZhou.DAL
 
             return ExecuteScalar<int>(commandText, parms);
         }
-
-
-
         #endregion
 
-
         #region 【CreatDbParameter】
-
-
         public DbParameter CreatDbParameter(string name, object value)
         {
             return CreatDbParameter(name, value, null, null);
         }
-
 
         public DbParameter CreatDbParameter(string name, object value, DbType type)
         {
             return CreatDbParameter(name, value, type, null);
         }
 
-
         public DbParameter CreatDbParameter(string name, object value, ParameterDirection direction)
         {
             return CreatDbParameter(name, value, null, direction);
         }
-
 
         public DbParameter CreatDbParameter(string name, object value, DbType? type, ParameterDirection? direction)
         {
@@ -256,10 +225,7 @@ namespace QzMisBocHangZhou.DAL
 
             return para;
         }
-
-
         #endregion
-
 
         private TResult ExecuteDb<TResult>(string commandText, CommandType cmdType, Func<DbCommand, TResult> execFunc, params DbParameter[] parms)
         {
@@ -277,7 +243,6 @@ namespace QzMisBocHangZhou.DAL
                 }
             }
         }
-
 
         private TResult ExecuteDb<TResult>(DbCommand command, string commandText, Func<DbCommand, TResult> execFunc, params DbParameter[] parms)
         {

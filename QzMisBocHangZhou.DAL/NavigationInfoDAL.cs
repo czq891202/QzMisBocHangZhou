@@ -20,7 +20,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<Navigation>(sql);
         }
 
-
         public static Navigation Get(string id)
         {
             var sql = "select * from Navigation where Id = :Id";
@@ -28,7 +27,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntity<Navigation>(sql,
                 DBCache.DataBase.CreatDbParameter("Id", id));
         }
-
 
         public static List<Navigation> GetByRole(string roleId)
         {
@@ -43,8 +41,6 @@ namespace QzMisBocHangZhou.DAL
             return DBCache.DataBase.ExecuteEntityList<Navigation>(sql,
                 DBCache.DataBase.CreatDbParameter("RoleId", roleId));
         }
-
-
 
         public static int Add(Navigation navigation)
         {
@@ -62,7 +58,6 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("Remark", navigation.Remark));
         }
 
-
         public static int Update(Navigation navigation)
         {
             var sql = @"update Navigation set ParentId = :ParentId, Name = :Name, Title = :Title, LinkUrl = :LinkUrl, MenuClass = :MenuClass, OrderCode = :OrderCode, ActionType = :ActionType, IsLock = :IsLock, Remark = :Remark where Id = :Id";
@@ -78,7 +73,6 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("Remark", navigation.Remark),
                 DBCache.DataBase.CreatDbParameter("Id", navigation.Id));
         }
-        
 
         public static int Del(string id)
         {

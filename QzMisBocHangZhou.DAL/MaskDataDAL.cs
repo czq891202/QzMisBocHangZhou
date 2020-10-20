@@ -20,7 +20,6 @@ namespace QzMisBocHangZhou.DAL
             return new PagingResult<MaskData>() { Count = rCount, Result = data };
         }
 
-
         public static int Add(List<MaskData> data)
         {
             var ret = 0;
@@ -61,7 +60,6 @@ namespace QzMisBocHangZhou.DAL
             cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("SeqNo", data.Data));
             return cmd.ExecuteNonQuery();
         }
-
 
         public static int Del(string id)
         {

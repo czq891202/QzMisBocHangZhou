@@ -17,7 +17,6 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("RoleId", roleId));
         }
 
-
         public static RoleValue Get(string id)
         {
             var sql = "select * from RoleValue where Id = :Id;";
@@ -26,7 +25,6 @@ namespace QzMisBocHangZhou.DAL
                 sql,
                 DBCache.DataBase.CreatDbParameter("Id", id));
         }
-
 
         public static int Add(RoleValue roleValue)
         {
@@ -37,9 +35,6 @@ namespace QzMisBocHangZhou.DAL
                 DBCache.DataBase.CreatDbParameter("NavigationId", roleValue.NavigationId),
                 DBCache.DataBase.CreatDbParameter("ActionType", roleValue.ActionType));
         }
-
-
-
         public static int Del(string roleValueId)
         {
             var sql = "delete from RoleValue where Id = :Id";

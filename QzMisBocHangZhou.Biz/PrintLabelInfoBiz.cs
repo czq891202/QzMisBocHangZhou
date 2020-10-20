@@ -17,7 +17,6 @@ namespace QzMisBocHangZhou.Biz
             if (info.MaxNum == 0) return false;
             return PrintLabelInfoDAL.Edit(info) > 0;
         }
-
         public static PrintLabelInfo GetInfo(string orgId, int year)
         {
             if (string.IsNullOrWhiteSpace(orgId)) throw new Exception("error");

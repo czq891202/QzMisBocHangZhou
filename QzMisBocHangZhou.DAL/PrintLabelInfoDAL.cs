@@ -9,7 +9,6 @@ namespace QzMisBocHangZhou.DAL
 {
     public class PrintLabelInfoDAL
     {
-
         public static int Edit(PrintLabelInfo info)
         {
             if(IsExits(info.OrgId, info.Year))
@@ -51,7 +50,6 @@ namespace QzMisBocHangZhou.DAL
 
             return ret > 0;
         }
-
 
         private static int Update(PrintLabelInfo info)
         {

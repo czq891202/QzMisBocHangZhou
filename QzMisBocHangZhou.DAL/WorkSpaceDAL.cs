@@ -26,7 +26,6 @@ namespace QzMisBocHangZhou.DAL
                             (select count(1) from ArchiveInfo where status = 24 and OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId)) as  GiveBackRollBackNo ,
                             (select count(1) from ArchiveInfo where status = 25 and OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId)) as  SettleRollBackNo  
                         from dual";
-
             return DBCache.DataBase.ExecuteEntity<WorkSpaceInfo>(sql, DBCache.DataBase.CreatDbParameter("OrgId", orgId));
         }
     }

@@ -41,10 +41,6 @@ namespace QzMisBocHangZhou.Biz
             if (!RequiredData(data)) return false;
 
             var ret = ArchiveInfoDAL.Add(data) > 0;
-            //if(ret && !string.IsNullOrWhiteSpace(data.TPId))
-            //{
-            //    TPArchiveInfoBiz.Bind(data.TPId, data.Id);
-            //}
             return ret;
         }
 

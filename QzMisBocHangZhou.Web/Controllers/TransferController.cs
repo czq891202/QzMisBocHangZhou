@@ -58,8 +58,15 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult SubmitReview(ArchiveInfo data)
         {
-            var success = ArchiveTransferInfoBiz.SubmitReview(data, AppSession.GetUser());
-            return Json(new ResultModel<string>() { msg = success ? "" : "error" });
+            if (ArchiveTransferInfoBiz.CheckLabelCode(data.LabelCode, data.CustomerNo))
+            {
+                return Json(new ResultModel<string>() { msg = "该电子标签已经使用!" });
+            }
+            else
+            {
+                var success = ArchiveTransferInfoBiz.SubmitReview(data, AppSession.GetUser());
+                return Json(new ResultModel<string>() { msg = success ? "" : "error" });
+            }
         }
 
         [HttpPost]

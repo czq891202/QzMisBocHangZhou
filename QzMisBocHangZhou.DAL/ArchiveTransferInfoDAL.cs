@@ -180,6 +180,18 @@ namespace QzMisBocHangZhou.DAL
                 return ret + AddTransferInfo(cmd, transferData);
             });
         }
+        /// <summary>
+        /// 判断电子标签是否使用
+        /// </summary>
+        /// <param name="labelcode"></param>
+        /// <returns></returns>
+        public static int CheckLabelCode(string labelcode,string customerno)
+        {
+            var sql = "SELECT * FROM ArchiveInfo WHERE LabelCode = :LabelCode and CustomerNo <> :CustomerNo";
+            return DBCache.DataBase.ExecuteNonQuery(sql,
+                DBCache.DataBase.CreatDbParameter("CustomerNo", customerno),
+                DBCache.DataBase.CreatDbParameter("LabelCode", labelcode));
+        }
 
         private static int AddTransferInfo(DbCommand cmd, ArchiveTransferInfo transferData)
         {

@@ -14,51 +14,43 @@ namespace QzMisBocHangZhou.Biz
         {
             return UserInfoDAL.Login(userName, password) > 0;
         }
-
         public static List<UserListViewModel> Get(string orgId, string keywords, string status)
         {
             if (string.IsNullOrWhiteSpace(orgId)) orgId = OrgInfo.RootId;
 
             return UserInfoDAL.Get(orgId, keywords, status);
         }
-
         public static UserInfo Get(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return new UserInfo();
             return UserInfoDAL.Get(id);
         }
-
         public static UserListViewModel GetDetailsByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) return new UserListViewModel();
             return UserInfoDAL.GetDetailsByName(name);
         }
-
         public static bool SetUserStatus(string id, int status)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
             return UserInfoDAL.SetUserStatus(id, status) > 0;
         }
-
         public static bool ChangePassword(string id, string password)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
             return UserInfoDAL.ChangePassword(id, password) > 0;
         }
-
         public static bool ChangeMobile(string id, string mobile)
         {
             if (string.IsNullOrWhiteSpace(id)) return false;
             return UserInfoDAL.ChangeMobile(id, mobile) > 0;
         }
-
         public static bool Add(UserInfo data)
         {
             data.Id = Guid.NewGuid().ToString();
             if (!RequiredData(data)) return false;
             return UserInfoDAL.Add(data) > 0;
         }
-
         public static bool Update(UserInfo data)
         {
             if (!RequiredData(data)) return false;
@@ -74,13 +66,11 @@ namespace QzMisBocHangZhou.Biz
             if (!RequiredData(data)) return false;
             return UserInfoDAL.SetLastLandingTime(data) > 0;
         }
-
         public static bool IsExistsUser(string userName)
         {
             if (string.IsNullOrWhiteSpace(userName)) return false;
             return UserInfoDAL.GetUserNameCount(userName) > 0;
         }
-
         private static bool RequiredData(UserInfo data)
         {
             if (data == null) return false;
