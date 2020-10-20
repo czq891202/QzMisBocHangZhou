@@ -24,7 +24,7 @@ namespace QzMisBocHangZhou.DAL
         {
             var pars = new List<DbParameter>();
 
-            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, abi.Borrower as LoanBorrower, ai.Id,o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status,abi.UsedBy from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id  LEFT JOIN (select * from ArchiveBorrowInfo where Status in(0,1,2,3,6) and ArchiveId is not null) abi ON ai.ID = abi.ArchiveId where (ai.Status = 1 or ai.Status = 23 or ai.Status = 25) ";
+            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower, ai.Id,o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status,abi.UsedBy from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id  LEFT JOIN (select * from ArchiveBorrowInfo where Status in(0,1,2,3,6) and ArchiveId is not null) abi ON ai.ID = abi.ArchiveId where (ai.Status = 1 or ai.Status = 23 or ai.Status = 25) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
@@ -55,7 +55,7 @@ namespace QzMisBocHangZhou.DAL
         {
             var pars = new List<DbParameter>();
 
-            var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ab.Borrower as LoanBorrower,
+            var sql = @"select ab.*, ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower,
                         o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
                         From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
                         Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
@@ -155,7 +155,7 @@ namespace QzMisBocHangZhou.DAL
         {
             var pars = new List<DbParameter>();
 
-            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, abi.Borrower as LoanBorrower, ai.Id,o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status,abi.UsedBy from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id  LEFT JOIN (select * from ArchiveBorrowInfo where Status in(0,1,2,3,6) and ArchiveId is not null) abi ON ai.ID = abi.ArchiveId where (ai.Status = 1 or ai.Status = 23 or ai.Status = 25) ";
+            var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower as LoanBorrower, ai.Id,o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact,ai.Status,abi.UsedBy from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id  LEFT JOIN (select * from ArchiveBorrowInfo where Status in(0,1,2,3,6) and ArchiveId is not null) abi ON ai.ID = abi.ArchiveId where (ai.Status = 1 or ai.Status = 23 or ai.Status = 25) ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
