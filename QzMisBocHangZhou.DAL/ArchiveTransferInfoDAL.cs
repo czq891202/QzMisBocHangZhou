@@ -185,12 +185,13 @@ namespace QzMisBocHangZhou.DAL
         /// </summary>
         /// <param name="labelcode"></param>
         /// <returns></returns>
-        public static int CheckLabelCode(string labelcode,string customerno)
+        public static List<ArchiveInfo> CheckLabelCode(string labelcode,string customerno)
         {
+            var pars = new List<DbParameter>();
             var sql = "SELECT * FROM ArchiveInfo WHERE LabelCode = :LabelCode and CustomerNo <> :CustomerNo";
-            return DBCache.DataBase.ExecuteNonQuery(sql,
-                DBCache.DataBase.CreatDbParameter("CustomerNo", customerno),
-                DBCache.DataBase.CreatDbParameter("LabelCode", labelcode));
+            pars.Add(DBCache.DataBase.CreatDbParameter("CustomerNo", customerno));
+            pars.Add(DBCache.DataBase.CreatDbParameter("LabelCode", labelcode));
+            return DBCache.DataBase.ExecuteEntityList<ArchiveInfo>(sql, pars.ToArray());
         }
 
         private static int AddTransferInfo(DbCommand cmd, ArchiveTransferInfo transferData)

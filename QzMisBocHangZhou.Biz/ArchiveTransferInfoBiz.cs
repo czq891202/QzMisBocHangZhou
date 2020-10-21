@@ -75,7 +75,11 @@ namespace QzMisBocHangZhou.Biz
         /// <returns></returns>
         public static bool CheckLabelCode(string labelcode, string customerno)
         {
-            return ArchiveTransferInfoDAL.CheckLabelCode(labelcode, customerno) > 0;
+            var list =  ArchiveTransferInfoDAL.CheckLabelCode(labelcode, customerno);
+            if (list == null || list.Count == 0)
+                return false;
+            else
+                return true;
         }
 
         public static bool RollBack(string id)

@@ -58,12 +58,12 @@ namespace QzMisBocHangZhou.DAL
                 //在库
                 sql += $" and (STATUS <> {ArchiveStatusType.草稿.GetHashCode()}) and (STATUS <> {ArchiveStatusType.借阅出库.GetHashCode()}) and (STATUS <> {ArchiveStatusType.已结清.GetHashCode()}) and (STATUS <> {ArchiveStatusType.变更结清出库.GetHashCode()}) ";
             }
-            else if (status == 2)
+            else if (status == 5)
             {
                 //借阅
                 sql += $" and (STATUS = {ArchiveStatusType.借阅出库.GetHashCode()}) ";
             }
-            else if (status == 3)
+            else if (status == 11)
             {
                 //结清
                 sql += $" and (STATUS = {ArchiveStatusType.已结清.GetHashCode()} or STATUS = {ArchiveStatusType.变更结清出库.GetHashCode()} or STATUS = {ArchiveStatusType.处置出库.GetHashCode()}) ";
