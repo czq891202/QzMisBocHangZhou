@@ -50,6 +50,7 @@
                             </div>
                             <div class="layui-input-inline">
                                 <button class="layui-btn" id="btn-Search"><i class="layui-icon layui-icon-search"></i></button>
+                                <button class="layui-btn layui-btn" id="btn-Export">导出数据</button>
                             </div>
                         </div>
                     </div>
@@ -70,6 +71,22 @@
         <span>结清</span>
         {{# } else {}}
         <span>在库</span>
+        {{# } }}
+    </script>
+
+    <script type="text/html" id="table-guaranteetypeTpl">
+        {{# if(d.GuaranteeType === '1') { }}
+        <span>已办妥正式抵押登记(他项权证)</span>
+        {{# } else if(d.GuaranteeType === '2') { }}
+        <span>已办妥预抵押登记</span>
+        {{# } else if(d.GuaranteeType === '3') {}}
+        <span>已办妥备案登记</span>
+        {{# } else if(d.GuaranteeType === '4') {}}
+        <span>未办妥抵押（抵押）登记</span>
+        {{# } else if(d.GuaranteeType === '7') {}}
+        <span>不需抵质押我行</span>
+        {{# } else {}}
+        <span></span>
         {{# } }}
     </script>
 
@@ -100,7 +117,7 @@
                     , { field: 'OrgCode', title: '机构代码', width: 100}
                     , { field: 'QuotaNo', title: '额度号' }
                     , { field: 'LoanAccount', title: '贷款账号' }
-                    , { field: 'GuaranteeType', title: '押品类型' }
+                    , { field: 'GuaranteeType', title: '押品类型', templet: '#table-guaranteetypeTpl' }
                     , { field: 'Borrower', title: '借款人' }
                     , { field: 'LoanAmount', title: '贷款金额' }
                     , { field: 'LabelCode', title: '标签号' }
@@ -131,6 +148,11 @@
                 } else if (layEvent == 'edit') {
                     openEdit('edit', data.Id);
                 }
+            });
+
+            $('#btn-Export').click(function () {
+                window.open('../ArchiveInfo/ExportArchiveOutExcel?orgId=' + app._data.value.toString() + "&keywords=" + $('#KeyWords').val() + "&status=" + $('#Status').val());
+                return false;
             });
 
             //按钮组事件监听

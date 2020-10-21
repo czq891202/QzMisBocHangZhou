@@ -192,6 +192,7 @@
             });
 
             form.render(null, 'component-form-group');
+            form.val('component-form-group', {'GuaranteeType' : '@Model.Data.GuaranteeType'});
 
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
@@ -258,7 +259,7 @@
             el: '#app',
             data: {
                 // define the default value
-                value: null,
+                value: ('@Model.Data.OrgId'.length > 0 ? '@Model.Data.OrgId'.split(',') : []),
                 // define options
                 options: []
             },

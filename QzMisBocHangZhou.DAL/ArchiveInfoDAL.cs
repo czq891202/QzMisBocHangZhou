@@ -43,10 +43,8 @@ namespace QzMisBocHangZhou.DAL
                         or Borrower like :KeyWords 
                         or SeqNo like :KeyWords 
                         or CustomerNo like :keywords)";
-
                 pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", $"%{keywords.Trim()}%"));
             }
-
 
             if (status == 0)
             {
@@ -67,14 +65,57 @@ namespace QzMisBocHangZhou.DAL
             {
                 //结清
                 sql += $" and (STATUS = {ArchiveStatusType.已结清.GetHashCode()} or STATUS = {ArchiveStatusType.变更结清出库.GetHashCode()} or STATUS = {ArchiveStatusType.处置出库.GetHashCode()}) ";
-            }
-                       
+            }                       
 
             sql += " order by tpa.CREATEDATE, tpa.ORGID desc ";
             var rCount = DBCache.DataBase.GetRecordCount(sql, pars.ToArray());
             var data = DBCache.DataBase.ExecuteEntityListByPageing<ArchiveInfo>(page, limit, sql, pars.ToArray());
 
             return new PagingResult<ArchiveInfo>() { Count = rCount, Result = data };
+        }
+
+        public static List<ArchiveInfo> GetPreOut(string orgId, string keywords, int status)
+        {
+            var sql = @"select tpa.*, org.Code as OrgCode, org.Name as OrgName from Archiveinfo tpa 
+                        left join orginfo org on tpa.OrgId = org.Id  where 1=1 ";
+
+            var pars = new List<DbParameter>();
+            if (!string.IsNullOrWhiteSpace(orgId))
+            {
+                sql += @" and org.Id in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
+                pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
+            }
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                sql += @" and (LoanAccount like :KeyWords
+                        or QuotaNo like :KeyWords 
+                        or Borrower like :KeyWords 
+                        or SeqNo like :KeyWords 
+                        or CustomerNo like :keywords)";
+                pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", $"%{keywords.Trim()}%"));
+            }
+            if (status == 0)
+            {
+                //未移交
+                sql += $" and (STATUS = {ArchiveStatusType.草稿.GetHashCode()}) ";
+            }
+            else if (status == 1)
+            {
+                //在库
+                sql += $" and (STATUS <> {ArchiveStatusType.草稿.GetHashCode()}) and (STATUS <> {ArchiveStatusType.借阅出库.GetHashCode()}) and (STATUS <> {ArchiveStatusType.已结清.GetHashCode()}) and (STATUS <> {ArchiveStatusType.变更结清出库.GetHashCode()}) ";
+            }
+            else if (status == 5)
+            {
+                //借阅
+                sql += $" and (STATUS = {ArchiveStatusType.借阅出库.GetHashCode()}) ";
+            }
+            else if (status == 11)
+            {
+                //结清
+                sql += $" and (STATUS = {ArchiveStatusType.已结清.GetHashCode()} or STATUS = {ArchiveStatusType.变更结清出库.GetHashCode()} or STATUS = {ArchiveStatusType.处置出库.GetHashCode()}) ";
+            }
+            sql += " order by tpa.CREATEDATE, tpa.ORGID desc ";
+            return DBCache.DataBase.ExecuteEntityList<ArchiveInfo>(sql, pars.ToArray());
         }
         #endregion
 

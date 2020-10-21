@@ -32,6 +32,11 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveInfoDAL.PagingQuery(page, limit, keywords, orgId, status);
         }
 
+        public static List<ArchiveInfo> GetPreOut(string orgId, string keywords, int status)
+        {
+            return ArchiveInfoDAL.GetPreOut(orgId, keywords, status);
+        }
+
         public static bool Add(ArchiveInfo data)
         {
             data.Id = Guid.NewGuid().ToString();

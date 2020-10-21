@@ -66,7 +66,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">押品crms登记类型</label>
                         <div class="layui-input-block" lay-filter="org-block-Filter">
-                            <select name="GuaranteeType" id="GuaranteeType" lay-filter="GuaranteeType" lay-verify="required">
+                            <select name="GuaranteeType" id="GuaranteeType" lay-verify="required" value="@Model.Data.GuaranteeType">
                                 <option value="">--请选择--</option>
                                 <option value="1">已办妥正式抵押登记(他项权证)</option>
                                 <option value="2">已办妥预抵押登记</option>
@@ -186,6 +186,8 @@
 
             form.render(null, 'component-form-group');
 
+            form.val('component-form-group', {'GuaranteeType' : '@Model.Data.GuaranteeType'});
+
             /* 监听提交 */
             form.on('submit(component-form-submit)', function (data) {
                 data.field.orgid = app._data.value.toString();
@@ -243,7 +245,7 @@
             el: '#app',
             data: {
                 // define the default value
-                value: null,
+                value: ('@Model.Data.OrgId'.length > 0 ? '@Model.Data.OrgId'.split(',') : []),
                 // define options
                 options: []
             },
