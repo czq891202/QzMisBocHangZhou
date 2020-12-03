@@ -51,12 +51,16 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetArchiveInfoList(int page, int limit, string keywords, string orgId, int status)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveInfoBiz.PagingQuery(page, limit, keywords, orgId, status);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
 
         public ActionResult ExportArchiveOutExcel(string orgId, string keywords, int status)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var infos = ArchiveInfoBiz.GetPreOut(orgId, keywords, status);
 
             DataTable dataTable = new DataTable();

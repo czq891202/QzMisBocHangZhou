@@ -29,12 +29,6 @@
                             <select name="OrgId" id="OrgId" lay-filter="OrgIdFilter" lay-verify="required" lay-search></select>
                         </div>
                     </div>
-                    @*<div class="layui-form-item">
-                        <label class="layui-form-label">年份</label>
-                        <div class="layui-input-block" lay-filter="org-block-Filter">
-                            <input type="text" id="Year" name="Year" placeholder="请输入年份, 例如:1999" lay-verify="required" class="layui-input">
-                        </div>
-                    </div>*@
                     <div class="layui-form-item">
                         <label class="layui-form-label">数量</label>
                         <div class="layui-input-block">
@@ -102,7 +96,6 @@
                 dataType: "json",
                 success: function (result) {
                     //往下拉菜单里添加元素
-                    //layer.alert(JSON.stringify(result));
                     $.each(result, function (index, item) {
                         $('#OrgId').append(new Option(item.Name, item.Id));
                     });

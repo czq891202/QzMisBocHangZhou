@@ -54,6 +54,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreBorrow(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveBorrowInfoBiz.GetPreBorrow(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -68,6 +70,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreReview(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveBorrowInfoBiz.GetPreReview(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -82,6 +86,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreOut(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveBorrowInfoBiz.GetPreOut(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -146,6 +152,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// <returns></returns>
         public ActionResult ExportBorrowListExcel(string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var excel = ExportExcel.ExportBorrowListExcel(Server.MapPath("../ExcelTemplate/Borrow.xlsx"), AppSession.GetUser(), orgId, keywords);
 
             return File(excel, "application/ms-excel", $"零贷档案借阅表 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");

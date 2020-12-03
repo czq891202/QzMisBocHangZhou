@@ -45,6 +45,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreSettle(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveSettleInfoBiz.GetPreSettle(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -52,6 +54,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreReview(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveSettleInfoBiz.GetPreReview(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -59,6 +63,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreOut(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveSettleInfoBiz.GetPreOut(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }

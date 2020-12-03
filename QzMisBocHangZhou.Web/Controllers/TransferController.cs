@@ -44,6 +44,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreTransfer(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveTransferInfoBiz.GetPreTransfer(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -51,6 +53,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreReview(int page, int limit, string orgId, string keywords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveTransferInfoBiz.GetPreReview(page, limit, orgId, keywords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -92,7 +96,8 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         public ActionResult ExportTransferListExcel(string orgId, string keywords)
         {
-            if (string.IsNullOrEmpty(orgId)) orgId = OrgInfo.RootId;
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var excel = ExportExcel.ExportTransferList(Server.MapPath("../ExcelTemplate/Transfer.xlsx"), AppSession.GetUser(), orgId, keywords);
 
             return File(excel, "application/ms-excel", $"零贷档案交接单 - {DateTime.Now.ToString("yyyyMMdd")}.xlsx");
@@ -105,6 +110,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// <returns></returns>
         public ActionResult ExportList(string orgId)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var txt = ArchiveTransferInfoBiz.Export(orgId, AppSession.GetUser());
 
             return File(txt, "application/vnd.ms-txt", $"{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");

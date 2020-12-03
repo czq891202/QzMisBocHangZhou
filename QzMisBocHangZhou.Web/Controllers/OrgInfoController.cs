@@ -40,7 +40,7 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpGet]
         public JsonResult GetOrgInfoList()
         {
-            var result = OrgInfoBiz.GetAll();
+            var result = OrgInfoBiz.GetChild(AppSession.GetUser().OrgId);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace QzMisBocHangZhou.Web.Controllers
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
 
-        public static List<OrgInfo>  GetAllParent(string orgid)
+        public static List<OrgInfo> GetAllParent(string orgid)
         {
             return OrgInfoBiz.GetAllParent(orgid);
         }

@@ -53,6 +53,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetBorrowTimeOut(string orgId, string guaranteeType, string status, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var result = ReportBiz.GetBorrowTimeOut(orgId, guaranteeType, keyWords);
             return Json(new { code = 0, data = result, msg = "" });
         }
@@ -67,6 +69,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetTransferTimeOut(string orgId, string guaranteeType, string status, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var result = ReportBiz.GetTransferTimeOut(orgId, guaranteeType, keyWords);
             return Json(new { code = 0, data = result, msg = "" });
         }
@@ -81,6 +85,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetSettleTimeOut(string orgId, string guaranteeType, string status, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var result = ReportBiz.GetSettleTimeOut(orgId, guaranteeType, keyWords);
             return Json(new { code = 0, data = result, msg = "" });
         }
@@ -95,6 +101,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetArchiveInfoTime(int page, int limit, string orgId, string guaranteeType, string status, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ReportBiz.GetArchiveInfoTime(page, limit, orgId, guaranteeType, status, keyWords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }

@@ -66,6 +66,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetPreGiveBack(int page, int limit, string orgId, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveGiveBackInfoBiz.GetPreGiveBack(page, limit, orgId, keyWords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -80,6 +82,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         [HttpPost]
         public JsonResult GetGiveBackReview(int page, int limit, string orgId, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var data = ArchiveGiveBackInfoBiz.GetGiveBackReview(page, limit, orgId, keyWords);
             return Json(new { code = 0, count = data.Count, data = data.Result, msg = "" });
         }
@@ -133,6 +137,8 @@ namespace QzMisBocHangZhou.Web.Controllers
         
         public ActionResult ExportGiveback(string orgId)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var txt = ArchiveGiveBackInfoBiz.ExportGiveback(AppSession.GetUser(), orgId);
 
             return File(txt, "application/vnd.ms-txt", $"零贷档案待审核归还单-{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
@@ -140,6 +146,8 @@ namespace QzMisBocHangZhou.Web.Controllers
 
         public ActionResult ExporGivebacktList(string orgId, string keyWords)
         {
+            if (string.IsNullOrEmpty(orgId))
+                orgId = AppSession.GetUser().OrgId;
             var txt = ArchiveGiveBackInfoBiz.ExporGivebacktList(AppSession.GetUser(), orgId, keyWords);
 
             return File(txt, "application/vnd.ms-txt", $"零贷档案归还单{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt");
