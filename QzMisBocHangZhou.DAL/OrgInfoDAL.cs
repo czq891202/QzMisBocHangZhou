@@ -87,7 +87,7 @@ namespace QzMisBocHangZhou.DAL
 
         public static int Enable(string id)
         {
-            var sql = @"update OrgInfo set IsLock = 0 where Id in (select Id from OrgInfo start with Id = :Id connect by prior ParentId = Id)";
+            var sql = @"update OrgInfo set IsLock = 0 where Id in (select Id from OrgInfo start with Id = :Id connect by prior Id = ParentId)";
             return DBCache.DataBase.ExecuteNonQuery(sql, DBCache.DataBase.CreatDbParameter("Id", id));
         }
 

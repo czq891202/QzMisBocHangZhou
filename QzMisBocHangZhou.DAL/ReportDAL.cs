@@ -19,11 +19,11 @@ namespace QzMisBocHangZhou.DAL
                         o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
                         From ArchiveBorrowInfo ab left join OrgInfo o on ab.OrgId = o.Id 
                         Left join ArchiveInfo ai on ab.ArchiveId = ai.Id
-                        where ab.Status = 1 and sysdate > ab.PreReturnDate ";
+                        where ab.Status in(2,3) and sysdate > ab.PreReturnDate ";
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                sql += @" and ab.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior ParentId = Id) ";
+                sql += @" and ab.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
             }
 
@@ -35,7 +35,7 @@ namespace QzMisBocHangZhou.DAL
 
             if (!string.IsNullOrWhiteSpace(keyWords))
             {
-                sql += @" and ai.ProductCode = :ProductCode ";
+                sql += @" and ai.ProductCode like :ProductCode ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("ProductCode", keyWords));
             }
 
@@ -58,7 +58,7 @@ namespace QzMisBocHangZhou.DAL
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                sql += @" and OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior ParentId = Id) ";
+                sql += @" and OrgId in (select Id from OrgInfo where IsLock = 0 start with Id IN (select column_value from table (split (:OrgId))) connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
             }
 
@@ -70,7 +70,7 @@ namespace QzMisBocHangZhou.DAL
 
             if (!string.IsNullOrWhiteSpace(keyWords))
             {
-                sql += @" and ai.ProductCode = :ProductCode ";
+                sql += @" and ai.ProductCode like :ProductCode ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("ProductCode", keyWords));
             }
 
@@ -87,13 +87,13 @@ namespace QzMisBocHangZhou.DAL
                         o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
                         From ArchiveSettleInfo ast left join OrgInfo o on ast.OrgId = o.Id 
                         Left join ArchiveInfo ai on ast.ArchiveId = ai.Id
-                        where ast.Status = 1 and (trunc(sysdate) - trunc(SettleDate)) > :OutDay ";
+                        where ast.Status = 0 and (trunc(sysdate) - trunc(SettleDate)) > :OutDay ";
 
             pars.Add(DBCache.DataBase.CreatDbParameter("OutDay", day));
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                sql += @" and ast.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id = :OrgId connect by prior ParentId = Id) ";
+                sql += @" and ast.OrgId in (select Id from OrgInfo where IsLock = 0 start with Id = :OrgId connect by prior Id = ParentId) ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("OrgId", orgId));
             }
 
@@ -105,7 +105,7 @@ namespace QzMisBocHangZhou.DAL
 
             if (!string.IsNullOrWhiteSpace(keyWords))
             {
-                sql += @" and ai.ProductCode = :ProductCode ";
+                sql += @" and ai.ProductCode like :ProductCode ";
                 pars.Add(DBCache.DataBase.CreatDbParameter("ProductCode", keyWords));
             }
 
@@ -141,7 +141,7 @@ namespace QzMisBocHangZhou.DAL
 
             if (!string.IsNullOrWhiteSpace(keyWords))
             {
-                sql += @" and ( a.ProductCode = :KeyWords or a.Borrower = :KeyWords)";
+                sql += @" and ( a.ProductCode like :KeyWords or a.Borrower like :KeyWords)";
                 pars.Add(DBCache.DataBase.CreatDbParameter("KeyWords", keyWords));
             }
 

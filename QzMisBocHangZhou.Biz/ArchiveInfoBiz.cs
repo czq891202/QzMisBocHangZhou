@@ -25,7 +25,7 @@ namespace QzMisBocHangZhou.Biz
         {
             if (string.IsNullOrWhiteSpace(orgId) || orgId.Equals(OrgInfo.RootId, StringComparison.OrdinalIgnoreCase))
             {
-                orgId = OrgInfo.RootId;
+                //orgId = OrgInfo.RootId;
             }
             keywords = keywords?.Trim();
 
