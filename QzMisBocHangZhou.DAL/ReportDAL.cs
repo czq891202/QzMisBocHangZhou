@@ -51,8 +51,8 @@ namespace QzMisBocHangZhou.DAL
             var sql = @"select ai.LabelCode, ai.LoanAccount, ai.QuotaNo, ai.CustomerNo, ai.Borrower, ai.Id,
                         o.Name as OrgName, o.Code as OrgCode, o.Contact as OrgContact
                         from ArchiveInfo ai left join OrgInfo o on ai.OrgId = o.Id 
-                        where ai.Status = 0  and LoanReleaseDate is not null 
-                        and (trunc(sysdate) - trunc(to_date(LoanReleaseDate,'yyyyMMdd'))) > :OutDay";
+                        where NVL(ai.Status,0) = 0 and LoanReleaseDate is not null 
+                        and (trunc(sysdate) - trunc(to_date(LoanReleaseDate,'yyyy-MM-dd'))) > :OutDay";
 
             pars.Add(DBCache.DataBase.CreatDbParameter("OutDay", day));
 

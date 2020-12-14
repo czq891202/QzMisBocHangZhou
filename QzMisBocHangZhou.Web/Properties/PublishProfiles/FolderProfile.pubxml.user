@@ -16,10 +16,10 @@
       <publishTime>12/10/2016 17:51:44</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/05/2020 19:29:24</publishTime>
+      <publishTime>12/14/2020 20:20:08</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/05/2020 19:29:23</publishTime>
+      <publishTime>12/14/2020 20:20:07</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>03/30/2019 17:21:38</publishTime>
@@ -61,19 +61,19 @@
       <publishTime>07/09/2019 14:48:16</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Biz.dll">
-      <publishTime>12/05/2020 19:28:52</publishTime>
+      <publishTime>12/14/2020 20:19:54</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Biz.pdb">
-      <publishTime>12/05/2020 19:28:52</publishTime>
+      <publishTime>12/14/2020 20:19:54</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.dll">
-      <publishTime>12/05/2020 19:28:52</publishTime>
+      <publishTime>12/14/2020 20:19:53</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.dll.config">
       <publishTime>08/14/2019 15:32:35</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.DAL.pdb">
-      <publishTime>12/05/2020 19:28:52</publishTime>
+      <publishTime>12/14/2020 20:19:53</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Model.dll">
       <publishTime>12/05/2020 19:28:50</publishTime>
@@ -82,10 +82,10 @@
       <publishTime>12/05/2020 19:28:50</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Web.dll">
-      <publishTime>12/05/2020 19:28:53</publishTime>
+      <publishTime>12/14/2020 20:19:54</publishTime>
     </File>
     <File Include="bin/QzMisBocHangZhou.Web.pdb">
-      <publishTime>12/05/2020 19:28:53</publishTime>
+      <publishTime>12/14/2020 20:19:54</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 21:50:24</publishTime>
@@ -220,7 +220,7 @@
       <publishTime>05/21/2020 22:05:12</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>12/05/2020 19:29:00</publishTime>
+      <publishTime>12/14/2020 20:19:56</publishTime>
     </File>
     <File Include="Scripts/axios.min.js">
       <publishTime>05/25/2020 18:40:42</publishTime>
@@ -2440,7 +2440,7 @@
       <publishTime>12/05/2020 18:47:37</publishTime>
     </File>
     <File Include="Views/GiveBack/AppendArchiveView.cshtml">
-      <publishTime>04/27/2020 19:51:23</publishTime>
+      <publishTime>12/14/2020 20:01:06</publishTime>
     </File>
     <File Include="Views/GiveBack/ApprovalListView.cshtml">
       <publishTime>12/02/2020 19:05:56</publishTime>
@@ -2449,7 +2449,7 @@
       <publishTime>04/13/2020 23:39:37</publishTime>
     </File>
     <File Include="Views/GiveBack/ListView.cshtml">
-      <publishTime>12/02/2020 19:05:56</publishTime>
+      <publishTime>12/12/2020 18:37:12</publishTime>
     </File>
     <File Include="Views/Inventory/EditView.cshtml">
       <publishTime>09/17/2019 11:56:18</publishTime>
@@ -2497,7 +2497,7 @@
       <publishTime>12/05/2020 18:47:37</publishTime>
     </File>
     <File Include="Views/Report/ArchiveInfoTimeView.cshtml">
-      <publishTime>12/05/2020 18:47:37</publishTime>
+      <publishTime>12/05/2020 21:51:10</publishTime>
     </File>
     <File Include="Views/Report/BorrowTimeOutView.cshtml">
       <publishTime>12/05/2020 18:47:37</publishTime>
@@ -2554,7 +2554,7 @@
       <publishTime>08/15/2019 20:57:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/05/2020 19:28:57</publishTime>
+      <publishTime>12/14/2020 20:19:55</publishTime>
     </File>
   </ItemGroup>
 </Project>

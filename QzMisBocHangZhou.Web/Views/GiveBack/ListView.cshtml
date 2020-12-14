@@ -178,7 +178,7 @@
                 var layEvent = obj.event;
 
                 if (layEvent == 'submit') {
-                    submitAction(data.Id);
+                    submitAction(data);
                 }
             });
 
@@ -214,7 +214,7 @@
                 return false;
             });
 
-            var submitAction = function (id) {
+            var submitAction = function (data) {
                 var idx = layer.open({
                     type: 2,
                     title: '归还编辑',
@@ -222,7 +222,7 @@
                     shade: 0.8,
                     area: ['600px', '400px'],
                     id: 'edit',
-                    content: '/GiveBack/AppendArchiveView?bId=' + id,    //iframe的url
+                    content: '/GiveBack/AppendArchiveView?bId=' + data.Id + '&labelCode=' + data.LabelCode,    //iframe的url
                     end: function (layero, index) {
                         parent.layer.closeAll();
                         tabIns.reload();

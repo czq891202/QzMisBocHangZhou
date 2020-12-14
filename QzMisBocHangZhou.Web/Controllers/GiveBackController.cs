@@ -48,9 +48,10 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// </summary>
         /// <param name="bId"></param>
         /// <returns></returns>
-        public ActionResult AppendArchiveView(string bId)
+        public ActionResult AppendArchiveView(string bId, string labelCode)
         {
-            return View(new EditViewModel<string>() { Data = bId, User = AppSession.GetUser() });
+            var result = new ArchiveBorrowInfo { Id = bId, LabelCode = labelCode };
+            return View(new EditViewModel<ArchiveBorrowInfo>() { Data = result, User = AppSession.GetUser() });
         }
         #endregion
 
@@ -94,12 +95,12 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// <param name="givebackDate">归还时间</param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult SubmitGiveBack(string bId, DateTime? givebackDate)
+        public JsonResult SubmitGiveBack(string bId, DateTime? givebackDate, string labelCode)
         {
-            var success = ArchiveGiveBackInfoBiz.SubmitGiveBack(bId, givebackDate, AppSession.GetUser());
+            var success = ArchiveGiveBackInfoBiz.SubmitGiveBack(bId, givebackDate, labelCode, AppSession.GetUser());
             return Json(new { code = 0, data = success, msg = "" });
         }
-        
+
         /// <summary>
         /// 归还审批撤回
         /// </summary>
@@ -134,7 +135,7 @@ namespace QzMisBocHangZhou.Web.Controllers
             var success = ArchiveGiveBackInfoBiz.Returned(id);
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
-        
+
         public ActionResult ExportGiveback(string orgId)
         {
             if (string.IsNullOrEmpty(orgId))

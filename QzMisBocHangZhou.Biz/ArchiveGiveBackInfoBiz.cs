@@ -19,11 +19,15 @@ namespace QzMisBocHangZhou.Biz
             return ArchiveBorrowInfoDAL.GetPreGiveBack(page, limit, orgId, keyWords);
         }
         //提交归还审批
-        public static bool SubmitGiveBack(string bId, DateTime? givebackDate, UserInfo user)
+        public static bool SubmitGiveBack(string bId, DateTime? givebackDate, string labelCode, UserInfo user)
         {
             if (string.IsNullOrWhiteSpace(bId)) return false;
 
             if (!givebackDate.HasValue) givebackDate = DateTime.Now;
+            var borrowinfo = ArchiveBorrowInfoDAL.Get(bId);
+            var archiveinfo = ArchiveInfoDAL.Get(borrowinfo.ArchiveId);
+            archiveinfo.LabelCode = labelCode;
+            ArchiveInfoDAL.Update(archiveinfo);
 
             var data = new ArchiveBorrowInfo()
             {

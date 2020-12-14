@@ -1,4 +1,4 @@
-﻿@model QzMisBocHangZhou.Model.EditViewModel<string>
+﻿@model QzMisBocHangZhou.Model.EditViewModel<QzMisBocHangZhou.Model.ArchiveBorrowInfo>
 @{
     Layout = null;
 }
@@ -22,12 +22,18 @@
             <div class="layui-card-header">基本信息</div>
             <div class="layui-card-body" style="padding: 15px;">
                 <form class="layui-form" lay-filter="component-form-group" action="">
-                    @Html.Hidden("Id", Model.Data)
+                    @Html.Hidden("Id", Model.Data.Id)
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">归还日期:</label>
                             <div class="layui-input-inline">
                                 <input type="text" class="layui-input" name="GiveBackDate" id="GiveBackDate" lay-verify="required" value=@(DateTime.Now.ToString("yyyy-MM-dd")) placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">标签代码:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" name="LabelCode" id="LabelCode" value=@Model.Data.LabelCode lay-verify="required">
                             </div>
                         </div>
                     </div>
@@ -78,8 +84,9 @@
                     dataType: "json",
                     data: JSON.stringify(
                         {
-                            bId: '@(Model.Data)',
-                            givebackDate: data.field.GiveBackDate
+                            bId: '@(Model.Data.Id)',
+                            givebackDate: data.field.GiveBackDate,
+                            labelCode: $('#LabelCode').val()
                         }),                        
                     success: function (result) {
                         //console.log(result);
