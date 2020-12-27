@@ -41,7 +41,8 @@ namespace QzMisBocHangZhou.Web.Controllers
 
             var arcId = ArchiveGiveBackInfoBiz.Get(borrowId).ArchiveId;
             var result = ArchiveInfoBiz.Get(arcId);
-            return View(new EditViewModel<ArchiveInfo>() { Data = result, User = AppSession.GetUser() });
+            result.BorrowId = borrowId;
+            return View(new EditViewModel<ArchiveInfo>() { Data = result, User = AppSession.GetUser()});
         }
         /// <summary>
         /// 归还审批弹框视图
@@ -119,9 +120,9 @@ namespace QzMisBocHangZhou.Web.Controllers
         /// <param name="borrowId"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult ChangeIn(ArchiveInfo data, string borrowId)
+        public JsonResult ChangeIn(ArchiveInfo data)
         {
-            var success = ArchiveBorrowInfoBiz.ChangeIn(data, borrowId);
+            var success = ArchiveBorrowInfoBiz.ChangeIn(data, data.BorrowId);
             return Json(new ResultModel<string>() { msg = success ? "" : "error" });
         }
         /// <summary>

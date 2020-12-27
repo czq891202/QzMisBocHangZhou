@@ -221,6 +221,18 @@ namespace QzMisBocHangZhou.DAL
             pars.Add(DBCache.DataBase.CreatDbParameter("Status", status.GetHashCode()));
             return DBCache.DataBase.ExecuteNonQuery(sql, pars.ToArray());
         }
+
+        public static int ChangeArchiveStatus(DbCommand cmd, string archiveId, ArchiveStatusType status)
+        {
+            var sql = @"update ArchiveInfo set Status = :Status where Id = :Id ";
+            cmd.CommandText = sql;
+
+            cmd.Parameters.Clear();
+            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Id", archiveId));
+            cmd.Parameters.Add(DBCache.DataBase.CreatDbParameter("Status", status.GetHashCode()));
+            return cmd.ExecuteNonQuery();
+        }
+
         private static string GetUpdateSql()
         {
             var sql = @"update ArchiveInfo set 

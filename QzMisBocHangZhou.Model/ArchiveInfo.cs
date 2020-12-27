@@ -249,6 +249,8 @@ namespace QzMisBocHangZhou.Model
         /// 关联账号（多笔贷款对应一个押品的情况）
         /// </summary>
         public string LinkedAccount { get; set; }
+
+        public string BorrowId { get; set; }
     }
 
     /// <summary>

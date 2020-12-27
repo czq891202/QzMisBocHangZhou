@@ -443,7 +443,7 @@ namespace QzMisBocHangZhou.DAL
                 var ret = 0;
                 ret += ArchiveInfoDAL.Update(cmd, arcData);
                 ret += SetInfoPass(cmd, borrowData, 4);
-                ret += ArchiveInfoDAL.ChangeArchiveStatus(borrowData.ArchiveId, ArchiveStatusType.已入库);
+                ret += ArchiveInfoDAL.ChangeArchiveStatus(cmd, borrowData.ArchiveId, ArchiveStatusType.已入库);
                 ret += SetReturnDate(cmd, borrowData);
 
                 return ret;
