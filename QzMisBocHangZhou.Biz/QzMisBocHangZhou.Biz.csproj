@@ -62,6 +62,7 @@
     <Compile Include="ArchiveSettleInfoBiz.cs" />
     <Compile Include="ArchiveTransferInfoBiz.cs" />
     <Compile Include="BaseDataBiz.cs" />
+    <Compile Include="DESBiz.cs" />
     <Compile Include="ExportExcel.cs" />
     <Compile Include="FtpHelper.cs" />
     <Compile Include="InventoryInfoBiz.cs" />

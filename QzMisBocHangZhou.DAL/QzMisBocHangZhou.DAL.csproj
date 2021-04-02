@@ -64,6 +64,7 @@
     <Compile Include="DataAccess\DbContext.cs" />
     <Compile Include="DataAccess\DbProvider.cs" />
     <Compile Include="DBCache.cs" />
+    <Compile Include="DESHelper.cs" />
     <Compile Include="InventoryInfoDAL.cs" />
     <Compile Include="MaskDataDAL.cs" />
     <Compile Include="NavigationInfoDAL.cs" />

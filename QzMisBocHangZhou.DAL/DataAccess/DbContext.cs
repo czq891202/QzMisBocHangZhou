@@ -23,8 +23,10 @@ namespace QzMisBocHangZhou.DAL
         public DbContext(string connectionStr)
         {
             if (string.IsNullOrWhiteSpace(connectionStr)) throw new ArgumentNullException(nameof(connectionStr));
+            
+            var connection = DESHelper.DESDecrypt(connectionStr);
 
-            this.m_ConnectString = connectionStr;
+            this.m_ConnectString = connection;
             this.m_Provider = new DbProvider<DbConnect>();
         }
         #region 【ExecuteNonQuery】

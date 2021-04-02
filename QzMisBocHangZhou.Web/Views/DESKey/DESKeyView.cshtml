@@ -1,0 +1,147 @@
+﻿@model QzMisBocHangZhou.Model.EditViewModel<string>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>加密解密</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="~/Scripts/Skin/default/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/layuiadmin/layui/layui.js"></script>
+    <link rel="stylesheet" media="all" href="~/Scripts/layuiadmin/layui/css/layui.css" />
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header">加密解密</div>
+            <div class="layui-card-body" style="padding: 15px;">
+                <form class="layui-form" lay-filter="component-form-group" action="">
+                    <div class="layui-form-item" style="width:100%">
+                        <div class="layui-inline" style="width:100%">
+                            <label class="layui-form-label">明文:</label>
+                            <div class="layui-input-inline" style="width:100%">
+                                <input type="text" name="PToEncrypt" id="PToEncrypt" autocomplete="off" placeholder="明文" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="width:100%">
+                        <div class="layui-inline" style="width:100%">
+                            <label class="layui-form-label">密文:</label>
+                            <div class="layui-input-inline" style="width:100%">
+                                <input type="text" name="PToDecrypt" id="PToDecrypt" autocomplete="off" placeholder="密文" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="width:100%">
+                        <div class="layui-inline" style="width:100%">
+                            <label class="layui-form-label">秘钥KEY:</label>
+                            <div class="layui-input-inline" style="width:100%">
+                                <input type="text" class="layui-input" style="width:100%" name="skey" id="skey" value="@Model.Data">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-layout-admin">
+                        <div class="layui-input-block">
+                            <div style="left: 0;">
+                                <button class="layui-btn" id="btn-save">保存秘钥KEY</button>
+                                <button class="layui-btn" id="btn-encrypt">加密</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.config({
+            base: '../../Scripts/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'form', 'layer', 'laydate', 'table'], function () {
+            var $ = layui.$
+                , layer = layui.layer
+                , form = layui.form;
+
+            form.render(null, 'component-form-group');
+
+
+            //按钮组事件监听
+            $('#btn-encrypt').click(function () {
+                DESEncrypt();
+                return false;
+            });
+
+            //按钮组事件监听
+            $('#btn-save').click(function () {
+                submitAction();
+                return false;
+            });
+
+            var submitAction = function () {
+                $.ajax({
+                    url: '/DESKey/SaveKey',
+                    type: 'post',
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(
+                        {
+                            skey: $('#skey').val()
+                        }),
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.msg == '') {
+                            top.layer.msg('保存秘钥KEY成功', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                                parent.layer.close(index);
+                            });
+                        }
+                        else {
+                            top.layer.msg('保存秘钥KEY失败! ' + result.msg, { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                                parent.layer.close(index);
+                            });
+                        }
+                    },
+                    error: function (result) {
+                        //console.log(result);
+                        top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                            parent.layer.close(index);
+                        });
+                    }
+                });
+            };
+
+            var DESEncrypt = function () {
+                $.ajax({
+                    url: '/DESKey/DESEncrypt',
+                    type: 'post',
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(
+                        {
+                            pToEncrypt: $('#PToEncrypt').val(),
+                            skey: $('#skey').val()
+                        }),
+
+                    success: function (result) {
+                        if (result.msg == '') {
+                            $('#PToDecrypt').val(result.data);
+                        }
+                        else {
+                            $('#PToDecrypt').val('保存秘钥KEY失败! ' + result.msg);
+                        }
+                    },
+                    error: function (result) {
+                        top.layer.msg('服务接口请求失败!', { time: 1000, shade: '0.3', shadeClose: true }, function () {
+                        });
+                    }
+                });
+            };
+        });
+    </script>
+</body>
+</html>

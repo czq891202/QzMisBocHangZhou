@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DESKey\DESKey.txt" />
     <Content Include="Global.asax" />
     <Content Include="ExcelTemplate\Borrow.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -851,6 +852,7 @@
     <Compile Include="Controllers\ArchiveInfoController.cs" />
     <Compile Include="Controllers\BaseDataController.cs" />
     <Compile Include="Controllers\BorrowController.cs" />
+    <Compile Include="Controllers\DESKeyController.cs" />
     <Compile Include="Controllers\FtpTestController.cs" />
     <Compile Include="Controllers\GiveBackController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
@@ -937,6 +939,7 @@
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\css\awesomeStyle\fa.less" />
     <Content Include="Scripts\layuiadmin\modules\zTreeSelectM\zTree_v3\README.md" />
     <Content Include="Views\Report\ArchiveInfoTimeView.cshtml" />
+    <Content Include="Views\DESKey\DESKeyView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
